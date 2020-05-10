@@ -76,7 +76,10 @@ flutter:
     - assets/images/weapon/electric/electric_9.png
     - assets/images/weapon/electric/electric_10.png
     - assets/images/weapon/electric/electric_11.png
+    - assets/images/reload/reload_weapon_ready.png
+    - assets/images/reload/reload_weapon_waiting.png
     - assets/images/background/bg.png
+    - assets/images/background/bg1.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

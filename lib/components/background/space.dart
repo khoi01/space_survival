@@ -9,7 +9,7 @@ class Space{
   Rect bgRect;
 
   Space(this.game){
-    bgSprite = Sprite('background/bg.png');
+    bgSprite = Sprite('background/bg1.png');
     bgRect = Rect.fromLTWH(
       0,game.screenSize.height - (game.tileSize * 23),
       game.tileSize * 9, // 9 == tile size
