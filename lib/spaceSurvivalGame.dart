@@ -8,6 +8,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:space_survival/components/background/space.dart';
 import 'package:space_survival/components/comet/comet.dart';
 import 'package:space_survival/components/comet/rockComet.dart';
+import 'package:space_survival/components/reloadWeapon/ReloadWeapon.dart';
 import 'package:space_survival/components/vehicle/spaceship.dart';
 import 'package:space_survival/components/vehicle/vehicle.dart';
 import 'package:space_survival/components/weapon/electricBullet.dart';
@@ -34,8 +35,10 @@ class SpaceSurvivalGame extends Game{
   Spaceship spaceship;
   List<Comet> comets;
   List<Weapon> weapons;
+  ReloadWeapon reloadWeapon;
 
   bool isTriggerWeapon = false;
+
   SpaceSurvivalGame(){
     initialize();
   }
@@ -64,16 +67,17 @@ class SpaceSurvivalGame extends Game{
                           this.tileSize * 1.5,
                           this.tileSize * 1.5
                         );
+    
   }
 
   @override
   void render(Canvas canvas) {
+
     background.render(canvas);
+    // reloadWeapon.render(canvas);
 
     spaceship.render(canvas);
-
     comets.forEach((comet) => comet.render(canvas));
-    
     weapons.forEach((weapon) => weapon.render(canvas));
   }
 
@@ -81,8 +85,10 @@ class SpaceSurvivalGame extends Game{
   void update(double t) {
 
       spaceship.update(t);
+
       comets.forEach((comet) => comet.update(t));
       comets.removeWhere((comet) => comet.isOffScreen);
+      
       spawnerComet.update(t);
       
       weapons.forEach((weapon) => weapon.update(t));
@@ -90,6 +96,8 @@ class SpaceSurvivalGame extends Game{
       
       collusionWeaponAndComet.update(t);
 
+      // reloadWeapon.update(t);
+      
       print(((DateTime.now().millisecondsSinceEpoch / Vehicle.nextUsed)*100).toInt());
   }
 
