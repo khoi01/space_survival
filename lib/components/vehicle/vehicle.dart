@@ -26,8 +26,8 @@ class Vehicle{
   double minXPosition;
   double minYPosition;
   
-  static int maxUsedInterval = 1500;
-  static int minUsedInterval = 1500;
+  static int maxUsedInterval = 3000;
+  static int minUsedInterval = 3000;
   static int intervalChange = 3;
   static int currentInterval;
   static int nextUsed;
@@ -89,9 +89,10 @@ class Vehicle{
       bool isAbleLaunchWeapon = false;
 
     //get current time
-    int nowTimestamp = DateTime.now().millisecondsSinceEpoch;
+    int nowTimestamp = Time.getCurrentTime();
 
     if(nowTimestamp >= nextUsed){
+
       if(currentInterval > minUsedInterval){
         currentInterval -= intervalChange;
         currentInterval -= (currentInterval * .02).toInt();
@@ -100,6 +101,7 @@ class Vehicle{
       nextUsed = nowTimestamp + currentInterval;
       isAbleLaunchWeapon = true;
     }
+
       return isAbleLaunchWeapon;
   }
 }

@@ -78,6 +78,11 @@ flutter:
     - assets/images/weapon/electric/electric_11.png
     - assets/images/weapon/reload/reload_weapon_ready.png
     - assets/images/weapon/reload/reload_weapon_waiting.png
+    - assets/images/weapon/reload/reload_weapon_1.png
+    - assets/images/weapon/reload/reload_weapon_2.png
+    - assets/images/weapon/reload/reload_weapon_3.png
+    - assets/images/weapon/reload/reload_weapon_4.png
+    - assets/images/weapon/reload/reload_weapon_5.png
     - assets/images/background/bg.png
     - assets/images/background/bg1.png
 

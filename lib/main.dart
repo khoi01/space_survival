@@ -43,6 +43,8 @@ void main() async{
     'weapon/electric/electric_9.png',
     'weapon/electric/electric_10.png',
     'weapon/electric/electric_11.png',
+    'weapon/reload/reload_weapon_ready.png',
+    'weapon/reload/reload_weapon_waiting.png'
   ]);
 
 

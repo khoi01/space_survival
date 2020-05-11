@@ -67,6 +67,14 @@ class SpaceSurvivalGame extends Game{
                           this.tileSize * 1.5,
                           this.tileSize * 1.5
                         );
+
+    reloadWeapon = ReloadWeapon(this,
+                                this.screenSize.width  - this.tileSize * 1.8,
+                                this.screenSize.height - this.tileSize * 1.8,
+                                this.tileSize * 1.8,
+                                this.tileSize * 1.8
+                              );
+
     
   }
 
@@ -74,7 +82,7 @@ class SpaceSurvivalGame extends Game{
   void render(Canvas canvas) {
 
     background.render(canvas);
-    // reloadWeapon.render(canvas);
+    reloadWeapon.render(canvas);
 
     spaceship.render(canvas);
     comets.forEach((comet) => comet.render(canvas));
@@ -96,10 +104,9 @@ class SpaceSurvivalGame extends Game{
       
       collusionWeaponAndComet.update(t);
 
-      // reloadWeapon.update(t);
-      
-      print(((DateTime.now().millisecondsSinceEpoch / Vehicle.nextUsed)*100).toInt());
-  }
+      reloadWeapon.update(t);
+
+  } 
 
 
   void spawnComet(){
@@ -146,9 +153,9 @@ class SpaceSurvivalGame extends Game{
   void onTapDown(TapDownDetails tap){
     bool isHandled = false;
 
-    if(!isHandled && Vehicle.isAbleToLaunchWeapon()){
+    if(!isHandled /*&& Vehicle.isAbleToLaunchWeapon()*/){
       comets.forEach((comet) {
-        if(comet.cometRect.contains(tap.globalPosition)){
+        if(comet.cometRect.contains(tap.globalPosition) && Vehicle.isAbleToLaunchWeapon()){
           comet.onTapDown();
           isHandled = true;
         }
