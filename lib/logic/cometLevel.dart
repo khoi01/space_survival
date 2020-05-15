@@ -43,7 +43,7 @@ class CometLevel {
 
         return CometLevel(
           minXPosition: 0,
-          maxXPosition: game.screenSize.width - (heightComponent),
+          maxXPosition: game.screenSize.width - (widthComponent),
           minYPosition: minYPos, //spawn zone location
           maxYPosition: maxYPos, //spawn zone location
           setXRandomPosition: x, //spawn component location

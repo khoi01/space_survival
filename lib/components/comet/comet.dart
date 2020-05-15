@@ -1,5 +1,4 @@
 import 'dart:ui';
-
 import 'package:flame/sprite.dart';
 import 'package:space_survival/logic/cometLevel.dart';
 
@@ -60,7 +59,7 @@ class Comet {
     if(!isDestroy){
       
       if(isCollisionOccurred(t)){
-        game.spaceship.hitPoint -=1;
+        game.vehicle.vehicleAttribute.currentHitPoint -=1;
         isDestroy = true;
         isOffScreen = true;
        
@@ -91,11 +90,11 @@ class Comet {
   bool isCollisionOccurred(double t){
     bool isHappen = false;
     Offset comet = Offset(cometRect.left,cometRect.top); //rect 1
-    Offset spaceShip = Offset(game.spaceship.vehicleRect.left,game.spaceship.vehicleRect.top); //rect 2
+    Offset spaceShip = Offset(game.vehicle.vehicleRect.left,game.vehicle.vehicleRect.top); //rect 2
 
-if (comet.dx < spaceShip.dx + game.spaceship.weightComponent/1.8 &&
+if (comet.dx < spaceShip.dx + game.vehicle.vehicleAttribute.widthComponent/1.8 &&
   comet.dx + this.widthComponent/2 > spaceShip.dx &&
-   comet.dy < spaceShip.dy + game.spaceship.heightComponent/1.8 &&
+   comet.dy < spaceShip.dy + game.vehicle.vehicleAttribute.heightComponent/1.8 &&
    comet.dy + this.heightComponent/2 > spaceShip.dy) {
     // collision detected!
     isHappen = true;

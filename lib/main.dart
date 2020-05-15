@@ -4,6 +4,7 @@ import 'package:flame/util.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/services.dart';
+import 'package:space_survival/components/vehicle/vehicleInit.dart';
 import 'package:space_survival/spaceSurvivalGame.dart';
 
 void main() async{
@@ -15,11 +16,16 @@ void main() async{
   await flameUtil.setOrientation(DeviceOrientation.portraitUp);
 
   Flame.images.loadAll(<String>[
-    'background/bg.png',
-    'spaceships/ship_1.png',
-    'spaceships/ship_2.png',
-    'spaceships/ship_3.png',
-    'spaceships/ship_4.png',
+    // 'background/bg.png',
+    'background/bg_base.png',
+    'background/bg_big_star.png',
+    'background/bg_planet.png',
+    'background/bg1.png',
+    'vehicle/spaceship/ship_1.png',
+    'vehicle/spaceship/ship_2.png',
+    'vehicle/spaceship/ship_3.png',
+    'vehicle/spaceship/ship_4.png',
+    'vehicle/vertex/vertex_1.png',
     'comet/rock/comet_1.png',
     'comet/rock/comet_2.png',
     'comet/rock/comet_3.png',
@@ -43,12 +49,25 @@ void main() async{
     'weapon/electric/electric_9.png',
     'weapon/electric/electric_10.png',
     'weapon/electric/electric_11.png',
+    'weapon/dark/dark_1.png',
+    'weapon/dark/dark_2.png',
+    'weapon/dark/dark_3.png',
+    'weapon/dark/dark_4.png',
+    'weapon/dark/dark_5.png',
+    'weapon/dark/dark_6.png',
+    'weapon/dark/dark_7.png',
     'weapon/reload/reload_weapon_ready.png',
-    'weapon/reload/reload_weapon_waiting.png'
+    'weapon/reload/reload_weapon_waiting.png',
+    'shield/shield_1.png'
+  ]);
+
+  Flame.audio.disableLog();
+  Flame.audio.loadAll(<String>[
+    'sfx/comet_destroy.ogg',
   ]);
 
 
-  SpaceSurvivalGame game = SpaceSurvivalGame();
+  SpaceSurvivalGame game = SpaceSurvivalGame(VehicleFeatures.vertex);
   runApp(game.widget);
 
   

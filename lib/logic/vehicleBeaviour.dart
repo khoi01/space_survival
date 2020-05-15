@@ -1,9 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:space_survival/spaceSurvivalGame.dart';
-import 'package:space_survival/util.dart';
 
 
-class VehicleLevel{
+enum VehicleBehaviourType{
+  type_1,
+  type_2,
+  testing,
+}
+
+class VehicleBehaviour{
 
   // min/max able to reach/go
   final double minXPosition;
@@ -17,6 +22,7 @@ class VehicleLevel{
   final double setXRandomPosition;
   final double setYRandomPosition;
 
+  final VehicleBehaviourType vehicleBehaviourType;
   Offset targetLocation;
 
 
@@ -24,72 +30,79 @@ class VehicleLevel{
 
   
   
-  VehicleLevel({this.game,
+  VehicleBehaviour({this.game,
   this.minXPosition,this.maxXPosition,
   this.minYPosition,this.maxYPosition,
-  this.setXRandomPosition,this.setYRandomPosition
+  this.setXRandomPosition,this.setYRandomPosition,
+  this.vehicleBehaviourType
   });
 
 
 
   
-  static setLevel(SpaceSurvivalGame game,Level level,double widthComponent,double heightComponent){   
+  static setBehaviour(SpaceSurvivalGame game,VehicleBehaviourType vehicleBehaviourType,double widthComponent,double heightComponent){   
 
-    switch (level) {
+    switch (vehicleBehaviourType) {
 
-      case  Level.one:
+      case  VehicleBehaviourType.type_1:
       
 
-        VehicleCordinate newCordinates = getNewLocattion(game, level, widthComponent, heightComponent);
+        VehicleCordinate newCordinates = getNewLocattion(game, vehicleBehaviourType, widthComponent, heightComponent);
 
-        return VehicleLevel(      
+        return VehicleBehaviour(      
               minXPosition:0,
               maxXPosition:game.screenSize.width - (widthComponent),
               minYPosition:newCordinates.minYPosition,
               maxYPosition:newCordinates.maxYPosition, 
               setXRandomPosition:newCordinates.newXPosition,
               setYRandomPosition:newCordinates.newYPosition,
+              vehicleBehaviourType: VehicleBehaviourType.type_1,
             );
      
         break;
-      case Level.two:
+      case VehicleBehaviourType.type_2:
 
-        VehicleCordinate newCordinates = getNewLocattion(game, level, widthComponent, heightComponent);
+        VehicleCordinate newCordinates = getNewLocattion(game, vehicleBehaviourType, widthComponent, heightComponent);
 
 
-        return VehicleLevel(      
+        return VehicleBehaviour(      
               minXPosition:0,
               maxXPosition:game.screenSize.width - (widthComponent),
               minYPosition:newCordinates.minYPosition,
               maxYPosition:newCordinates.maxYPosition, 
               setXRandomPosition:newCordinates.newXPosition,
               setYRandomPosition:newCordinates.newYPosition,
+              vehicleBehaviourType: VehicleBehaviourType.type_2,
+
             );
      
         break;
 
-      case Level.test_collision_comet_and_spaceships:
+      case VehicleBehaviourType.testing:
 
-        return VehicleLevel(
+        return VehicleBehaviour(
           minXPosition: 0,
           maxXPosition: 0,
           minYPosition: 0,
           maxYPosition: 0,
           setXRandomPosition: game.screenSize.width / 2.4 - (widthComponent/2),
-          setYRandomPosition: game.screenSize.height/2 - (heightComponent/2)
+          setYRandomPosition: game.screenSize.height/2 - (heightComponent/2),
+          vehicleBehaviourType: VehicleBehaviourType.testing
         );
       default:
               
-        VehicleCordinate newCordinates = getNewLocattion(game, level, widthComponent, heightComponent);
+        VehicleCordinate newCordinates = getNewLocattion(game, VehicleBehaviourType.type_1, widthComponent, heightComponent);
 
 
-        return VehicleLevel(      
+        return VehicleBehaviour(      
               minXPosition:0,
               maxXPosition:game.screenSize.width - (widthComponent),
               minYPosition:newCordinates.minYPosition,
               maxYPosition:newCordinates.maxYPosition, 
               setXRandomPosition:newCordinates.newXPosition,
               setYRandomPosition:newCordinates.newYPosition,
+              vehicleBehaviourType: VehicleBehaviourType.type_1
+
             );
      
         break;
@@ -97,10 +110,10 @@ class VehicleLevel{
   } 
   
 
-  static VehicleCordinate getNewLocattion(SpaceSurvivalGame game,Level level,double widthComponent,double heightComponent){
+  static VehicleCordinate getNewLocattion(SpaceSurvivalGame game,VehicleBehaviourType vehicleBehaviourType,double widthComponent,double heightComponent){
 
-      switch(level){
-        case Level.one:
+      switch(vehicleBehaviourType){
+        case VehicleBehaviourType.type_1:
         
         double minYPos = game.screenSize.height * 0.8;
         double maxYPos = game.screenSize.height;
@@ -116,7 +129,7 @@ class VehicleLevel{
         );
 
         break;
-        case Level.two:
+        case VehicleBehaviourType.type_2:
 
         double minYPos = game.screenSize.height * 0.6;
         double maxYPos = game.screenSize.height;

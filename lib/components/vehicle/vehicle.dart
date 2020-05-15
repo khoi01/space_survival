@@ -1,22 +1,21 @@
 import 'dart:ui';
 
 import 'package:flame/sprite.dart';
+import 'package:space_survival/components/vehicle/vehicleInit.dart';
 import 'package:space_survival/components/weapon/weapon.dart';
-import 'package:space_survival/logic/vehicleLevel.dart';
+import 'package:space_survival/logic/vehicleBeaviour.dart';
 import 'package:space_survival/spaceSurvivalGame.dart';
 import 'package:space_survival/util.dart';
 
 class Vehicle{
+
   Rect vehicleRect;
   final SpaceSurvivalGame game;
-  final VehicleLevel vehicleLevel;
-  final Level level;
-  final double weightComponent;
-  final double heightComponent;
+  final VehicleBehaviour vehicleBehaviour;
+  final VehicleAttribute vehicleAttribute;
+
   List<Weapon> weapons;
   List<Sprite> vehicleSprite;
-  int hitPoint = 3;
-  
   
   bool isDestroy = false;
   Offset targetLocation;
@@ -25,24 +24,17 @@ class Vehicle{
   // min/max that vehicle position able to reach/go
   double minXPosition;
   double minYPosition;
-  
-  static int maxUsedInterval = 3000;
-  static int minUsedInterval = 3000;
-  static int intervalChange = 3;
-  static int currentInterval;
-  static int nextUsed;
 
-  double get speed => game.tileSize * 0.5;
-    
+   int currentInterval;
+   int nextUsed;
   
-  Vehicle(this.game,this.level,this.vehicleLevel,this.weightComponent,this.heightComponent){
+  Vehicle(this.game,this.vehicleBehaviour,this.vehicleAttribute){
     weapons = List<Weapon>();
     setNewCordinates();
-    currentInterval = maxUsedInterval;
+    currentInterval = vehicleAttribute.maxUsedInterval;
     nextUsed = DateTime.now().millisecondsSinceEpoch + currentInterval;
 
   }
-
 
   void render(Canvas canvas){
 
@@ -65,8 +57,8 @@ class Vehicle{
 
     weapons.removeWhere((weapon) => weapon.isOffScreen);
 
-    if(!isDestroy && level != Level.test_collision_comet_and_spaceships){
-        double stepDistance = speed * t;
+    if(!isDestroy && vehicleBehaviour.vehicleBehaviourType != VehicleBehaviourType.testing){
+        double stepDistance = this.vehicleAttribute.speed * t;
         Offset toTarget = targetLocation - Offset(vehicleRect.left,vehicleRect.top);
         if(stepDistance < toTarget.distance){
           Offset stepToTarget = Offset.fromDirection(toTarget.direction,stepDistance);
@@ -81,11 +73,11 @@ class Vehicle{
   }
 
   void setNewCordinates(){
-    VehicleCordinate  newCordinate= VehicleLevel.getNewLocattion(this.game,this.level,this.weightComponent,this.heightComponent);
+    VehicleCordinate  newCordinate= VehicleBehaviour.getNewLocattion(this.game,vehicleBehaviour.vehicleBehaviourType,this.vehicleAttribute.widthComponent,this.vehicleAttribute.heightComponent);
     targetLocation = Offset(newCordinate.newXPosition,newCordinate.newYPosition);
   }
 
-  static bool isAbleToLaunchWeapon(){
+   bool isAbleToLaunchWeapon(){
       bool isAbleLaunchWeapon = false;
 
     //get current time
@@ -93,8 +85,8 @@ class Vehicle{
 
     if(nowTimestamp >= nextUsed){
 
-      if(currentInterval > minUsedInterval){
-        currentInterval -= intervalChange;
+      if(currentInterval > this.vehicleAttribute.minUsedInterval){
+        currentInterval -= this.vehicleAttribute.intervalChange;
         currentInterval -= (currentInterval * .02).toInt();
       }
 

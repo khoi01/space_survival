@@ -23,7 +23,9 @@ class ReloadWeapon {
   bool isReady = false;
   int reloadPercentage;
 
-  ReloadWeapon(this.game, this.setXPosition, this.setYPosition, this.widthComponent, this.heightComponent){
+  Vehicle vehicle;
+
+  ReloadWeapon(this.game,this.vehicle,this.setXPosition, this.setYPosition, this.widthComponent, this.heightComponent,){
     
     reloadRect = Rect.fromLTWH(setXPosition,setYPosition,widthComponent,heightComponent);
 
@@ -51,29 +53,9 @@ class ReloadWeapon {
       reloadSprite_0.renderRect(canvas,reloadRect.inflate(2));
     }
     
-    // if(isReady){
-    //   reloadReadySprite.renderRect(canvas,reloadRect.inflate(2));
-    // }else{
-    //   reloadWaitingSprite.renderRect(canvas,reloadRect.inflate(2));
-    // }
   }
 
   void update(double t){
-
-    reloadPercentage = ((Vehicle.nextUsed - Time.getCurrentTime()) / 3000 * 100).toInt();
-    print(reloadPercentage);
+    reloadPercentage = ((vehicle.nextUsed - Time.getCurrentTime()) / vehicle.vehicleAttribute.maxUsedInterval * 100).toInt();
   }
-
-  //   static bool isAbletoUsed(){
-
-  //   bool ableToUsed = false;
-
-    
-  //   if(((Time.getCurrentTime() / Vehicle.nextUsed)*100).toInt()== 100){
-  //     ableToUsed = true;
-  //   }
-
-  //   return ableToUsed;
-
-  // }
 }

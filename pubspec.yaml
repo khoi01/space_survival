@@ -49,10 +49,11 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/images/spaceships/ship_1.png
-    - assets/images/spaceships/ship_2.png
-    - assets/images/spaceships/ship_3.png
-    - assets/images/spaceships/ship_4.png
+    - assets/images/vehicle/spaceship/ship_1.png
+    - assets/images/vehicle/spaceship/ship_2.png
+    - assets/images/vehicle/spaceship/ship_3.png
+    - assets/images/vehicle/spaceship/ship_4.png
+    - assets/images/vehicle/vertex/vertex_1.png
     - assets/images/comet/rock/comet_1.png
     - assets/images/comet/rock/comet_2.png
     - assets/images/comet/rock/comet_3.png
@@ -76,6 +77,13 @@ flutter:
     - assets/images/weapon/electric/electric_9.png
     - assets/images/weapon/electric/electric_10.png
     - assets/images/weapon/electric/electric_11.png
+    - assets/images/weapon/dark/dark_1.png
+    - assets/images/weapon/dark/dark_2.png
+    - assets/images/weapon/dark/dark_3.png
+    - assets/images/weapon/dark/dark_4.png
+    - assets/images/weapon/dark/dark_5.png
+    - assets/images/weapon/dark/dark_6.png
+    - assets/images/weapon/dark/dark_7.png
     - assets/images/weapon/reload/reload_weapon_ready.png
     - assets/images/weapon/reload/reload_weapon_waiting.png
     - assets/images/weapon/reload/reload_weapon_1.png
@@ -83,9 +91,13 @@ flutter:
     - assets/images/weapon/reload/reload_weapon_3.png
     - assets/images/weapon/reload/reload_weapon_4.png
     - assets/images/weapon/reload/reload_weapon_5.png
-    - assets/images/background/bg.png
+    - assets/images/shield/shield_1.png
     - assets/images/background/bg1.png
-
+    - assets/images/background/bg_base.png
+    - assets/images/background/bg_big_star.png
+    - assets/images/background/bg_planet.png
+    - assets/audio/sfx/comet_destroy.ogg
+    
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

@@ -1,5 +1,4 @@
 import 'dart:ui';
-
 import 'package:flame/sprite.dart';
 import 'package:space_survival/components/comet/comet.dart';
 import 'package:space_survival/spaceSurvivalGame.dart';
@@ -17,11 +16,11 @@ class Weapon {
   bool isDestroy = false;
   bool isOffScreen = false;
 
-  static int maxUsedInterval = 1500;
-  static int minUsedInterval = 1500;
-  static int intervalChange = 3;
-  static int currentInterval;
-  static int nextUsedInterval;
+  // static int maxUsedInterval = 1500;
+  // static int minUsedInterval = 1500;
+  // static int intervalChange = 3;
+  // static int currentInterval;
+  // static int nextUsedInterval;
   
   Weapon(
     this.game,
@@ -67,6 +66,7 @@ class Weapon {
             isDestroy = true;
             isOffScreen = true;
             comet.hitPoint -=1;
+
       
           }
         }else{
