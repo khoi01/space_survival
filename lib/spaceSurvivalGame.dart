@@ -2,10 +2,10 @@
 import 'dart:math';
 import 'dart:ui';
 
+import 'package:flame/components/parallax_component.dart';
 import 'package:flame/flame.dart';
-import 'package:flame/game.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:space_survival/components/background/space.dart';
+import 'package:flutter/gestures.dart';
 import 'package:space_survival/components/comet/comet.dart';
 import 'package:space_survival/components/comet/rockComet.dart';
 import 'package:space_survival/components/healthBar/vehicleHealthBar.dart';
@@ -23,7 +23,7 @@ import 'package:space_survival/logic/spawner/SpawnerComet.dart';
 import 'package:space_survival/util.dart';
 import 'package:uuid/uuid.dart';
 
-class SpaceSurvivalGame extends Game{
+class SpaceSurvivalGame extends ParallaxComponent{
   
   final VehicleFeatures vehicleFeatures;
 
@@ -36,7 +36,6 @@ class SpaceSurvivalGame extends Game{
   Level level;
 
   //Components
-  Space background;
   Vehicle vehicle;
   List<Comet> comets;
   List<Weapon> weapons;
@@ -44,11 +43,14 @@ class SpaceSurvivalGame extends Game{
   VehicleHealthBar vehicleHealthBar;
   List<Shield> shieldIcons;
 
-  bool isTriggerWeapon = false;
-
-  SpaceSurvivalGame(this.vehicleFeatures){
+  SpaceSurvivalGame(List<ParallaxImage> images,this.vehicleFeatures) : super(images){
     initialize();
+    baseSpeed = const Offset(4,0);
+    layerDelta = const Offset(0,-50);
+
   }
+
+  
 
   void initialize() async{
     comets = List<Comet>();
@@ -57,11 +59,8 @@ class SpaceSurvivalGame extends Game{
     generateShieldDisplay = GenerateShieldDisplay(this);
 
     random = Random();
-    //setupBackground();
+
     resize(await Flame.util.initialDimensions()); //set new screen size
-    background = Space(this);
-
-
 
     spawnerComet = SpawnerComet(this);
 
@@ -78,13 +77,13 @@ class SpaceSurvivalGame extends Game{
                               );
 
 
-    
   }
 
   @override
   void render(Canvas canvas) {
+    
+    super.render(canvas);
 
-    background.render(canvas);
     reloadWeapon.render(canvas);
 
     vehicle.render(canvas);
@@ -99,6 +98,7 @@ class SpaceSurvivalGame extends Game{
   @override
   void update(double t) {
 
+      super.update(t);
       vehicle.update(t);
 
       comets.forEach((comet) => comet.update(t));
@@ -120,7 +120,7 @@ class SpaceSurvivalGame extends Game{
 
       generateShieldDisplay.update(t);
 
-  } 
+  }
 
 
   void spawnComet(){
@@ -149,6 +149,7 @@ class SpaceSurvivalGame extends Game{
   void resize(Size size){
     screenSize = size;
     tileSize = screenSize.width/9;
+    super.resize(size);
   }
 
 
@@ -173,10 +174,9 @@ class SpaceSurvivalGame extends Game{
     weapons.add(bullet);
   }
 
-  void onTapDown(TapDownDetails tap){
+    void onTapDown(TapDownDetails tap){
     bool isHandled = false;
-
-    if(!isHandled /*&& Vehicle.isAbleToLaunchWeapon()*/){
+    if(!isHandled){
       comets.forEach((comet) {
         if(comet.cometRect.contains(tap.globalPosition) && vehicle.isAbleToLaunchWeapon()){
           comet.onTapDown();
@@ -185,25 +185,4 @@ class SpaceSurvivalGame extends Game{
        });
     }
   }
-
-  // void setupBackground(){
-  //   final images = [
-  //     // ParallaxImage("bg.png"),
-  //     // ParallaxImage("mountain-far.png"),
-  //     // ParallaxImage("mountains.png"),
-  //     // ParallaxImage("trees.png"),
-  //     // ParallaxImage("foreground-trees.png"),
-  //     ParallaxImage("background/bg_base.png",repeat: ImageRepeat.repeat,fill: LayerFill.height),
-  //     ParallaxImage("background/bg_big_star.png",repeat: ImageRepeat.repeatY,fill: LayerFill.height),
-  //     ParallaxImage("background/bg_planet.png",repeat: ImageRepeat.repeat,fill: LayerFill.none),
-  //   ];
-
-  //       final parallaxComponent = ParallaxComponent(images,
-  //       baseSpeed: const Offset(4,0), layerDelta: const Offset(0,-50));
-
-  //   add(parallaxComponent);
-  // }
-  
-  
-
 }

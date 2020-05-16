@@ -1,5 +1,7 @@
 
+import 'package:flame/components/parallax_component.dart';
 import 'package:flame/flame.dart';
+import 'package:flame/game/base_game.dart';
 import 'package:flame/util.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
@@ -8,7 +10,7 @@ import 'package:space_survival/components/vehicle/vehicleInit.dart';
 import 'package:space_survival/spaceSurvivalGame.dart';
 
 void main() async{
-
+  
   WidgetsFlutterBinding.ensureInitialized();
 
   Util flameUtil = Util();
@@ -66,12 +68,37 @@ void main() async{
     'sfx/comet_destroy.ogg',
   ]);
 
-
-  SpaceSurvivalGame game = SpaceSurvivalGame(VehicleFeatures.vertex);
-  runApp(game.widget);
-
+  runApp(MyGame(flameUtil).widget);
   
+
+}
+
+
+class MyGame extends BaseGame{
+
+  SpaceSurvivalGame game;
+  MyGame(Util flameUtil){
+  
+    final images = [
+
+      ParallaxImage("background/bg_base.png",repeat: ImageRepeat.repeat,fill: LayerFill.height),
+      ParallaxImage("background/bg_big_star.png",repeat: ImageRepeat.repeat,fill: LayerFill.height),
+      ParallaxImage("background/bg_planet.png",repeat: ImageRepeat.repeat,fill: LayerFill.none),
+
+    ];
+
+
+   game = SpaceSurvivalGame(images,VehicleFeatures.vertex);
+
   TapGestureRecognizer tapper = TapGestureRecognizer();
-  tapper.onTapDown = game.onTapDown;
+  tapper.onTapDown = onTapDown;
   flameUtil.addGestureRecognizer(tapper);
+
+  add(game);
+
+  }
+
+  void onTapDown(TapDownDetails tap){
+    game.onTapDown(tap);
+  }
 }

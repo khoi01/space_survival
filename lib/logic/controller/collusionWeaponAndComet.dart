@@ -1,8 +1,6 @@
 
 
 import 'dart:ui';
-
-import 'package:flame/flame.dart';
 import 'package:space_survival/components/comet/comet.dart';
 import 'package:space_survival/components/weapon/weapon.dart';
 import 'package:space_survival/spaceSurvivalGame.dart';
@@ -44,7 +42,7 @@ class CollusionWeaponAndComet{
         colWeapon.dy < colComet.dy + comet.widthComponent/2.5 &&
         colWeapon.dy + weapon.heightComponent/2.5 > colComet.dy){
           //collision detected;
-                            Flame.audio.play('sfx/comet_destroy.ogg');
+                            // Flame.audio.play('sfx/comet_destroy.ogg');
 
           comet.hitPoint -=1;
           
