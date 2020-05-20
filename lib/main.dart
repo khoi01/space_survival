@@ -2,23 +2,68 @@
 import 'package:flame/components/parallax_component.dart';
 import 'package:flame/flame.dart';
 import 'package:flame/game/base_game.dart';
-import 'package:flame/util.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:space_survival/components/vehicle/vehicleInit.dart';
+import 'package:space_survival/route/LostPage/LostPage.dart';
+import 'package:space_survival/route/MainPage/MainPage.dart';
+import 'package:space_survival/route/SplashScreen/SplashScreenGame.dart';
 import 'package:space_survival/spaceSurvivalGame.dart';
+import 'package:space_survival/util.dart';
 
-void main() async{
+void main(){
+  runApp(SpaceSurvivalApp());
+}
+
+
+class SpaceSurvivalApp extends StatelessWidget {
+  const SpaceSurvivalApp({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      initialRoute:'/${Routes.main_page}',
+      routes:{
+        '/': (context) => SplashScreenGame(),
+        '/${Routes.main_page}':(context) => MainPage(),
+        '/${Routes.main_game}':(context) => MainGame(),
+        '/${Routes.lost_page}':(context) => LostPage(),
+      }
+    );
+  }
+}
+
+
+class MainGame extends StatefulWidget {
+  MainGame({Key key}) : super(key: key);
+
+  @override
+  _MainGameState createState() => _MainGameState();
+}
+
+class _MainGameState extends State<MainGame> {
+  @override
+  Widget build(BuildContext context) {
+
+    initialize();
+
+    MyGame game = MyGame(context);
+
+
+    return Container(
+       child: game.widget,
+    );
+  }
+
+  void initialize() async{
   
   WidgetsFlutterBinding.ensureInitialized();
+  await Flame.util.fullScreen();
+  await Flame.util.setOrientation(DeviceOrientation.portraitUp);
 
-  Util flameUtil = Util();
-  await flameUtil.fullScreen();
-  await flameUtil.setOrientation(DeviceOrientation.portraitUp);
-
-  Flame.images.loadAll(<String>[
-    // 'background/bg.png',
+    Flame.images.loadAll(<String>[
     'background/bg_base.png',
     'background/bg_big_star.png',
     'background/bg_planet.png',
@@ -27,6 +72,10 @@ void main() async{
     'vehicle/spaceship/ship_2.png',
     'vehicle/spaceship/ship_3.png',
     'vehicle/spaceship/ship_4.png',
+    'vehicle/spaceship/withShield/ship1shield1.png',
+    'vehicle/spaceship/withShield/ship1shield2.png',
+    'vehicle/spaceship/withShield/ship1shield3.png',
+    'vehicle/spaceship/withShield/ship1shield4.png',
     'vehicle/vertex/vertex_1.png',
     'comet/rock/comet_1.png',
     'comet/rock/comet_2.png',
@@ -60,24 +109,26 @@ void main() async{
     'weapon/dark/dark_7.png',
     'weapon/reload/reload_weapon_ready.png',
     'weapon/reload/reload_weapon_waiting.png',
-    'shield/shield_1.png'
+    'shield/shield_1.png',
   ]);
 
   Flame.audio.disableLog();
   Flame.audio.loadAll(<String>[
     'sfx/comet_destroy.ogg',
   ]);
-
-  runApp(MyGame(flameUtil).widget);
   
+  }
 
+  @override
+  void dispose() {
+    SpaceSurvivalGame.game = null;
+    super.dispose();
+  }
 }
-
 
 class MyGame extends BaseGame{
 
-  SpaceSurvivalGame game;
-  MyGame(Util flameUtil){
+  MyGame(BuildContext context){
   
     final images = [
 
@@ -86,19 +137,21 @@ class MyGame extends BaseGame{
       ParallaxImage("background/bg_planet.png",repeat: ImageRepeat.repeat,fill: LayerFill.none),
 
     ];
-
-
-   game = SpaceSurvivalGame(images,VehicleFeatures.vertex);
+  SpaceSurvivalGame.context = context;
+  SpaceSurvivalGame.game = SpaceSurvivalGame(images,VehicleFeatures.spaceship);
 
   TapGestureRecognizer tapper = TapGestureRecognizer();
   tapper.onTapDown = onTapDown;
-  flameUtil.addGestureRecognizer(tapper);
+  Flame.util.addGestureRecognizer(tapper);
 
-  add(game);
+  add(SpaceSurvivalGame.game);
 
   }
 
   void onTapDown(TapDownDetails tap){
-    game.onTapDown(tap);
+    if(SpaceSurvivalGame.game != null){
+      SpaceSurvivalGame.game.onTapDown(tap);
+    }
+    
   }
 }

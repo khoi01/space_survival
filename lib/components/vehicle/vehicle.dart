@@ -16,7 +16,9 @@ class Vehicle{
 
   List<Weapon> weapons;
   List<Sprite> vehicleSprite;
-  
+  List<Sprite> vehicleShieldSprite;
+
+  bool isUsingShield = false;
   bool isDestroy = false;
   Offset targetLocation;
   
@@ -25,14 +27,16 @@ class Vehicle{
   double minXPosition;
   double minYPosition;
 
-   int currentInterval;
-   int nextUsed;
+   int currentIntervalReload;
+   int nextUsedReload;
+
+   int shieldStop; //when shield will stop
   
   Vehicle(this.game,this.vehicleBehaviour,this.vehicleAttribute){
     weapons = List<Weapon>();
     setNewCordinates();
-    currentInterval = vehicleAttribute.maxUsedInterval;
-    nextUsed = DateTime.now().millisecondsSinceEpoch + currentInterval;
+    currentIntervalReload = vehicleAttribute.maxUsedInterval;
+    nextUsedReload = DateTime.now().millisecondsSinceEpoch + currentIntervalReload;
 
   }
 
@@ -42,10 +46,12 @@ class Vehicle{
       weapon.render(canvas);
     });
 
-    if(!isDestroy){
-    int randomSprite = game.random.nextInt(vehicleSprite.length);
-    vehicleSprite[randomSprite].renderRect(canvas,vehicleRect.inflate(2));
-
+    if(!isDestroy && !isUsingShield){
+      int randomSprite = game.random.nextInt(vehicleSprite.length);
+      vehicleSprite[randomSprite].renderRect(canvas,vehicleRect.inflate(2));
+    }else if(!isDestroy && isUsingShield){
+      int randomSprite = game.random.nextInt(vehicleShieldSprite.length);
+      vehicleShieldSprite[randomSprite].renderRect(canvas,vehicleRect.inflate(2)); 
     }
   }
 
@@ -70,6 +76,12 @@ class Vehicle{
     }else{
 
     }
+
+    if(isUsingShield){
+        if(Time.getCurrentTime() >= shieldStop ){
+          isUsingShield = false;
+        }
+    }
   }
 
   void setNewCordinates(){
@@ -83,17 +95,42 @@ class Vehicle{
     //get current time
     int nowTimestamp = Time.getCurrentTime();
 
-    if(nowTimestamp >= nextUsed){
+    if(nowTimestamp >= nextUsedReload){
 
-      if(currentInterval > this.vehicleAttribute.minUsedInterval){
-        currentInterval -= this.vehicleAttribute.intervalChange;
-        currentInterval -= (currentInterval * .02).toInt();
+      if(currentIntervalReload > this.vehicleAttribute.minUsedInterval){
+        currentIntervalReload -= this.vehicleAttribute.intervalChange;
+        currentIntervalReload -= (currentIntervalReload * .02).toInt();
       }
 
-      nextUsed = nowTimestamp + currentInterval;
+      nextUsedReload = nowTimestamp + currentIntervalReload;
       isAbleLaunchWeapon = true;
     }
 
       return isAbleLaunchWeapon;
+  }
+
+  void onTapDown(){
+
+      if(isAbleUseShield()){
+        usingShield();
+      }
+    
+  }
+  
+  void usingShield(){
+  
+    //get current time
+    int nowTimeStamp = Time.getCurrentTime();
+    shieldStop = nowTimeStamp + vehicleAttribute.shieldDuration;
+    isUsingShield = true;
+    vehicleAttribute.currentShield-=1;
+  }
+
+  bool isAbleUseShield(){
+    if(vehicleAttribute.currentShield > 0){
+      return true;
+    }else{
+      return false;
+    }
   }
 }

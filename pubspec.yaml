@@ -30,6 +30,8 @@ dependencies:
   cupertino_icons: ^0.1.3
   flame: ^0.20.0
   uuid: ^2.0.4
+  flame_splash_screen: ^0.0.1
+
 
 
 dev_dependencies:
@@ -53,6 +55,10 @@ flutter:
     - assets/images/vehicle/spaceship/ship_2.png
     - assets/images/vehicle/spaceship/ship_3.png
     - assets/images/vehicle/spaceship/ship_4.png
+    - assets/images/vehicle/spaceship/withShield/ship1shield1.png
+    - assets/images/vehicle/spaceship/withShield/ship1shield2.png
+    - assets/images/vehicle/spaceship/withShield/ship1shield3.png
+    - assets/images/vehicle/spaceship/withShield/ship1shield4.png
     - assets/images/vehicle/vertex/vertex_1.png
     - assets/images/comet/rock/comet_1.png
     - assets/images/comet/rock/comet_2.png

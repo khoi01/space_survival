@@ -39,15 +39,7 @@ class VehicleCreate{
                                               vehicleAttribute.heightComponent,
                                               ),
                                               vehicleAttribute
-        );
-
-        // Weapon weapon  = new ElectricBullet(game,
-        //                                         targetCormet,
-        //                                         vehicle.vehicleRect.left,
-        //                                         vehicle.vehicleRect.top,
-        //                                         game.tileSize * 1.2,
-        //                                         game.tileSize * 1.2
-        //                                         );        
+        );      
       break;
 
       case VehicleFeatures.vertex:
@@ -117,20 +109,22 @@ class VehicleAttribute {
   final int maxUsedInterval;
   final int minUsedInterval;
   final int intervalChange;
+  final int shieldDuration;
 
   VehicleAttribute({
-    this.price,
-    this.widthComponent,
-    this.heightComponent,
-    this.speed,
-    this.maxHitPoint,
-    this.currentHitPoint,
-    this.damage,
-    this.maxShield,
-    this.currentShield,
-    this.maxUsedInterval,
-    this.minUsedInterval,
-    this.intervalChange,
+    this.price, //the price of this ship
+    this.widthComponent, //the size of this ship
+    this.heightComponent, //the size of this ship
+    this.speed, //the movement speed of this ship
+    this.maxHitPoint, //max hp that this ship can have
+    this.currentHitPoint, //current hitpoint available
+    this.damage, //weapon dmg of this ship
+    this.maxShield, //max ship that this ship can have
+    this.currentShield, //current shield that available
+    this.maxUsedInterval, //reload weapon
+    this.minUsedInterval, //reload weapon
+    this.intervalChange,//reload weapon
+    this.shieldDuration //shield available
   });
 
 
@@ -156,7 +150,8 @@ class VehicleAttribute {
                             currentShield: 1,
                             maxUsedInterval: 3000,
                             minUsedInterval: 3000,
-                            intervalChange: 3
+                            intervalChange: 3,
+                            shieldDuration: 3000,
                             );
 
       break;
@@ -165,7 +160,7 @@ class VehicleAttribute {
                             price: 50,
                             widthComponent: game.tileSize * 1.5,
                             heightComponent:  game.tileSize * 1.5,
-                            speed:  game.tileSize * 2.0,
+                            speed:  game.tileSize * 0.6,
                             maxHitPoint: 2,
                             currentHitPoint: 2,
                             damage: 2,
@@ -173,7 +168,8 @@ class VehicleAttribute {
                             currentShield: 2,
                             maxUsedInterval: 2000,
                             minUsedInterval: 2000,
-                            intervalChange: 3
+                            intervalChange: 3,
+                            shieldDuration: 3500,
                             );
       break;
       default:
@@ -183,13 +179,14 @@ class VehicleAttribute {
                             heightComponent:  game.tileSize * 1.5,
                             speed:  game.tileSize * 0.5,
                             maxHitPoint: 2,
-                            currentHitPoint: 2,
+                            currentHitPoint: 1,
                             damage: 1,
                             maxShield: 1,
                             currentShield: 1,
                             maxUsedInterval: 3000,
                             minUsedInterval: 3000,
-                            intervalChange: 3
+                            intervalChange: 3,
+                            shieldDuration: 3000,
                             );
       break;
     }

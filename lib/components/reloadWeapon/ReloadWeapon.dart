@@ -56,6 +56,6 @@ class ReloadWeapon {
   }
 
   void update(double t){
-    reloadPercentage = ((vehicle.nextUsed - Time.getCurrentTime()) / vehicle.vehicleAttribute.maxUsedInterval * 100).toInt();
+    reloadPercentage = ((vehicle.nextUsedReload - Time.getCurrentTime()) / vehicle.vehicleAttribute.maxUsedInterval * 100).toInt();
   }
 }

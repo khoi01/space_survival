@@ -59,9 +59,16 @@ class Comet {
     if(!isDestroy){
       
       if(isCollisionOccurred(t)){
-        game.vehicle.vehicleAttribute.currentHitPoint -=1;
-        isDestroy = true;
-        isOffScreen = true;
+        if(!game.vehicle.isUsingShield){
+          game.vehicle.vehicleAttribute.currentHitPoint -=1;
+        }else{
+          //using shield and collusion between vehicle and comet - get a score
+          game.score+=1; 
+        }
+          isDestroy = true;
+          isOffScreen = true;
+        
+        
        
       }else{
         moveComet(t);

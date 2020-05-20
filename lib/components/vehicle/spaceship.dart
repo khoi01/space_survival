@@ -20,8 +20,14 @@ class Spaceship extends Vehicle{
     vehicleSprite.add(Sprite('vehicle/spaceship/ship_1.png'));
     vehicleSprite.add(Sprite('vehicle/spaceship/ship_2.png'));
     vehicleSprite.add(Sprite('vehicle/spaceship/ship_3.png'));
-    vehicleSprite.add(Sprite('vehicle/spaceship/ship_4.png'));  
-  
+    vehicleSprite.add(Sprite('vehicle/spaceship/ship_4.png'));
+
+    vehicleShieldSprite = List<Sprite>();
+    vehicleShieldSprite.add(Sprite('vehicle/spaceship/withShield/ship1shield1.png'));
+    vehicleShieldSprite.add(Sprite('vehicle/spaceship/withShield/ship1shield2.png'));
+    vehicleShieldSprite.add(Sprite('vehicle/spaceship/withShield/ship1shield3.png'));
+    vehicleShieldSprite.add(Sprite('vehicle/spaceship/withShield/ship1shield4.png'));
+      
   }  
 
 }
