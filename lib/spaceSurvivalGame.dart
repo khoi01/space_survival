@@ -16,6 +16,7 @@ import 'package:space_survival/components/vehicle/vehicleInit.dart';
 import 'package:space_survival/components/weapon/electricBullet.dart';
 import 'package:space_survival/components/weapon/weapon.dart';
 import 'package:space_survival/logic/cometLevel.dart';
+import 'package:space_survival/logic/controller/Stage.dart';
 import 'package:space_survival/logic/controller/collusionWeaponAndComet.dart';
 import 'package:space_survival/logic/controller/generateShieldDisplay.dart';
 import 'package:space_survival/logic/spawner/SpawnerComet.dart';
@@ -29,11 +30,13 @@ class SpaceSurvivalGame extends ParallaxComponent{
   static BuildContext context;
   static bool isOnGameScreen = true;
   bool isInitialize = false;
+  // final Stage stage;
+  StageTime stageTime;
 
   Size screenSize;
   double tileSize;
   Random random;
-  SpawnerComet spawnerComet;
+  SpawnerRockComet spawnerRockComet;
   CollusionWeaponAndComet collusionWeaponAndComet;
   Level level;
   int score;
@@ -46,14 +49,14 @@ class SpaceSurvivalGame extends ParallaxComponent{
   VehicleHealthBar vehicleHealthBar;
   List<Shield> shieldIcons;
   GenerateShieldDisplay generateShieldDisplay;
-  //ScoreTextDisplay scoreDisplay;
   ScoreDisplay scoreDisplay;
 
-  SpaceSurvivalGame(List<ParallaxImage> images,this.vehicleFeatures) : super(images){
+  SpaceSurvivalGame(List<ParallaxImage> images,this.vehicleFeatures/*, this.stage*/) : super(images){
     isOnGameScreen = true;
     score = 0;
     initializeComponent().then((result){
       isInitialize = result;
+      
     });
     baseSpeed = const Offset(4,0);
     layerDelta = const Offset(0,-50);
@@ -73,7 +76,7 @@ class SpaceSurvivalGame extends ParallaxComponent{
 
     resize(await Flame.util.initialDimensions()); //set new screen size
 
-    spawnerComet = SpawnerComet(this);
+    // spawnerRockComet = SpawnerRockComet(this,RockComet.getSpawnBehaviour(stage));
 
     vehicle = VehicleCreate.initVehicleFeatures(this,vehicleFeatures);
     vehicleHealthBar = VehicleHealthBar(this);
@@ -87,8 +90,16 @@ class SpaceSurvivalGame extends ParallaxComponent{
                                 this.tileSize * 1.8
                               );
     scoreDisplay = ScoreDisplay(this);
+    stageTime = StageTime(this);
+
+    spawnerRockComet = SpawnerRockComet(this,RockComet.getSpawnBehaviour(StageTime.currentStage));
 
     return true;
+  }
+
+  void reInitializeComponent(){
+    spawnerRockComet = null;
+    spawnerRockComet = SpawnerRockComet(this,RockComet.getSpawnBehaviour(StageTime.currentStage));
   }
 
   @override
@@ -123,7 +134,7 @@ class SpaceSurvivalGame extends ParallaxComponent{
         comets.forEach((comet) => comet.update(t));
         comets.removeWhere((comet) => comet.isOffScreen);
         
-        spawnerComet.update(t);
+        spawnerRockComet.update(t);
         
         weapons.forEach((weapon) => weapon.update(t));
         weapons.removeWhere((weapon) => weapon.isOffScreen);
@@ -141,6 +152,7 @@ class SpaceSurvivalGame extends ParallaxComponent{
 
         scoreDisplay.update(t);
 
+        stageTime.update(t);
         if(isEndGame()){
           gotoLostPage();
         }
@@ -155,7 +167,6 @@ class SpaceSurvivalGame extends ParallaxComponent{
     Nav.route(context,Routes.lost_page,score,isRemovePreviousBackStack: true);
 
   }
-
 
   void spawnComet(){
 

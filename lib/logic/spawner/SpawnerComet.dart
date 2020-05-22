@@ -1,22 +1,22 @@
+import 'package:space_survival/logic/controller/Stage.dart';
 import 'package:space_survival/spaceSurvivalGame.dart';
 
-class SpawnerComet {
+class SpawnerRockComet {
   final SpaceSurvivalGame game;
-  final int maxSpawnInternal = 1500; // 1,5 second - limit when to spawn
-  final int minSpawnInterval = 100;
-  final int intervalChange = 3;
-  final int maxCometOnScreen = 6;
+  StageSpawnBehaviour stageSpawnBehaviour;
   int currentInterval;
   int nextSpawn;
+  Stage stage;
 
-  SpawnerComet(this.game){
+  SpawnerRockComet(this.game,this.stageSpawnBehaviour){
     start();
+    
     game.spawnComet();
   }
 
   void start(){
       destoryAllComet();
-      currentInterval = maxSpawnInternal;
+      currentInterval = stageSpawnBehaviour.maxSpawnInternal;
       nextSpawn = DateTime.now().millisecondsSinceEpoch + currentInterval;
   }
 
@@ -38,12 +38,12 @@ class SpawnerComet {
     });
 
       // current time its higher then nextSpawn && current flies less then max available comets can show/add on the screen
-    if(nowTimestamp >= nextSpawn && cometShowOntheScreen < maxCometOnScreen){
+    if(nowTimestamp >= nextSpawn && cometShowOntheScreen < stageSpawnBehaviour.maxComponentOnScreen){
       game.spawnComet();
 
       //get currentInterval and add with current time and that time will become next spawn.
-       if(currentInterval > minSpawnInterval){
-         currentInterval -= intervalChange;
+       if(currentInterval > stageSpawnBehaviour.minSpawnInterval){
+         currentInterval -= stageSpawnBehaviour.intervalChange;
          currentInterval -= (currentInterval * .02).toInt();
        }
         

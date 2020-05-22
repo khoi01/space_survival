@@ -1,11 +1,12 @@
 import 'dart:ui';
 import 'package:flame/sprite.dart';
+import 'package:space_survival/components/component.dart';
 import 'package:space_survival/logic/cometLevel.dart';
 
 import 'package:space_survival/spaceSurvivalGame.dart';
 import 'package:space_survival/util.dart';
 
-class Comet {
+class Comet extends GameComponent{
   Rect cometRect;
   final SpaceSurvivalGame game;
   final String cometId;
@@ -16,8 +17,6 @@ class Comet {
   List<Sprite> cometSprite;
   List<Sprite> cometLockSprite;
   Offset targetLocation;
-  bool isDestroy = false;
-  bool isOffScreen = false;
   bool isLock = false; //check if comet get lock with any weapon;
   int hitPoint = 1;
   

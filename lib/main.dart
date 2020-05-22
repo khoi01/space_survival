@@ -138,7 +138,7 @@ class MyGame extends BaseGame{
 
     ];
   SpaceSurvivalGame.context = context;
-  SpaceSurvivalGame.game = SpaceSurvivalGame(images,VehicleFeatures.spaceship);
+  SpaceSurvivalGame.game = SpaceSurvivalGame(images,VehicleFeatures.spaceship/*,Stage.stage_1*/);
 
   TapGestureRecognizer tapper = TapGestureRecognizer();
   tapper.onTapDown = onTapDown;
