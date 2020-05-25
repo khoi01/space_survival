@@ -1,3 +1,4 @@
+import 'package:flame/sprite.dart';
 import 'package:space_survival/components/vehicle/spaceship.dart';
 import 'package:space_survival/components/vehicle/vehicle.dart';
 import 'package:space_survival/components/vehicle/vertex.dart';
@@ -32,13 +33,17 @@ class VehicleCreate{
         //set vehicle attribute
         VehicleAttribute vehicleAttribute = VehicleAttribute.getAttribute(vehicleFeature,game);
 
+        //set vehicle Sprite;
+        VehicleSprite vehicleSprite = VehicleSprite.getVehicleSprite(vehicleFeature);
+
         vehicle = Spaceship(game,
                         VehicleBehaviour.setBehaviour(game,
                                               vehicleBehaviourType,
                                               vehicleAttribute.widthComponent,
                                               vehicleAttribute.heightComponent,
                                               ),
-                                              vehicleAttribute
+                                              vehicleAttribute,
+                                              vehicleSprite
         );      
       break;
 
@@ -50,14 +55,18 @@ class VehicleCreate{
         //set vehicle attribute
         VehicleAttribute vehicleAttribute = VehicleAttribute.getAttribute(vehicleFeature,game);
 
-        
+
+        //set vehicle Sprite;
+        VehicleSprite vehicleSprite = VehicleSprite.getVehicleSprite(vehicleFeature);
+
         vehicle = Vertex(game,
                         VehicleBehaviour.setBehaviour(game,
                                               vehicleBehaviourType,
                                               vehicleAttribute.widthComponent,
                                               vehicleAttribute.heightComponent,
                                               ),
-                                              vehicleAttribute
+                                              vehicleAttribute,
+                                              vehicleSprite
         );
       break;
 
@@ -69,6 +78,8 @@ class VehicleCreate{
         //set vehicle attribute
         VehicleAttribute vehicleAttribute = VehicleAttribute.getAttribute(vehicleFeature,game);
 
+        //set vehicle Sprite;
+        VehicleSprite vehicleSprite = VehicleSprite.getVehicleSprite(vehicleFeature);
         
         vehicle = Spaceship(game,
                         VehicleBehaviour.setBehaviour(game,
@@ -76,7 +87,8 @@ class VehicleCreate{
                                               vehicleAttribute.widthComponent,
                                               vehicleAttribute.heightComponent,
                                               ),
-                                              vehicleAttribute
+                                              vehicleAttribute,
+                                              vehicleSprite
         );
       break;
       
@@ -132,7 +144,7 @@ class VehicleAttribute {
   /*
   get attribute of the vehicle by vehicleFeatures 
   */
-  static VehicleAttribute getAttribute(VehicleFeatures vehicleFeature,SpaceSurvivalGame game){
+  static VehicleAttribute getAttribute(VehicleFeatures vehicleFeature,SpaceSurvivalGame game,{bool isNull = false}){
     VehicleAttribute vehicleAttribute;
     
     switch(vehicleFeature){
@@ -140,9 +152,9 @@ class VehicleAttribute {
 
         vehicleAttribute = VehicleAttribute(
                             price: 0,
-                            widthComponent: game.tileSize * 1.5,
-                            heightComponent:  game.tileSize * 1.5,
-                            speed:  game.tileSize * 0.5,
+                            widthComponent: isNull ? 0 : game.tileSize * 1.5,
+                            heightComponent:  isNull ? 0 : game.tileSize * 1.5,
+                            speed:  isNull ? 0 :  game.tileSize * 0.5,
                             maxHitPoint: 2,
                             currentHitPoint: 2,
                             damage: 1,
@@ -158,9 +170,9 @@ class VehicleAttribute {
       case VehicleFeatures.vertex:
         vehicleAttribute = VehicleAttribute(
                             price: 50,
-                            widthComponent: game.tileSize * 1.5,
-                            heightComponent:  game.tileSize * 1.5,
-                            speed:  game.tileSize * 0.6,
+                            widthComponent: isNull ? 0 : game.tileSize * 1.5,
+                            heightComponent:  isNull? 0 : game.tileSize * 1.5,
+                            speed:  isNull ? 0 : game.tileSize * 0.6,
                             maxHitPoint: 2,
                             currentHitPoint: 2,
                             damage: 2,
@@ -175,9 +187,9 @@ class VehicleAttribute {
       default:
         vehicleAttribute = VehicleAttribute(
                             price: 50,
-                            widthComponent: game.tileSize * 1.5,
-                            heightComponent:  game.tileSize * 1.5,
-                            speed:  game.tileSize * 0.5,
+                            widthComponent: isNull ? 0 : game.tileSize * 1.5,
+                            heightComponent:  isNull ? 0 : game.tileSize * 1.5,
+                            speed:  isNull ? 0 : game.tileSize * 0.5,
                             maxHitPoint: 2,
                             currentHitPoint: 1,
                             damage: 1,
@@ -195,5 +207,92 @@ class VehicleAttribute {
 
   }
 
+}
+
+
+
+class VehicleSprite{
+
+  List<Sprite> vehicleSprites;
+  List<Sprite> vehicleShieldSprite;
+
+
+  static VehicleSprite getVehicleSprite(VehicleFeatures vehicleFeatures){
+    
+    VehicleSprite vehicleSprite;
+
+
+    switch(vehicleFeatures){
+      case VehicleFeatures.spaceship:
+
+      vehicleSprite = VehicleSprite();
+      
+      vehicleSprite.vehicleSprites = new List<Sprite>();
+      vehicleSprite.vehicleSprites.add(Sprite('vehicle/spaceship/ship_1.png'));
+      vehicleSprite.vehicleSprites.add(Sprite('vehicle/spaceship/ship_2.png'));
+      vehicleSprite.vehicleSprites.add(Sprite('vehicle/spaceship/ship_3.png'));
+      vehicleSprite.vehicleSprites.add(Sprite('vehicle/spaceship/ship_4.png'));
+
+      vehicleSprite.vehicleShieldSprite = new List<Sprite>();
+      vehicleSprite.vehicleShieldSprite.add(Sprite('vehicle/spaceship/withShield/ship1shield1.png'));
+      vehicleSprite.vehicleShieldSprite.add(Sprite('vehicle/spaceship/withShield/ship1shield2.png'));
+      vehicleSprite.vehicleShieldSprite.add(Sprite('vehicle/spaceship/withShield/ship1shield3.png'));
+      vehicleSprite.vehicleShieldSprite.add(Sprite('vehicle/spaceship/withShield/ship1shield4.png'));
+ 
+      
+      break;
+      case VehicleFeatures.vertex:
+
+      vehicleSprite = VehicleSprite();
+
+      vehicleSprite.vehicleSprites = List<Sprite>();
+      vehicleSprite.vehicleSprites.add(Sprite('vehicle/vertex/vertex_1.png'));
+
+      vehicleSprite.vehicleShieldSprite = List<Sprite>();
+    
+      
+      break;
+      default:
+
+
+      vehicleSprite = VehicleSprite();
+      
+      vehicleSprite.vehicleSprites = new List<Sprite>();
+      vehicleSprite.vehicleSprites.add(Sprite('vehicle/spaceship/ship_1.png'));
+      vehicleSprite.vehicleSprites.add(Sprite('vehicle/spaceship/ship_2.png'));
+      vehicleSprite.vehicleSprites.add(Sprite('vehicle/spaceship/ship_3.png'));
+      vehicleSprite.vehicleSprites.add(Sprite('vehicle/spaceship/ship_4.png'));
+
+      vehicleSprite.vehicleShieldSprite = new List<Sprite>();
+      vehicleSprite.vehicleShieldSprite.add(Sprite('vehicle/spaceship/withShield/ship1shield1.png'));
+      vehicleSprite.vehicleShieldSprite.add(Sprite('vehicle/spaceship/withShield/ship1shield2.png'));
+      vehicleSprite.vehicleShieldSprite.add(Sprite('vehicle/spaceship/withShield/ship1shield3.png'));
+      vehicleSprite.vehicleShieldSprite.add(Sprite('vehicle/spaceship/withShield/ship1shield4.png'));
+ 
+      
+      break;
+    }
+
+    return vehicleSprite;
+  }
   
+
+  static String getVehicleGif(VehicleFeatures vehicleFeatures){
+
+    String gifPath;
+
+    switch(vehicleFeatures){
+      case VehicleFeatures.spaceship:
+        gifPath = 'assets/images/vehicle/spaceship/gif/ship_5.gif';
+      break;
+      case VehicleFeatures.vertex:
+        gifPath = 'assets/images/vehicle/vertex/vertex_1.png';
+      break;
+      default:
+        gifPath = 'assets/images/assets/imagesvehicle/spaceship/gif/ship_5.gif';
+
+    }
+
+    return gifPath;
+  }
 }

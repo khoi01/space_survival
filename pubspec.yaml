@@ -55,6 +55,7 @@ flutter:
     - assets/images/vehicle/spaceship/ship_2.png
     - assets/images/vehicle/spaceship/ship_3.png
     - assets/images/vehicle/spaceship/ship_4.png
+    - assets/images/vehicle/spaceship/gif/ship_5.gif
     - assets/images/vehicle/spaceship/withShield/ship1shield1.png
     - assets/images/vehicle/spaceship/withShield/ship1shield2.png
     - assets/images/vehicle/spaceship/withShield/ship1shield3.png
@@ -98,10 +99,13 @@ flutter:
     - assets/images/weapon/reload/reload_weapon_4.png
     - assets/images/weapon/reload/reload_weapon_5.png
     - assets/images/shield/shield_1.png
+    - assets/images/heart/heart.png
     - assets/images/background/bg1.png
     - assets/images/background/bg_base.png
     - assets/images/background/bg_big_star.png
     - assets/images/background/bg_planet.png
+    - assets/images/title/game_header.gif
+    - assets/images/coin/coin.gif
     - assets/audio/sfx/comet_destroy.ogg
     
 

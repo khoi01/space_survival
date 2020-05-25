@@ -1,11 +1,11 @@
 import 'dart:ui';
 
 import 'package:flame/sprite.dart';
+import 'package:space_survival/Utils/util.dart';
 import 'package:space_survival/components/vehicle/vehicleInit.dart';
 import 'package:space_survival/components/weapon/weapon.dart';
 import 'package:space_survival/logic/vehicleBeaviour.dart';
 import 'package:space_survival/spaceSurvivalGame.dart';
-import 'package:space_survival/util.dart';
 
 class Vehicle{
 
@@ -15,8 +15,8 @@ class Vehicle{
   final VehicleAttribute vehicleAttribute;
 
   List<Weapon> weapons;
-  List<Sprite> vehicleSprite;
-  List<Sprite> vehicleShieldSprite;
+  List<Sprite> vehicleInitSprites;
+  List<Sprite> vehicleInitShieldSprites;
 
   bool isUsingShield = false;
   bool isDestroy = false;
@@ -47,11 +47,11 @@ class Vehicle{
     });
 
     if(!isDestroy && !isUsingShield){
-      int randomSprite = game.random.nextInt(vehicleSprite.length);
-      vehicleSprite[randomSprite].renderRect(canvas,vehicleRect.inflate(2));
+      int randomSprite = game.random.nextInt(vehicleInitSprites.length);
+      vehicleInitSprites[randomSprite].renderRect(canvas,vehicleRect.inflate(2));
     }else if(!isDestroy && isUsingShield){
-      int randomSprite = game.random.nextInt(vehicleShieldSprite.length);
-      vehicleShieldSprite[randomSprite].renderRect(canvas,vehicleRect.inflate(2)); 
+      int randomSprite = game.random.nextInt(vehicleInitShieldSprites.length);
+      vehicleInitShieldSprites[randomSprite].renderRect(canvas,vehicleRect.inflate(2)); 
     }
   }
 

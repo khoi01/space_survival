@@ -6,12 +6,17 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:space_survival/Utils/util.dart';
 import 'package:space_survival/components/vehicle/vehicleInit.dart';
+import 'package:space_survival/route/CreditPage/CreditPage.dart';
+import 'package:space_survival/route/Garage/GaragePage.dart';
 import 'package:space_survival/route/LostPage/LostPage.dart';
 import 'package:space_survival/route/MainPage/MainPage.dart';
+import 'package:space_survival/route/Scoreboard/ScoreboardPage.dart';
 import 'package:space_survival/route/SplashScreen/SplashScreenGame.dart';
+import 'package:space_survival/route/Store/StorePage.dart';
+import 'package:space_survival/route/Tutorial/TutorialPage.dart';
 import 'package:space_survival/spaceSurvivalGame.dart';
-import 'package:space_survival/util.dart';
 
 void main(){
   runApp(SpaceSurvivalApp());
@@ -30,6 +35,11 @@ class SpaceSurvivalApp extends StatelessWidget {
         '/${Routes.main_page}':(context) => MainPage(),
         '/${Routes.main_game}':(context) => MainGame(),
         '/${Routes.lost_page}':(context) => LostPage(),
+        '/${Routes.credits_page}' : (context) => CreditsPage(),
+        '/${Routes.store_page}' : (context) => StorePage(),
+        '/${Routes.garage_page}' : (context) => GaragePage(),
+        '/${Routes.scoreboard_page}' : (context) => ScoreboardPage(),
+        '/${Routes.tutorial_page}' : (context) => TutorialPage(),
       }
     );
   }
@@ -72,6 +82,7 @@ class _MainGameState extends State<MainGame> {
     'vehicle/spaceship/ship_2.png',
     'vehicle/spaceship/ship_3.png',
     'vehicle/spaceship/ship_4.png',
+    'vehicle/spaceship/gif/ship_5.gif',
     'vehicle/spaceship/withShield/ship1shield1.png',
     'vehicle/spaceship/withShield/ship1shield2.png',
     'vehicle/spaceship/withShield/ship1shield3.png',
@@ -110,6 +121,7 @@ class _MainGameState extends State<MainGame> {
     'weapon/reload/reload_weapon_ready.png',
     'weapon/reload/reload_weapon_waiting.png',
     'shield/shield_1.png',
+    'heart/heart.png'
   ]);
 
   Flame.audio.disableLog();
@@ -138,7 +150,7 @@ class MyGame extends BaseGame{
 
     ];
   SpaceSurvivalGame.context = context;
-  SpaceSurvivalGame.game = SpaceSurvivalGame(images,VehicleFeatures.spaceship/*,Stage.stage_1*/);
+  SpaceSurvivalGame.game = SpaceSurvivalGame(images,VehicleFeatures.vertex/*,Stage.stage_1*/);
 
   TapGestureRecognizer tapper = TapGestureRecognizer();
   tapper.onTapDown = onTapDown;

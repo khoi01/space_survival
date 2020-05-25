@@ -5,12 +5,14 @@ import 'package:flame/components/parallax_component.dart';
 import 'package:flame/flame.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
+import 'package:space_survival/Utils/util.dart';
 import 'package:space_survival/components/comet/comet.dart';
 import 'package:space_survival/components/comet/rockComet.dart';
 import 'package:space_survival/components/healthBar/vehicleHealthBar.dart';
 import 'package:space_survival/components/reloadWeapon/ReloadWeapon.dart';
 import 'package:space_survival/components/shield/shield.dart';
 import 'package:space_survival/components/text/score/scoreDisplay.dart';
+import 'package:space_survival/components/text/score/stageDisplay.dart';
 import 'package:space_survival/components/vehicle/vehicle.dart';
 import 'package:space_survival/components/vehicle/vehicleInit.dart';
 import 'package:space_survival/components/weapon/electricBullet.dart';
@@ -20,7 +22,6 @@ import 'package:space_survival/logic/controller/Stage.dart';
 import 'package:space_survival/logic/controller/collusionWeaponAndComet.dart';
 import 'package:space_survival/logic/controller/generateShieldDisplay.dart';
 import 'package:space_survival/logic/spawner/SpawnerComet.dart';
-import 'package:space_survival/util.dart';
 import 'package:uuid/uuid.dart';
 
 class SpaceSurvivalGame extends ParallaxComponent{
@@ -50,6 +51,7 @@ class SpaceSurvivalGame extends ParallaxComponent{
   List<Shield> shieldIcons;
   GenerateShieldDisplay generateShieldDisplay;
   ScoreDisplay scoreDisplay;
+  StageDisplay stageDisplay;
 
   SpaceSurvivalGame(List<ParallaxImage> images,this.vehicleFeatures/*, this.stage*/) : super(images){
     isOnGameScreen = true;
@@ -91,6 +93,7 @@ class SpaceSurvivalGame extends ParallaxComponent{
                               );
     scoreDisplay = ScoreDisplay(this);
     stageTime = StageTime(this);
+    stageDisplay = StageDisplay(this);
 
     spawnerRockComet = SpawnerRockComet(this,RockComet.getSpawnBehaviour(StageTime.currentStage));
 
@@ -118,6 +121,7 @@ class SpaceSurvivalGame extends ParallaxComponent{
 
       shieldIcons.forEach((shield) => shield.render(canvas));
       scoreDisplay.render(canvas);
+      stageDisplay.render(canvas);
     }
 
 
@@ -153,6 +157,7 @@ class SpaceSurvivalGame extends ParallaxComponent{
         scoreDisplay.update(t);
 
         stageTime.update(t);
+        stageDisplay.update(t);
         if(isEndGame()){
           gotoLostPage();
         }

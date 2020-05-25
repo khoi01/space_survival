@@ -10,24 +10,18 @@ import 'package:space_survival/spaceSurvivalGame.dart';
 class Spaceship extends Vehicle{
 
 
-  Spaceship(SpaceSurvivalGame game,VehicleBehaviour vehicleBehaviour,VehicleAttribute vehicleAttribute) 
+  Spaceship(SpaceSurvivalGame game,VehicleBehaviour vehicleBehaviour,VehicleAttribute vehicleAttribute,VehicleSprite vehicleSprite) 
             : super(game,vehicleBehaviour,vehicleAttribute){
     
 
     vehicleRect = Rect.fromLTWH(vehicleBehaviour.setXRandomPosition,vehicleBehaviour.setYRandomPosition,vehicleAttribute.widthComponent,vehicleAttribute.heightComponent);
 
-    vehicleSprite = List<Sprite>();
-    vehicleSprite.add(Sprite('vehicle/spaceship/ship_1.png'));
-    vehicleSprite.add(Sprite('vehicle/spaceship/ship_2.png'));
-    vehicleSprite.add(Sprite('vehicle/spaceship/ship_3.png'));
-    vehicleSprite.add(Sprite('vehicle/spaceship/ship_4.png'));
+    vehicleInitSprites = List<Sprite>();
+    vehicleInitSprites = vehicleSprite.vehicleSprites;
 
-    vehicleShieldSprite = List<Sprite>();
-    vehicleShieldSprite.add(Sprite('vehicle/spaceship/withShield/ship1shield1.png'));
-    vehicleShieldSprite.add(Sprite('vehicle/spaceship/withShield/ship1shield2.png'));
-    vehicleShieldSprite.add(Sprite('vehicle/spaceship/withShield/ship1shield3.png'));
-    vehicleShieldSprite.add(Sprite('vehicle/spaceship/withShield/ship1shield4.png'));
-      
+
+    vehicleInitShieldSprites = List<Sprite>();
+    vehicleInitShieldSprites = vehicleSprite.vehicleShieldSprite;
   }  
 
 }

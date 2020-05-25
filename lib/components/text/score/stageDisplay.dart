@@ -1,14 +1,15 @@
 import 'dart:ui';
 import 'package:flutter/painting.dart';
+import 'package:space_survival/logic/controller/Stage.dart';
 import 'package:space_survival/spaceSurvivalGame.dart';
 
-class ScoreDisplay {
+class StageDisplay {
   final SpaceSurvivalGame game;
   TextPainter painter;
   TextStyle textStyle;
   Offset position;
 
-  ScoreDisplay(this.game) {
+  StageDisplay(this.game) {
     painter = TextPainter(
       textAlign: TextAlign.left,
       textDirection: TextDirection.ltr,
@@ -34,9 +35,9 @@ class ScoreDisplay {
   }
 
   void update(double t) {
-    if ((painter.text?.text ?? '') != game.score.toString()) {
+    // if ((painter.text?.text ?? '') != game.score.toString()) {
       painter.text = TextSpan(
-        text: "score: "+game.score.toString(),
+        text: StageTime.currentStage.toString().replaceAll('Stage.', ''),// 'résumé',
         style: textStyle,
       );
 
@@ -44,8 +45,8 @@ class ScoreDisplay {
 
       position = Offset(
         (game.screenSize.width *  0.17) - (painter.width / 2),
-        (game.screenSize.height * 0.07) - (painter.height / 2),
+        (game.screenSize.height * 0.10) - (painter.height / 2),
       );
     }
-  }
+  // }
 }

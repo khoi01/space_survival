@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:space_survival/util.dart';
+import 'package:space_survival/Utils/util.dart';
+import 'package:space_survival/route/MainPage/MainPageDetail.dart';
 
 class MainPage extends StatelessWidget {
   const MainPage({Key key}) : super(key: key);
@@ -7,15 +8,19 @@ class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.pink,
+      backgroundColor: AppConfig.backgroundColor,
         body: ListView(
+          shrinkWrap: true,
           children: <Widget>[
-            RaisedButton(child: Text("Start Game"),
-            onPressed: () {
-              Nav.route(context,Routes.main_game,null);
-            },)
+            MainTopUI(),
+            MainHeaderUI(),
+            MainMenuUI(),
           ],
         )
       );
   }
+
+  
 }
+
+

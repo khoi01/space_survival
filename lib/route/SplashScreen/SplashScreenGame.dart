@@ -1,6 +1,6 @@
 import 'package:flame_splash_screen/flame_splash_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:space_survival/route/MainPage/MainPage.dart';
+import 'package:space_survival/Utils/util.dart';
 
 class SplashScreenGame extends StatefulWidget {
   SplashScreenGame({Key key}) : super(key: key);
@@ -36,7 +36,7 @@ class _SplashScreenGameState extends State<SplashScreenGame> {
         // },
         theme: FlameSplashTheme.dark,
         onFinish: (context){
-          Navigator.pushAndRemoveUntil(context,MaterialPageRoute(builder: (context) => MainPage()),(Route<dynamic> route)=> false);
+          Nav.route(context,Routes.main_page,null,isRemovePreviousBackStack: true);
         },
         controller:  controller,
       ),

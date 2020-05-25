@@ -1,10 +1,10 @@
 import 'dart:ui';
 import 'package:flame/sprite.dart';
+import 'package:space_survival/Utils/util.dart';
 import 'package:space_survival/components/component.dart';
 import 'package:space_survival/logic/cometLevel.dart';
 
 import 'package:space_survival/spaceSurvivalGame.dart';
-import 'package:space_survival/util.dart';
 
 class Comet extends GameComponent{
   Rect cometRect;

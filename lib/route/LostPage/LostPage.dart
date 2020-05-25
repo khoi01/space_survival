@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:space_survival/util.dart';
+import 'package:space_survival/Utils/util.dart';
 
 class LostPage extends StatelessWidget {
 
@@ -10,7 +10,7 @@ class LostPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.pink,
+      backgroundColor: AppConfig.backgroundColor,
         body: ListView(
           children: <Widget>[
             Text("You Score:${score.toString()}"),

@@ -7,13 +7,13 @@ import 'package:space_survival/logic/vehicleBeaviour.dart';
 import 'package:space_survival/spaceSurvivalGame.dart';
 
 class Vertex extends Vehicle{
-  Vertex(SpaceSurvivalGame game, VehicleBehaviour vehicleBehaviour, VehicleAttribute vehicleAttribute) 
+  Vertex(SpaceSurvivalGame game, VehicleBehaviour vehicleBehaviour, VehicleAttribute vehicleAttribute,VehicleSprite vehicleSprite) 
   : super(game, vehicleBehaviour, vehicleAttribute){
 
         vehicleRect = Rect.fromLTWH(vehicleBehaviour.setXRandomPosition,vehicleBehaviour.setYRandomPosition,vehicleAttribute.widthComponent,vehicleAttribute.heightComponent);
 
-    vehicleSprite = List<Sprite>();
-    vehicleSprite.add(Sprite('vehicle/vertex/vertex_1.png'));
+    vehicleInitSprites = List<Sprite>();
+    vehicleInitSprites.add(Sprite('vehicle/vertex/vertex_1.png'));
   }
 
 }

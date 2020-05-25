@@ -1,5 +1,5 @@
+import 'package:space_survival/Utils/util.dart';
 import 'package:space_survival/spaceSurvivalGame.dart';
-import 'package:space_survival/util.dart';
 
 enum Stage{
   stage_1, // 2 minute
