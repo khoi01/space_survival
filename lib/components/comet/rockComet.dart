@@ -5,7 +5,7 @@ import 'package:flame/sprite.dart';
 import 'package:space_survival/Utils/util.dart';
 import 'package:space_survival/components/comet/comet.dart';
 import 'package:space_survival/logic/cometLevel.dart';
-import 'package:space_survival/logic/controller/Stage.dart';
+import 'package:space_survival/logic/controller/Stage/Stage.dart';
 import 'package:space_survival/spaceSurvivalGame.dart';
 
 class RockComet extends Comet{

@@ -5,23 +5,26 @@ enum Stage{
   stage_1, // 2 minute
   stage_2, // 2 minute
   stage_final // final
-  
 }
+
+
 
 /*
 Stage that exist in the game
 */
 class StageInfo{
   
-  final Stage stage;
-  final int duration;
-  final int start;
-  final int end;
+  final Stage stage; // stage 
+  final int duration; //how long this stage will perform
+  final int start; //when (time)  this stage trigger
+  final int end; // when(time) this stage will end
+  final int difficulty;  //difficulty of the stage
+  final double coin; //reword if pass this stage
 
   static List<StageInfo> stages;
   static int startGame;
 
-  StageInfo({this.stage, this.duration,this.start, this.end,});
+  StageInfo({this.stage, this.duration,this.start, this.end,this.difficulty,this.coin});
 
   static begin(){
     generateStages();
@@ -32,14 +35,14 @@ class StageInfo{
     int startGame = Time.getCurrentTime();
     
     //stage_1
-    int durationStage1 = 180000;
-    StageInfo stage1 = StageInfo(stage: Stage.stage_1,duration: durationStage1,start: startGame,end: startGame+durationStage1);
+    int durationStage1 = 15000;
+    StageInfo stage1 = StageInfo(stage: Stage.stage_1,duration: durationStage1,start: startGame,end: startGame+durationStage1,difficulty: 1,coin: 1);
     //stage_2
-    int durationStage2 = 180000;
-    StageInfo stage2 = StageInfo(stage:Stage.stage_2,duration:durationStage2,start: stage1.end,end: stage1.end+durationStage2);
+    int durationStage2 = 15000;
+    StageInfo stage2 = StageInfo(stage:Stage.stage_2,duration:durationStage2,start: stage1.end,end: stage1.end+durationStage2,difficulty: 2,coin:  1.5);
     //stage_final
-    int durationStageFinal = 180000;
-    StageInfo stageFinal = StageInfo(stage: Stage.stage_final,duration:durationStageFinal,start: stage2.end,end:stage2.end+durationStageFinal);
+    int durationStageFinal = 15000;
+    StageInfo stageFinal = StageInfo(stage: Stage.stage_final,duration:durationStageFinal,start: stage2.end,end:stage2.end+durationStageFinal,difficulty: 3,coin: 2);
 
     stages.add(stage1);
     stages.add(stage2);
@@ -124,12 +127,15 @@ class StageTime{
           // change stage?
           if(isStageChange(stageInfo.stage)){
             currentStage = stageInfo.stage;
+            game.coin+=stageInfo.coin;
             game.reInitializeComponent();
           }
         }
       });
     
   }
+
+  
 
   //want to check if state is change
   static bool isStageChange(Stage newStage){

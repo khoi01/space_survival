@@ -13,6 +13,7 @@ enum VehicleFeatures{
 }
 
 
+
 /*
 Create Vehicle Object
 */
@@ -97,6 +98,18 @@ class VehicleCreate{
     return vehicle;
   }
 
+
+  static VehicleFeatures stringtoEnum(String string){
+
+    VehicleFeatures features;
+    if(string == VehicleFeatures.spaceship.toString()){
+      features = VehicleFeatures.spaceship;
+    }else if(string == VehicleFeatures.vertex.toString()){
+      features = VehicleFeatures.vertex;
+    }
+
+    return features;
+  }
   
 }
 
@@ -169,7 +182,7 @@ class VehicleAttribute {
       break;
       case VehicleFeatures.vertex:
         vehicleAttribute = VehicleAttribute(
-                            price: 50,
+                            price: 2,
                             widthComponent: isNull ? 0 : game.tileSize * 1.5,
                             heightComponent:  isNull? 0 : game.tileSize * 1.5,
                             speed:  isNull ? 0 : game.tileSize * 0.6,
@@ -178,15 +191,15 @@ class VehicleAttribute {
                             damage: 2,
                             maxShield: 2,
                             currentShield: 2,
-                            maxUsedInterval: 2000,
-                            minUsedInterval: 2000,
+                            maxUsedInterval: 2800,
+                            minUsedInterval: 2800,
                             intervalChange: 3,
-                            shieldDuration: 3500,
+                            shieldDuration: 2500,
                             );
       break;
       default:
         vehicleAttribute = VehicleAttribute(
-                            price: 50,
+                            price: 0,
                             widthComponent: isNull ? 0 : game.tileSize * 1.5,
                             heightComponent:  isNull ? 0 : game.tileSize * 1.5,
                             speed:  isNull ? 0 : game.tileSize * 0.5,

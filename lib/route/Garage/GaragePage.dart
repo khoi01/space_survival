@@ -11,6 +11,11 @@ class GaragePage extends StatefulWidget {
 }
 
 class _GaragePageState extends State<GaragePage> {
+
+  @override
+  void initState() {
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,7 +23,7 @@ class _GaragePageState extends State<GaragePage> {
        body: ListView(
          shrinkWrap: true,
          children: <Widget>[
-           CustomWidget.backButton(context,Routes.main_page,isRemovePreviousBackStack: true),
+           CustomWidget.backButton(context,Routes.main_page,1,isRemovePreviousBackStack: true),
           GarageDetailUI(),
          ],
        ),

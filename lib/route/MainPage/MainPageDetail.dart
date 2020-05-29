@@ -1,10 +1,39 @@
 import 'package:flutter/material.dart';
 import 'package:space_survival/Utils/util.dart';
+import 'package:space_survival/repository/CoinRepository.dart';
+import 'package:space_survival/repository/ScoreRepository.dart';
 
 
 
-class MainTopUI extends StatelessWidget {
+class MainTopUI extends StatefulWidget {
   const MainTopUI({Key key}) : super(key: key);
+
+  @override
+  _MainTopUIState createState() => _MainTopUIState();
+}
+
+class _MainTopUIState extends State<MainTopUI> {
+
+  double coin;
+  int score;
+  @override
+  void initState() {
+    super.initState();
+
+    CoinRepository.getCoin().then((value){
+      setState(() {
+        coin = value;
+      });
+    
+    });
+
+    ScoreRepository.getHighestScore().then((value){
+      setState(() {
+        score = value;
+      });
+    });
+ 
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +43,7 @@ class MainTopUI extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children:[
           Container(
-            child: Text("High Score: 10",
+            child: Text("High Score: $score",
             style: TextStyle(fontSize: 20),
             )
           ),
@@ -25,7 +54,7 @@ class MainTopUI extends StatelessWidget {
                     height: 50.0,
                     width: 50.0,
                   ),
-                  Text("100,000",style: TextStyle(color: Colors.black,fontSize: 20),)
+                  Text(coin.toString(),style: TextStyle(color: Colors.black,fontSize: 20),)
              ],),
            )
         ]
@@ -69,7 +98,8 @@ class MainMenuUI extends StatelessWidget {
           children: <Widget>[
             RaisedButton(child: Text("Start Game",style: TextStyle(fontSize: AppConfig.textBtnSize),),
             onPressed: () {
-              Nav.route(context,Routes.main_game,null);
+              //Nav.route(context,Routes.main_game,null);
+              Nav.route(context, Routes.select_vehicle_page,null);
             },)
             ,
             RaisedButton(child: Text("Tutorial",style: TextStyle(fontSize: AppConfig.textBtnSize)),

@@ -1,11 +1,15 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:space_survival/Utils/util.dart';
 
 class CustomWidget{
 
-  static Widget backButton(BuildContext context,Routes route,{bool isRemovePreviousBackStack = false}){
+  static Widget backButton(BuildContext context,Routes route,double coin,{bool isRemovePreviousBackStack = false}){
+
+
+
     return Container(
       // alignment: Alignment.topLeft,
       child: Row(
@@ -25,12 +29,24 @@ class CustomWidget{
                     height: 50.0,
                     width: 50.0,
                   ),
-                  Text("100,000",style: TextStyle(color: Colors.black,fontSize: 20),),
+                  Text(coin.toString(),style: TextStyle(color: Colors.black,fontSize: 20),),
               ]
             ),
           )
         ],
       ),
     );
+  }
+
+    static void showToasted(String text,bool isSuccess){
+     Fluttertoast.showToast(
+                        msg: text,
+                        toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIosWeb: 1,
+                        backgroundColor: isSuccess ? Colors.green : Colors.red,
+                        textColor: Colors.white,
+                        fontSize: 16.0
+                    );
   }
 }

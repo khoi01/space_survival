@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:space_survival/components/vehicle/vehicleInit.dart';
 import 'package:space_survival/main.dart';
 import 'package:space_survival/route/CreditPage/CreditPage.dart';
 import 'package:space_survival/route/Garage/GaragePage.dart';
 import 'package:space_survival/route/LostPage/LostPage.dart';
 import 'package:space_survival/route/MainPage/MainPage.dart';
 import 'package:space_survival/route/Scoreboard/ScoreboardPage.dart';
+import 'package:space_survival/route/SelectVehiclePage/SelectVehiclePage.dart';
 import 'package:space_survival/route/Store/StorePage.dart';
 import 'package:space_survival/route/Tutorial/TutorialPage.dart';
 
@@ -40,6 +42,7 @@ enum Routes{
   garage_page,
   scoreboard_page,
   tutorial_page,
+  select_vehicle_page,
 }
 
 
@@ -60,21 +63,28 @@ class Nav{
     break;
       case Routes.main_game:
 
+      var results = value as VehicleFeatures;
+
       if(isRemovePreviousBackStack){
         Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
-        MainGame()), (Route<dynamic> route) => false);         
+        MainGame(selectedVehicle: results,)), (Route<dynamic> route) => false);         
       }else{
-        Navigator.pushNamed(context,generateRoute);      
+        // Navigator.pushNamed(context,generateRoute,arguments: results);      
+         Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => MainGame(selectedVehicle: results,)),
+  );
       }
       break;
 
       case Routes.lost_page:
 
-        int score = value as int;
+          var results = value as Map;
+
 
         if(isRemovePreviousBackStack){
           Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
-          LostPage(score: score,)), (Route<dynamic> route) => false); 
+          LostPage(score: results['score'],stage: results['stage'],coin: results['coin'],)), (Route<dynamic> route) => false); 
         }else{
           Navigator.pushNamed(context,generateRoute);      
         }
@@ -120,6 +130,14 @@ class Nav{
         }else{
           Navigator.pushNamed(context,generateRoute);
 
+        }
+        break;
+      case Routes.select_vehicle_page:
+        if(isRemovePreviousBackStack){
+          Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
+          SelectVehiclePage()), (Route<dynamic> route) => false); 
+        }else{
+          Navigator.pushNamed(context,generateRoute);      
         }
         break;
       default:

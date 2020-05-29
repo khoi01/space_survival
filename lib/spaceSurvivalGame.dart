@@ -11,6 +11,7 @@ import 'package:space_survival/components/comet/rockComet.dart';
 import 'package:space_survival/components/healthBar/vehicleHealthBar.dart';
 import 'package:space_survival/components/reloadWeapon/ReloadWeapon.dart';
 import 'package:space_survival/components/shield/shield.dart';
+import 'package:space_survival/components/text/score/coinDisplay.dart';
 import 'package:space_survival/components/text/score/scoreDisplay.dart';
 import 'package:space_survival/components/text/score/stageDisplay.dart';
 import 'package:space_survival/components/vehicle/vehicle.dart';
@@ -18,7 +19,7 @@ import 'package:space_survival/components/vehicle/vehicleInit.dart';
 import 'package:space_survival/components/weapon/electricBullet.dart';
 import 'package:space_survival/components/weapon/weapon.dart';
 import 'package:space_survival/logic/cometLevel.dart';
-import 'package:space_survival/logic/controller/Stage.dart';
+import 'package:space_survival/logic/controller/Stage/Stage.dart';
 import 'package:space_survival/logic/controller/collusionWeaponAndComet.dart';
 import 'package:space_survival/logic/controller/generateShieldDisplay.dart';
 import 'package:space_survival/logic/spawner/SpawnerComet.dart';
@@ -30,6 +31,7 @@ class SpaceSurvivalGame extends ParallaxComponent{
   final VehicleFeatures vehicleFeatures;
   static BuildContext context;
   static bool isOnGameScreen = true;
+  final Stage stage;
   bool isInitialize = false;
   // final Stage stage;
   StageTime stageTime;
@@ -41,6 +43,7 @@ class SpaceSurvivalGame extends ParallaxComponent{
   CollusionWeaponAndComet collusionWeaponAndComet;
   Level level;
   int score;
+  double coin;
 
   //Components
   Vehicle vehicle;
@@ -52,10 +55,12 @@ class SpaceSurvivalGame extends ParallaxComponent{
   GenerateShieldDisplay generateShieldDisplay;
   ScoreDisplay scoreDisplay;
   StageDisplay stageDisplay;
+  CoinDisplay coinDisplay;
 
-  SpaceSurvivalGame(List<ParallaxImage> images,this.vehicleFeatures/*, this.stage*/) : super(images){
+  SpaceSurvivalGame(List<ParallaxImage> images,this.vehicleFeatures,this.stage) : super(images){
     isOnGameScreen = true;
     score = 0;
+    coin = 0;
     initializeComponent().then((result){
       isInitialize = result;
       
@@ -68,7 +73,8 @@ class SpaceSurvivalGame extends ParallaxComponent{
   
 
    Future<bool> initializeComponent() async{
-
+    
+    StageTime.currentStage = this.stage;
     comets = List<Comet>();
     weapons = List<Weapon>();
     collusionWeaponAndComet = CollusionWeaponAndComet(this);
@@ -94,7 +100,7 @@ class SpaceSurvivalGame extends ParallaxComponent{
     scoreDisplay = ScoreDisplay(this);
     stageTime = StageTime(this);
     stageDisplay = StageDisplay(this);
-
+    coinDisplay = CoinDisplay(this);
     spawnerRockComet = SpawnerRockComet(this,RockComet.getSpawnBehaviour(StageTime.currentStage));
 
     return true;
@@ -122,6 +128,7 @@ class SpaceSurvivalGame extends ParallaxComponent{
       shieldIcons.forEach((shield) => shield.render(canvas));
       scoreDisplay.render(canvas);
       stageDisplay.render(canvas);
+      coinDisplay.render(canvas);
     }
 
 
@@ -158,6 +165,7 @@ class SpaceSurvivalGame extends ParallaxComponent{
 
         stageTime.update(t);
         stageDisplay.update(t);
+        coinDisplay.update(t);
         if(isEndGame()){
           gotoLostPage();
         }
@@ -166,10 +174,16 @@ class SpaceSurvivalGame extends ParallaxComponent{
 
 
   static void gotoLostPage(){
-    int score = SpaceSurvivalGame.game.score;
+
+    var results = Map();
+
+    results['score'] = SpaceSurvivalGame.game.score;
+    results['stage'] = StageTime.currentStage;
+    results['coin'] = SpaceSurvivalGame.game.coin;
+
     SpaceSurvivalGame.isOnGameScreen = false;
     SpaceSurvivalGame.game = null;
-    Nav.route(context,Routes.lost_page,score,isRemovePreviousBackStack: true);
+    Nav.route(context,Routes.lost_page,results,isRemovePreviousBackStack: true);
 
   }
 

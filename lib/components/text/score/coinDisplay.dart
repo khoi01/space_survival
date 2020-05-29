@@ -1,15 +1,13 @@
-import 'dart:ui';
 import 'package:flutter/painting.dart';
-import 'package:space_survival/logic/controller/Stage/Stage.dart';
 import 'package:space_survival/spaceSurvivalGame.dart';
 
-class StageDisplay {
+class CoinDisplay{
   final SpaceSurvivalGame game;
   TextPainter painter;
   TextStyle textStyle;
   Offset position;
 
-  StageDisplay(this.game) {
+  CoinDisplay(this.game){
     painter = TextPainter(
       textAlign: TextAlign.left,
       textDirection: TextDirection.ltr,
@@ -30,14 +28,14 @@ class StageDisplay {
     position = Offset.zero;
   }
 
-  void render(Canvas c) {
-    painter.paint(c, position);
+  void render(Canvas canvas){
+    painter.paint(canvas, position);
   }
 
-  void update(double t) {
-    // if ((painter.text?.text ?? '') != game.score.toString()) {
+  void update(double t){
+    if ((painter.text?.text ?? '') != game.score.toString()) {
       painter.text = TextSpan(
-        text: StageTime.currentStage.toString().replaceAll('Stage.', ''),// 'résumé',
+        text: "Coin: "+game.coin.toString(),
         style: textStyle,
       );
 
@@ -45,8 +43,19 @@ class StageDisplay {
 
       position = Offset(
         (game.screenSize.width *  0.17) - (painter.width / 2),
-        (game.screenSize.height * 0.10) - (painter.height / 2),
+        (game.screenSize.height * 0.13) - (painter.height / 2),
       );
     }
+  }
+
+  // void isGetCoin(){
+
+  //   if(StageTime.currentStage == Stage.stage_1){
+  //     game.coin+=1;
+  //   }else if(StageTime.currentStage == Stage.stage_2){
+  //     game.coin+=1.5;
+  //   }else if(StageTime.currentStage == Stage.stage_final){
+  //     game.coin+=2;
+  //   }
   // }
 }

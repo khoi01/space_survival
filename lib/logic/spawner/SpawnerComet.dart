@@ -1,4 +1,4 @@
-import 'package:space_survival/logic/controller/Stage.dart';
+import 'package:space_survival/logic/controller/Stage/Stage.dart';
 import 'package:space_survival/spaceSurvivalGame.dart';
 
 class SpawnerRockComet {

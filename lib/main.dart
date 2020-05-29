@@ -8,11 +8,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:space_survival/Utils/util.dart';
 import 'package:space_survival/components/vehicle/vehicleInit.dart';
+import 'package:space_survival/logic/controller/Stage/Stage.dart';
 import 'package:space_survival/route/CreditPage/CreditPage.dart';
 import 'package:space_survival/route/Garage/GaragePage.dart';
 import 'package:space_survival/route/LostPage/LostPage.dart';
 import 'package:space_survival/route/MainPage/MainPage.dart';
 import 'package:space_survival/route/Scoreboard/ScoreboardPage.dart';
+import 'package:space_survival/route/SelectVehiclePage/SelectVehiclePage.dart';
 import 'package:space_survival/route/SplashScreen/SplashScreenGame.dart';
 import 'package:space_survival/route/Store/StorePage.dart';
 import 'package:space_survival/route/Tutorial/TutorialPage.dart';
@@ -40,6 +42,7 @@ class SpaceSurvivalApp extends StatelessWidget {
         '/${Routes.garage_page}' : (context) => GaragePage(),
         '/${Routes.scoreboard_page}' : (context) => ScoreboardPage(),
         '/${Routes.tutorial_page}' : (context) => TutorialPage(),
+        '/${Routes.select_vehicle_page}' :(context) => SelectVehiclePage(),
       }
     );
   }
@@ -47,7 +50,9 @@ class SpaceSurvivalApp extends StatelessWidget {
 
 
 class MainGame extends StatefulWidget {
-  MainGame({Key key}) : super(key: key);
+
+  final VehicleFeatures selectedVehicle;
+  MainGame({Key key, this.selectedVehicle}) : super(key: key);
 
   @override
   _MainGameState createState() => _MainGameState();
@@ -59,7 +64,7 @@ class _MainGameState extends State<MainGame> {
 
     initialize();
 
-    MyGame game = MyGame(context);
+    MyGame game = MyGame(context,widget.selectedVehicle);
 
 
     return Container(
@@ -121,7 +126,7 @@ class _MainGameState extends State<MainGame> {
     'weapon/reload/reload_weapon_ready.png',
     'weapon/reload/reload_weapon_waiting.png',
     'shield/shield_1.png',
-    'heart/heart.png'
+    'heart/heart.png',
   ]);
 
   Flame.audio.disableLog();
@@ -140,7 +145,9 @@ class _MainGameState extends State<MainGame> {
 
 class MyGame extends BaseGame{
 
-  MyGame(BuildContext context){
+
+
+  MyGame(BuildContext context,VehicleFeatures selectedVehicle){
   
     final images = [
 
@@ -150,7 +157,7 @@ class MyGame extends BaseGame{
 
     ];
   SpaceSurvivalGame.context = context;
-  SpaceSurvivalGame.game = SpaceSurvivalGame(images,VehicleFeatures.vertex/*,Stage.stage_1*/);
+  SpaceSurvivalGame.game = SpaceSurvivalGame(images,selectedVehicle,Stage.stage_final);
 
   TapGestureRecognizer tapper = TapGestureRecognizer();
   tapper.onTapDown = onTapDown;

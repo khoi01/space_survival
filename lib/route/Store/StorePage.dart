@@ -3,7 +3,9 @@ import 'package:space_survival/Utils/customWidget.dart';
 import 'package:space_survival/Utils/util.dart';
 import 'package:space_survival/components/vehicle/vehicleInit.dart';
 import 'package:space_survival/models/MVehicle.dart';
+import 'package:space_survival/repository/CoinRepository.dart';
 import 'package:space_survival/route/Store/StorePageDetail.dart';
+import 'package:space_survival/repository/VehicleRepository.dart';
 
 class StorePage extends StatefulWidget {
   StorePage({Key key}) : super(key: key);
@@ -15,12 +17,13 @@ class StorePage extends StatefulWidget {
 class _StorePageState extends State<StorePage> {
   
   List<MVehicle> vehicles;
-
+  List<VehicleFeatures> vehicleAlreadyPurchaseds;
+  double coin;
   @override
   void initState() { 
-    vehicles = getVehicles();
+    getData();
     super.initState();
-    
+   
   }
 
   @override
@@ -30,16 +33,17 @@ class _StorePageState extends State<StorePage> {
       body: ListView(
         shrinkWrap: true,
         children: <Widget>[
-          CustomWidget.backButton(context, Routes.main_page,
+          CustomWidget.backButton(context, Routes.main_page,coin,
               isRemovePreviousBackStack: true),
           StoreHeaderUI(),
-          StoreVehicleUI(vehicles: vehicles,)
+          vehicles != null  && vehicleAlreadyPurchaseds != null ?  StoreVehicleUI(vehicles: vehicles,vehicleAlreadyPurchases: vehicleAlreadyPurchaseds,) : CircularProgressIndicator(),
         ],
       ),
     );
   }
 
 
+  
 
   List<MVehicle> getVehicles(){
 
@@ -61,9 +65,25 @@ class _StorePageState extends State<StorePage> {
 
 
       return vehicles;
+  }
 
+
+  void getData() async{
       
+      vehicles = getVehicles();
+      CoinRepository.getCoin().then((value){
+        setState(() {
+          coin = value;  
+        });
+        
 
+      });
+
+      VehicleRepository.getPurchasedVehicles().then((value){
+          setState(() {
+            vehicleAlreadyPurchaseds = value;
+          });
+      });
 
   }
 }
