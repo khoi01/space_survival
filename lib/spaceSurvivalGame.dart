@@ -183,6 +183,8 @@ class SpaceSurvivalGame extends ParallaxComponent{
 
     SpaceSurvivalGame.isOnGameScreen = false;
     SpaceSurvivalGame.game = null;
+    StageTime.currentStage = null;
+    
     Nav.route(context,Routes.lost_page,results,isRemovePreviousBackStack: true);
 
   }

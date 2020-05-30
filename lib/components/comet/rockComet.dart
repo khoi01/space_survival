@@ -4,6 +4,7 @@ import 'dart:ui';
 import 'package:flame/sprite.dart';
 import 'package:space_survival/Utils/util.dart';
 import 'package:space_survival/components/comet/comet.dart';
+import 'package:space_survival/components/comet/rockCometConfig.dart';
 import 'package:space_survival/logic/cometLevel.dart';
 import 'package:space_survival/logic/controller/Stage/Stage.dart';
 import 'package:space_survival/spaceSurvivalGame.dart';
@@ -38,41 +39,49 @@ class RockComet extends Comet{
 
   
   static void setComponentBehaviours() {
+
     stageSpawnBehaviours = List<StageSpawnBehaviour>();
-    StageSpawnBehaviour stageSpawnBehaviour;
+    
+    for(var position = Stage.values.indexOf(StageTime.currentStage);position<Stage.values.length;position++){
 
-    //stage_1
-    stageSpawnBehaviour = new StageSpawnBehaviour(
-      stageInfo: StageInfo.getStage(Stage.stage_1),
-      typeClass:  RockComet,
-      maxSpawnInternal: 1500,
-      minSpawnInterval: 400,
-      intervalChange: 3,
-      maxComponentOnScreen: 6,
-    );
-    stageSpawnBehaviours.add(stageSpawnBehaviour);
+      StageSpawnBehaviour stageSpawnBehaviour = RockCometConfig.getSpawnBehaviour(Stage.values[position]);
+      stageSpawnBehaviours.add(stageSpawnBehaviour);
+    }
 
-    //stage_2
-    stageSpawnBehaviour = new StageSpawnBehaviour(
-      stageInfo: StageInfo.getStage(Stage.stage_2),
-      typeClass: RockComet,
-      maxSpawnInternal: 1500,
-      minSpawnInterval: 300,
-      intervalChange: 3,
-      maxComponentOnScreen: 7,
-    );
-    stageSpawnBehaviours.add(stageSpawnBehaviour);
+    // StageSpawnBehaviour stageSpawnBehaviour;
+    
+    // //stage_1
+    // stageSpawnBehaviour = new StageSpawnBehaviour(
+    //   stageInfo: StageInfo.getStage(Stage.stage_1),
+    //   typeClass:  RockComet,
+    //   maxSpawnInternal: 1500,
+    //   minSpawnInterval: 400,
+    //   intervalChange: 3,
+    //   maxComponentOnScreen: 1,
+    // );
+    // stageSpawnBehaviours.add(stageSpawnBehaviour);
 
-    //stage_final
-    stageSpawnBehaviour = new StageSpawnBehaviour(
-      stageInfo: StageInfo.getStage(Stage.stage_final),
-      typeClass: RockComet,
-      maxSpawnInternal: 1500,
-      minSpawnInterval: 200,
-      intervalChange: 3,
-      maxComponentOnScreen: 8,
-    );
-    stageSpawnBehaviours.add(stageSpawnBehaviour);
+    // //stage_2
+    // stageSpawnBehaviour = new StageSpawnBehaviour(
+    //   stageInfo: StageInfo.getStage(Stage.stage_2),
+    //   typeClass: RockComet,
+    //   maxSpawnInternal: 1500,
+    //   minSpawnInterval: 300,
+    //   intervalChange: 3,
+    //   maxComponentOnScreen: 2,
+    // );
+    // stageSpawnBehaviours.add(stageSpawnBehaviour);
+
+    // //stage_final
+    // stageSpawnBehaviour = new StageSpawnBehaviour(
+    //   stageInfo: StageInfo.getStage(Stage.stage_final),
+    //   typeClass: RockComet,
+    //   maxSpawnInternal: 1500,
+    //   minSpawnInterval: 200,
+    //   intervalChange: 3,
+    //   maxComponentOnScreen: 3,
+    // );
+    // stageSpawnBehaviours.add(stageSpawnBehaviour);
   }
 
   static StageSpawnBehaviour getSpawnBehaviour(Stage stage) {
@@ -80,22 +89,25 @@ class RockComet extends Comet{
     if(stageSpawnBehaviours == null){
       setComponentBehaviours();
     }
-      StageSpawnBehaviour stageSpawnBehaviour;
+      // StageSpawnBehaviour stageSpawnBehaviour;
 
-      switch(stage){
-        case Stage.stage_1:
-        stageSpawnBehaviour = stageSpawnBehaviours.firstWhere((element) => element.stageInfo.stage == Stage.stage_1);
-        break;
-        case Stage.stage_2:
-        stageSpawnBehaviour = stageSpawnBehaviours.firstWhere((element) => element.stageInfo.stage == Stage.stage_2);
-        break;
-        case Stage.stage_final:
-        stageSpawnBehaviour = stageSpawnBehaviours.firstWhere((element) => element.stageInfo.stage == Stage.stage_final);
-        break;
-        default:
-        stageSpawnBehaviour = stageSpawnBehaviours.firstWhere((element) => element.stageInfo.stage == Stage.stage_1);
-        break;
-      }
+      // switch(stage){
+      //   case Stage.stage_1:
+      //   stageSpawnBehaviour = stageSpawnBehaviours.firstWhere((element) => element.stageInfo.stage == Stage.stage_1);
+      //   break;
+      //   case Stage.stage_2:
+      //   stageSpawnBehaviour = stageSpawnBehaviours.firstWhere((element) => element.stageInfo.stage == Stage.stage_2);
+      //   break;
+      //   case Stage.stage_final:
+      //   stageSpawnBehaviour = stageSpawnBehaviours.firstWhere((element) => element.stageInfo.stage == Stage.stage_final);
+      //   break;
+      //   default:
+      //   stageSpawnBehaviour = stageSpawnBehaviours.firstWhere((element) => element.stageInfo.stage == Stage.stage_1);
+      //   break;
+      // }
+
+    StageSpawnBehaviour stageSpawnBehaviour = stageSpawnBehaviours.firstWhere((element) => element.stageInfo.stage == stage);
+
 
       return stageSpawnBehaviour;
   }

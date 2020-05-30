@@ -23,10 +23,10 @@ class StageConfig{
         break;
         case Stage.stage_final:
         stageInfo = StageInfo(
-          stage: Stage.stage_2,
+          stage: Stage.stage_final,
           duration: 15000,
           difficulty: 3,
-          coin: 1.5
+          coin: 2
         );
         break;
         default:

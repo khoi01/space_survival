@@ -17,16 +17,20 @@ class ScoreRepository{
     
   }
 
-  static void setHighestStage(int difficulty) async{
+  static void setHighestStage(Stage stage) async{
     SharedPreferences preferences = await SharedPreferences.getInstance();
-     int highestDifficulty =  preferences.getInt(stageKey) ?? 1;
-
-    StageInfo highestStage = StageInfo.getStages().firstWhere((element) => element.difficulty == highestDifficulty);
-    StageInfo newCurrentStage  = StageInfo.getStages().firstWhere((element) => element.difficulty == difficulty);
-
-    if(newCurrentStage.difficulty > highestStage.difficulty){
-      preferences.setInt(stageKey,difficulty);
+    int highestStageAbletoGet = preferences.getInt(stageKey) ?? 1;
+    int newStage = Stage.values.indexOf(stage);
+    if(newStage > highestStageAbletoGet){
+      preferences.setInt(stageKey,newStage);
     }
+    //  int highestDifficulty =  preferences.getInt(stageKey) ?? 1;
+
+    // StageInfo highestStage = StageInfo.getStages().firstWhere((element) => element.difficulty == highestDifficulty);
+    // StageInfo newCurrentStage  = StageInfo.getStages().firstWhere((element) => element.difficulty == difficulty);
+
+    // if(newCurrentStage.difficulty > highestStage.difficulty){
+    //   preferences.setInt(stageKey,difficulty);
   }
 
   static Future<int>  getHighestScore() async {
@@ -36,10 +40,10 @@ class ScoreRepository{
     return score;
   }
 
-  static Future<StageInfo> getHighestStage() async{
+  static Future<Stage> getHighestStage() async{
     SharedPreferences preferences = await SharedPreferences.getInstance();
-    int difficulty = preferences.getString(stageKey) ?? 1;
-    return StageInfo.getStages().firstWhere((element) => element.difficulty == difficulty);
+    int highestStageAbletoGet = preferences.getString(stageKey) ?? 1;
+    return Stage.values[highestStageAbletoGet];
   }
 
 }

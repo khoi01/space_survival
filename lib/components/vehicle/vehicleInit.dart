@@ -169,7 +169,7 @@ class VehicleAttribute {
                             heightComponent:  isNull ? 0 : game.tileSize * 1.5,
                             speed:  isNull ? 0 :  game.tileSize * 0.5,
                             maxHitPoint: 2,
-                            currentHitPoint: 2,
+                            currentHitPoint: 1,
                             damage: 1,
                             maxShield: 1,
                             currentShield: 1,

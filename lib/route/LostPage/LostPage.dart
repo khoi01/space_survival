@@ -15,7 +15,7 @@ class LostPage extends StatelessWidget {
   Widget build(BuildContext context) {
     CoinRepository.addCoin(coin);
     ScoreRepository.setHighestScore(score);
-    ScoreRepository.setHighestStage(StageInfo.getStage(stage).difficulty);
+    ScoreRepository.setHighestStage(stage);
 
     return Scaffold(
         backgroundColor: AppConfig.backgroundColor,
