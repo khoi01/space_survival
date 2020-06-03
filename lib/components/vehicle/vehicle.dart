@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flame/sprite.dart';
 import 'package:space_survival/Utils/util.dart';
 import 'package:space_survival/components/vehicle/vehicleInit.dart';
+import 'package:space_survival/components/weapon/electricBullet.dart';
 import 'package:space_survival/components/weapon/weapon.dart';
 import 'package:space_survival/logic/vehicleBeaviour.dart';
 import 'package:space_survival/spaceSurvivalGame.dart';
@@ -132,5 +133,17 @@ class Vehicle{
     }else{
       return false;
     }
+  }
+
+  Weapon triggerWeapon(String targetComet){
+
+            ElectricBullet bullet = new ElectricBullet(game,
+                                                targetComet,
+                                                this.vehicleRect.left,
+                                                this.vehicleRect.top,
+                                                game.tileSize * 1.2,
+                                                game.tileSize * 1.2
+                                                );
+    return bullet;
   }
 }

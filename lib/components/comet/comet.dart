@@ -20,7 +20,7 @@ class Comet extends GameComponent{
   bool isLock = false; //check if comet get lock with any weapon;
   int hitPoint = 1;
   
-  double get speed => game.tileSize * 1.8;
+  double  speed() => game.tileSize * 1.8;
   
 
   
@@ -81,7 +81,7 @@ class Comet extends GameComponent{
 
       targetLocation = Offset(this.cometLevel.setXFinalPosition,this.cometLevel.setYFinalPosition);
 
-      double stepDistance = speed * t;
+      double stepDistance = speed() * t;
       Offset toTarget = targetLocation /*destination to go */ - Offset(cometRect.left,cometRect.top); // current position
 
       if(stepDistance < toTarget.distance - game.tileSize * 1.25 ){

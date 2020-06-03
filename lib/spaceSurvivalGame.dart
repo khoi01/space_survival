@@ -16,7 +16,6 @@ import 'package:space_survival/components/text/score/scoreDisplay.dart';
 import 'package:space_survival/components/text/score/stageDisplay.dart';
 import 'package:space_survival/components/vehicle/vehicle.dart';
 import 'package:space_survival/components/vehicle/vehicleInit.dart';
-import 'package:space_survival/components/weapon/electricBullet.dart';
 import 'package:space_survival/components/weapon/weapon.dart';
 import 'package:space_survival/logic/cometLevel.dart';
 import 'package:space_survival/logic/controller/Stage/Stage.dart';
@@ -222,16 +221,18 @@ class SpaceSurvivalGame extends ParallaxComponent{
   //begin launch weapon and destroy the targeted comet
   void launchWeapon(String targetCormet){
       
-      ElectricBullet bullet = new ElectricBullet(this,
-                                                targetCormet,
-                                                this.vehicle.vehicleRect.left,
-                                                this.vehicle.vehicleRect.top,
-                                                this.tileSize * 1.2,
-                                                this.tileSize * 1.2
-                                                );
+      // ElectricBullet bullet = new ElectricBullet(this,
+      //                                           targetCormet,
+      //                                           this.vehicle.vehicleRect.left,
+      //                                           this.vehicle.vehicleRect.top,
+      //                                           this.tileSize * 1.2,
+      //                                           this.tileSize * 1.2
+      //                                           );
 
 
-    weapons.add(bullet);
+    
+
+    weapons.add(vehicle.triggerWeapon(targetCormet));
   }
 
   void onTapDown(TapDownDetails tap){

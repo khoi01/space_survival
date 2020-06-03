@@ -24,25 +24,17 @@ class ScoreRepository{
     if(newStage > highestStageAbletoGet){
       preferences.setInt(stageKey,newStage);
     }
-    //  int highestDifficulty =  preferences.getInt(stageKey) ?? 1;
-
-    // StageInfo highestStage = StageInfo.getStages().firstWhere((element) => element.difficulty == highestDifficulty);
-    // StageInfo newCurrentStage  = StageInfo.getStages().firstWhere((element) => element.difficulty == difficulty);
-
-    // if(newCurrentStage.difficulty > highestStage.difficulty){
-    //   preferences.setInt(stageKey,difficulty);
   }
 
   static Future<int>  getHighestScore() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
-
     int score = preferences.getInt(scoreKey) ?? 0;
     return score;
   }
 
   static Future<Stage> getHighestStage() async{
     SharedPreferences preferences = await SharedPreferences.getInstance();
-    int highestStageAbletoGet = preferences.getString(stageKey) ?? 1;
+    int highestStageAbletoGet = preferences.getInt(stageKey) ?? 1;
     return Stage.values[highestStageAbletoGet];
   }
 

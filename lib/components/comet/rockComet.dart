@@ -13,6 +13,9 @@ class RockComet extends Comet{
   
   static List<StageSpawnBehaviour> stageSpawnBehaviours;
 
+  @override
+  double  speed() => game.tileSize * 1.8;
+
 
   RockComet(SpaceSurvivalGame game,String cometId,Level level,CometLevel cometLevel, double weightComponent, double heightComponent) : super(game,cometId, level,cometLevel,weightComponent, heightComponent){
     
@@ -36,8 +39,6 @@ class RockComet extends Comet{
 
   }
 
-
-  
   static void setComponentBehaviours() {
 
     stageSpawnBehaviours = List<StageSpawnBehaviour>();
@@ -47,41 +48,6 @@ class RockComet extends Comet{
       StageSpawnBehaviour stageSpawnBehaviour = RockCometConfig.getSpawnBehaviour(Stage.values[position]);
       stageSpawnBehaviours.add(stageSpawnBehaviour);
     }
-
-    // StageSpawnBehaviour stageSpawnBehaviour;
-    
-    // //stage_1
-    // stageSpawnBehaviour = new StageSpawnBehaviour(
-    //   stageInfo: StageInfo.getStage(Stage.stage_1),
-    //   typeClass:  RockComet,
-    //   maxSpawnInternal: 1500,
-    //   minSpawnInterval: 400,
-    //   intervalChange: 3,
-    //   maxComponentOnScreen: 1,
-    // );
-    // stageSpawnBehaviours.add(stageSpawnBehaviour);
-
-    // //stage_2
-    // stageSpawnBehaviour = new StageSpawnBehaviour(
-    //   stageInfo: StageInfo.getStage(Stage.stage_2),
-    //   typeClass: RockComet,
-    //   maxSpawnInternal: 1500,
-    //   minSpawnInterval: 300,
-    //   intervalChange: 3,
-    //   maxComponentOnScreen: 2,
-    // );
-    // stageSpawnBehaviours.add(stageSpawnBehaviour);
-
-    // //stage_final
-    // stageSpawnBehaviour = new StageSpawnBehaviour(
-    //   stageInfo: StageInfo.getStage(Stage.stage_final),
-    //   typeClass: RockComet,
-    //   maxSpawnInternal: 1500,
-    //   minSpawnInterval: 200,
-    //   intervalChange: 3,
-    //   maxComponentOnScreen: 3,
-    // );
-    // stageSpawnBehaviours.add(stageSpawnBehaviour);
   }
 
   static StageSpawnBehaviour getSpawnBehaviour(Stage stage) {
@@ -89,23 +55,6 @@ class RockComet extends Comet{
     if(stageSpawnBehaviours == null){
       setComponentBehaviours();
     }
-      // StageSpawnBehaviour stageSpawnBehaviour;
-
-      // switch(stage){
-      //   case Stage.stage_1:
-      //   stageSpawnBehaviour = stageSpawnBehaviours.firstWhere((element) => element.stageInfo.stage == Stage.stage_1);
-      //   break;
-      //   case Stage.stage_2:
-      //   stageSpawnBehaviour = stageSpawnBehaviours.firstWhere((element) => element.stageInfo.stage == Stage.stage_2);
-      //   break;
-      //   case Stage.stage_final:
-      //   stageSpawnBehaviour = stageSpawnBehaviours.firstWhere((element) => element.stageInfo.stage == Stage.stage_final);
-      //   break;
-      //   default:
-      //   stageSpawnBehaviour = stageSpawnBehaviours.firstWhere((element) => element.stageInfo.stage == Stage.stage_1);
-      //   break;
-      // }
-
     StageSpawnBehaviour stageSpawnBehaviour = stageSpawnBehaviours.firstWhere((element) => element.stageInfo.stage == stage);
 
 
