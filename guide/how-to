@@ -1,0 +1,10 @@
+
+1.How to add new stage?
+
+a. add new stage at enum Stage{} //stage.dart
+b. add new stageinfo  // stageConfig.dart
+b. add new StageSpawnBehaviour //rockCometConfig.dart 
+
+
+2.How to add new vehicle?
+

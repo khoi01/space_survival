@@ -15,7 +15,15 @@ class Vertex extends Vehicle{
         vehicleRect = Rect.fromLTWH(vehicleBehaviour.setXRandomPosition,vehicleBehaviour.setYRandomPosition,vehicleAttribute.widthComponent,vehicleAttribute.heightComponent);
 
     vehicleInitSprites = List<Sprite>();
-    vehicleInitSprites.add(Sprite('vehicle/vertex/vertex_1.png'));
+    vehicleInitSprites = vehicleSprite.vehicleSprites;
+
+
+    vehicleInitShieldSprites = List<Sprite>();
+    vehicleInitShieldSprites = vehicleSprite.vehicleShieldSprite;
+
+    vehicleInitGotHitSprites = List<Sprite>();
+    vehicleInitGotHitSprites = vehicleSprite.vehicleGotHitSprite;
+    
   }
 
 
@@ -25,8 +33,8 @@ class Vertex extends Vehicle{
                                                 targetComet,
                                                 this.vehicleRect.left,
                                                 this.vehicleRect.top,
-                                                game.tileSize * 1.2,
-                                                game.tileSize * 1.2
+                                                game.tileSize * 1,
+                                                game.tileSize * 1
                                                 );
     return bullet;
   } 

@@ -47,15 +47,4 @@ class CoinDisplay{
       );
     }
   }
-
-  // void isGetCoin(){
-
-  //   if(StageTime.currentStage == Stage.stage_1){
-  //     game.coin+=1;
-  //   }else if(StageTime.currentStage == Stage.stage_2){
-  //     game.coin+=1.5;
-  //   }else if(StageTime.currentStage == Stage.stage_final){
-  //     game.coin+=2;
-  //   }
-  // }
 }

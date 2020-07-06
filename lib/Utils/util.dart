@@ -6,6 +6,7 @@ import 'package:space_survival/route/Garage/GaragePage.dart';
 import 'package:space_survival/route/LostPage/LostPage.dart';
 import 'package:space_survival/route/MainPage/MainPage.dart';
 import 'package:space_survival/route/Scoreboard/ScoreboardPage.dart';
+import 'package:space_survival/route/SelectStagePage/SelectStagePage.dart';
 import 'package:space_survival/route/SelectVehiclePage/SelectVehiclePage.dart';
 import 'package:space_survival/route/Store/StorePage.dart';
 import 'package:space_survival/route/Tutorial/TutorialPage.dart';
@@ -43,6 +44,7 @@ enum Routes{
   scoreboard_page,
   tutorial_page,
   select_vehicle_page,
+  select_stage_page,
 }
 
 
@@ -138,6 +140,14 @@ class Nav{
           SelectVehiclePage()), (Route<dynamic> route) => false); 
         }else{
           Navigator.pushNamed(context,generateRoute);      
+        }
+        break;
+      case Routes.select_stage_page:
+        if(isRemovePreviousBackStack){
+          Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
+          SelectStagePage()), (Route<dynamic> route) => false); 
+        }else{
+          Navigator.pushNamed(context,generateRoute);
         }
         break;
       default:

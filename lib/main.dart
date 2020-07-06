@@ -14,6 +14,7 @@ import 'package:space_survival/route/Garage/GaragePage.dart';
 import 'package:space_survival/route/LostPage/LostPage.dart';
 import 'package:space_survival/route/MainPage/MainPage.dart';
 import 'package:space_survival/route/Scoreboard/ScoreboardPage.dart';
+import 'package:space_survival/route/SelectStagePage/SelectStagePage.dart';
 import 'package:space_survival/route/SelectVehiclePage/SelectVehiclePage.dart';
 import 'package:space_survival/route/SplashScreen/SplashScreenGame.dart';
 import 'package:space_survival/route/Store/StorePage.dart';
@@ -43,6 +44,7 @@ class SpaceSurvivalApp extends StatelessWidget {
         '/${Routes.scoreboard_page}' : (context) => ScoreboardPage(),
         '/${Routes.tutorial_page}' : (context) => TutorialPage(),
         '/${Routes.select_vehicle_page}' :(context) => SelectVehiclePage(),
+        '/${Routes.select_stage_page}' : (context) => SelectStagePage(),
       }
     );
   }
@@ -92,7 +94,26 @@ class _MainGameState extends State<MainGame> {
     'vehicle/spaceship/withShield/ship1shield2.png',
     'vehicle/spaceship/withShield/ship1shield3.png',
     'vehicle/spaceship/withShield/ship1shield4.png',
-    'vehicle/vertex/vertex_1.png',
+    'vehicle/spaceship/gotHit/ship1GotHit1.png',
+    'vehicle/spaceship/gotHit/ship1GotHit2.png',
+    'vehicle/spaceship/gotHit/ship1GotHit3.png',
+    'vehicle/spaceship/gotHit/ship1GotHit4.png',
+    'vehicle/spaceship/gotHit/ship1GotHit5.png',
+    'vehicle/spaceship/gotHit/ship1GotHit6.png',
+    'vehicle/vertex/vertex1.png',
+    'vehicle/vertex/vertex2.png',
+    'vehicle/vertex/vertex3.png',
+    'vehicle/vertex/vertex4.png',
+    'vehicle/vertex/vertex5.png',
+    'vehicle/vertex/gotHit/vertexGotHit1.png',
+    'vehicle/vertex/gotHit/vertexGotHit2.png',
+    'vehicle/vertex/gotHit/vertexGotHit3.png',
+    'vehicle/vertex/gotHit/vertexGotHit4.png',
+    'vehicle/vertex/gotHit/vertexGotHit5.png',
+    'vehicle/vertex/gotHit/vertexGotHit6.png',
+    'vehicle/vertex/withShield/vertexWithShield1.png',
+    'vehicle/vertex/withShield/vertexWithShield2.png',
+    'vehicle/vertex/withShield/vertexWithShield3.png',
     'comet/rock/comet_1.png',
     'comet/rock/comet_2.png',
     'comet/rock/comet_3.png',
@@ -157,7 +178,7 @@ class MyGame extends BaseGame{
 
     ];
   SpaceSurvivalGame.context = context;
-  SpaceSurvivalGame.game = SpaceSurvivalGame(images,selectedVehicle,Stage.stage_2);
+  SpaceSurvivalGame.game = SpaceSurvivalGame(images,selectedVehicle,Stage.stage_20);
 
   TapGestureRecognizer tapper = TapGestureRecognizer();
   tapper.onTapDown = onTapDown;

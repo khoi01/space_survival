@@ -14,7 +14,7 @@ class RockComet extends Comet{
   static List<StageSpawnBehaviour> stageSpawnBehaviours;
 
   @override
-  double  speed() => game.tileSize * 1.8;
+  double  speed() => game.tileSize * 2.3;
 
 
   RockComet(SpaceSurvivalGame game,String cometId,Level level,CometLevel cometLevel, double weightComponent, double heightComponent) : super(game,cometId, level,cometLevel,weightComponent, heightComponent){

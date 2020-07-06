@@ -22,6 +22,9 @@ class Spaceship extends Vehicle{
 
     vehicleInitShieldSprites = List<Sprite>();
     vehicleInitShieldSprites = vehicleSprite.vehicleShieldSprite;
+
+    vehicleInitGotHitSprites = List<Sprite>();
+    vehicleInitGotHitSprites = vehicleSprite.vehicleGotHitSprite;
   }  
 
 }

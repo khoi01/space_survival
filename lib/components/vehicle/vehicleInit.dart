@@ -135,6 +135,7 @@ class VehicleAttribute {
   final int minUsedInterval;
   final int intervalChange;
   final int shieldDuration;
+  final int durationWhenGotHit;
 
   VehicleAttribute({
     this.price, //the price of this ship
@@ -149,7 +150,8 @@ class VehicleAttribute {
     this.maxUsedInterval, //reload weapon
     this.minUsedInterval, //reload weapon
     this.intervalChange,//reload weapon
-    this.shieldDuration //shield available
+    this.shieldDuration, //shield available
+    this.durationWhenGotHit,
   });
 
 
@@ -167,34 +169,36 @@ class VehicleAttribute {
                             price: 0,
                             widthComponent: isNull ? 0 : game.tileSize * 1.5,
                             heightComponent:  isNull ? 0 : game.tileSize * 1.5,
-                            speed:  isNull ? 0 :  game.tileSize * 0.5,
+                            speed:  isNull ? 0 :  game.tileSize * 0.8,
                             maxHitPoint: 2,
-                            currentHitPoint: 1,
+                            currentHitPoint: 2,
                             damage: 1,
                             maxShield: 1,
                             currentShield: 1,
-                            maxUsedInterval: 3000,
-                            minUsedInterval: 3000,
+                            maxUsedInterval: 2000,
+                            minUsedInterval: 2000,
                             intervalChange: 3,
                             shieldDuration: 3000,
+                            durationWhenGotHit: 1000,
                             );
 
       break;
       case VehicleFeatures.vertex:
         vehicleAttribute = VehicleAttribute(
-                            price: 2,
-                            widthComponent: isNull ? 0 : game.tileSize * 1.5,
-                            heightComponent:  isNull? 0 : game.tileSize * 1.5,
-                            speed:  isNull ? 0 : game.tileSize * 0.6,
+                            price: 5,
+                            widthComponent: isNull ? 0 : game.tileSize * 3.10,
+                            heightComponent:  isNull? 0 : game.tileSize * 2.10,
+                            speed:  isNull ? 0 : game.tileSize * 0.7,
                             maxHitPoint: 2,
                             currentHitPoint: 2,
                             damage: 2,
                             maxShield: 2,
                             currentShield: 2,
-                            maxUsedInterval: 2800,
-                            minUsedInterval: 2800,
+                            maxUsedInterval: 1900,
+                            minUsedInterval: 1900,
                             intervalChange: 3,
                             shieldDuration: 2500,
+                            durationWhenGotHit: 1000
                             );
       break;
       default:
@@ -202,16 +206,17 @@ class VehicleAttribute {
                             price: 0,
                             widthComponent: isNull ? 0 : game.tileSize * 1.5,
                             heightComponent:  isNull ? 0 : game.tileSize * 1.5,
-                            speed:  isNull ? 0 : game.tileSize * 0.5,
+                            speed:  isNull ? 0 : game.tileSize * 0.9,
                             maxHitPoint: 2,
-                            currentHitPoint: 1,
+                            currentHitPoint: 2,
                             damage: 1,
                             maxShield: 1,
                             currentShield: 1,
-                            maxUsedInterval: 3000,
-                            minUsedInterval: 3000,
+                            maxUsedInterval: 2000,
+                            minUsedInterval: 2000,
                             intervalChange: 3,
                             shieldDuration: 3000,
+                            durationWhenGotHit: 1000
                             );
       break;
     }
@@ -228,7 +233,7 @@ class VehicleSprite{
 
   List<Sprite> vehicleSprites;
   List<Sprite> vehicleShieldSprite;
-
+  List<Sprite> vehicleGotHitSprite;
 
   static VehicleSprite getVehicleSprite(VehicleFeatures vehicleFeatures){
     
@@ -251,6 +256,15 @@ class VehicleSprite{
       vehicleSprite.vehicleShieldSprite.add(Sprite('vehicle/spaceship/withShield/ship1shield2.png'));
       vehicleSprite.vehicleShieldSprite.add(Sprite('vehicle/spaceship/withShield/ship1shield3.png'));
       vehicleSprite.vehicleShieldSprite.add(Sprite('vehicle/spaceship/withShield/ship1shield4.png'));
+
+      vehicleSprite.vehicleGotHitSprite = new List<Sprite>();
+      vehicleSprite.vehicleGotHitSprite.add(Sprite('vehicle/spaceship/gotHit/ship1GotHit1.png'));
+      vehicleSprite.vehicleGotHitSprite.add(Sprite('vehicle/spaceship/gotHit/ship1GotHit2.png'));
+      vehicleSprite.vehicleGotHitSprite.add(Sprite('vehicle/spaceship/gotHit/ship1GotHit3.png'));
+      vehicleSprite.vehicleGotHitSprite.add(Sprite('vehicle/spaceship/gotHit/ship1GotHit4.png'));
+      vehicleSprite.vehicleGotHitSprite.add(Sprite('vehicle/spaceship/gotHit/ship1GotHit5.png'));
+      vehicleSprite.vehicleGotHitSprite.add(Sprite('vehicle/spaceship/gotHit/ship1GotHit6.png'));
+
  
       
       break;
@@ -259,10 +273,25 @@ class VehicleSprite{
       vehicleSprite = VehicleSprite();
 
       vehicleSprite.vehicleSprites = List<Sprite>();
-      vehicleSprite.vehicleSprites.add(Sprite('vehicle/vertex/vertex_1.png'));
+      vehicleSprite.vehicleSprites.add(Sprite('vehicle/vertex/vertex1.png'));
+      vehicleSprite.vehicleSprites.add(Sprite('vehicle/vertex/vertex2.png'));
+      vehicleSprite.vehicleSprites.add(Sprite('vehicle/vertex/vertex3.png'));
+      vehicleSprite.vehicleSprites.add(Sprite('vehicle/vertex/vertex4.png'));
+      vehicleSprite.vehicleSprites.add(Sprite('vehicle/vertex/vertex5.png'));
 
       vehicleSprite.vehicleShieldSprite = List<Sprite>();
-    
+      vehicleSprite.vehicleShieldSprite.add(Sprite('vehicle/vertex/withShield/vertexWithShield1.png'));
+      vehicleSprite.vehicleShieldSprite.add(Sprite('vehicle/vertex/withShield/vertexWithShield2.png'));
+      vehicleSprite.vehicleShieldSprite.add(Sprite('vehicle/vertex/withShield/vertexWithShield3.png'));
+
+      vehicleSprite.vehicleGotHitSprite = new List<Sprite>();
+      vehicleSprite.vehicleGotHitSprite.add(Sprite('vehicle/vertex/gotHit/vertexGotHit1.png'));
+      vehicleSprite.vehicleGotHitSprite.add(Sprite('vehicle/vertex/gotHit/vertexGotHit2.png'));
+      vehicleSprite.vehicleGotHitSprite.add(Sprite('vehicle/vertex/gotHit/vertexGotHit3.png'));
+      vehicleSprite.vehicleGotHitSprite.add(Sprite('vehicle/vertex/gotHit/vertexGotHit4.png'));
+      vehicleSprite.vehicleGotHitSprite.add(Sprite('vehicle/vertex/gotHit/vertexGotHit5.png'));
+      vehicleSprite.vehicleGotHitSprite.add(Sprite('vehicle/vertex/gotHit/vertexGotHit6.png'));
+
       
       break;
       default:
@@ -281,6 +310,14 @@ class VehicleSprite{
       vehicleSprite.vehicleShieldSprite.add(Sprite('vehicle/spaceship/withShield/ship1shield2.png'));
       vehicleSprite.vehicleShieldSprite.add(Sprite('vehicle/spaceship/withShield/ship1shield3.png'));
       vehicleSprite.vehicleShieldSprite.add(Sprite('vehicle/spaceship/withShield/ship1shield4.png'));
+
+      vehicleSprite.vehicleGotHitSprite = new List<Sprite>();
+      vehicleSprite.vehicleGotHitSprite.add(Sprite('vehicle/spaceship/gotHit/ship1GotHit1.png'));
+      vehicleSprite.vehicleGotHitSprite.add(Sprite('vehicle/spaceship/gotHit/ship1GotHit2.png'));
+      vehicleSprite.vehicleGotHitSprite.add(Sprite('vehicle/spaceship/gotHit/ship1GotHit3.png'));
+      vehicleSprite.vehicleGotHitSprite.add(Sprite('vehicle/spaceship/gotHit/ship1GotHit4.png'));
+      vehicleSprite.vehicleGotHitSprite.add(Sprite('vehicle/spaceship/gotHit/ship1GotHit5.png'));
+      vehicleSprite.vehicleGotHitSprite.add(Sprite('vehicle/spaceship/gotHit/ship1GotHit6.png'));
  
       
       break;
@@ -299,7 +336,7 @@ class VehicleSprite{
         gifPath = 'assets/images/vehicle/spaceship/gif/ship_5.gif';
       break;
       case VehicleFeatures.vertex:
-        gifPath = 'assets/images/vehicle/vertex/vertex_1.png';
+        gifPath = 'assets/images/vehicle/vertex/gif/vertextGif.gif';
       break;
       default:
         gifPath = 'assets/images/assets/imagesvehicle/spaceship/gif/ship_5.gif';

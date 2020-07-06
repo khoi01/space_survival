@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:space_survival/Utils/util.dart';
+import 'package:space_survival/logic/controller/Stage/Stage.dart';
 import 'package:space_survival/repository/CoinRepository.dart';
 import 'package:space_survival/repository/ScoreRepository.dart';
 
@@ -86,9 +87,31 @@ class MainHeaderUI extends StatelessWidget {
 
 
 
-class MainMenuUI extends StatelessWidget {
-  const MainMenuUI({Key key}) : super(key: key);
+class MainMenuUI extends StatefulWidget {
+  MainMenuUI({Key key}) : super(key: key);
 
+  @override
+  _MainMenuUIState createState() => _MainMenuUIState();
+}
+
+class _MainMenuUIState extends State<MainMenuUI> {
+  Stage highestStage;
+
+  @override
+  void initState() {
+
+    super.initState();
+
+    // ScoreRepository.getHighestStage().then((value){
+    //   setState(() {
+    //     highestStage = value;
+    //   });
+    // });
+  }
+
+  bool isDataAvailable(){
+    return highestStage != null ? true : false;
+  }
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -98,8 +121,18 @@ class MainMenuUI extends StatelessWidget {
           children: <Widget>[
             RaisedButton(child: Text("Start Game",style: TextStyle(fontSize: AppConfig.textBtnSize),),
             onPressed: () {
-              //Nav.route(context,Routes.main_game,null);
-              Nav.route(context, Routes.select_vehicle_page,null);
+
+              // if(isDataAvailable()){
+                // StageInfo.begin();
+                // StageInfo stageInfo = StageInfo.getStage(highestStage);
+                // if(stageInfo.difficulty >= 10){
+                //   Nav.route(context, Routes.select_stage_page,null);
+                // }else{
+                  Nav.route(context, Routes.select_vehicle_page,null);
+              //   }
+              // }
+               
+             
             },)
             ,
             RaisedButton(child: Text("Tutorial",style: TextStyle(fontSize: AppConfig.textBtnSize)),
