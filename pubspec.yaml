@@ -85,6 +85,22 @@ flutter:
     - assets/images/vehicle/vertex/withShield/vertexWithShield2.png
     - assets/images/vehicle/vertex/withShield/vertexWithShield3.png
     - assets/images/vehicle/vertex/gif/vertextGif.gif
+    - assets/images/vehicle/x-19/x-19_1.png
+    - assets/images/vehicle/x-19/x-19_2.png
+    - assets/images/vehicle/x-19/x-19_3.png
+    - assets/images/vehicle/x-19/x-19_4.png
+    - assets/images/vehicle/x-19/x-19_5.png
+    - assets/images/vehicle/x-19/x-19_6.png
+    - assets/images/vehicle/x-19/x-19_7.png
+    - assets/images/vehicle/x-19/withShield/x-19WithShield1.png
+    - assets/images/vehicle/x-19/withShield/x-19WithShield2.png
+    - assets/images/vehicle/x-19/withShield/x-19WithShield3.png
+    - assets/images/vehicle/x-19/withShield/x-19WithShield4.png
+    - assets/images/vehicle/x-19/gotHit/x-19GotHit1.png
+    - assets/images/vehicle/x-19/gotHit/x-19GotHit2.png
+    - assets/images/vehicle/x-19/gotHit/x-19GotHit3.png
+    - assets/images/vehicle/x-19/gotHit/x-19GotHit4.png
+    - assets/images/vehicle/x-19/gif/x-19Gif.gif
     - assets/images/comet/rock/comet_1.png
     - assets/images/comet/rock/comet_2.png
     - assets/images/comet/rock/comet_3.png
