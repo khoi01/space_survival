@@ -3,9 +3,27 @@ import 'package:space_survival/logic/controller/Stage/stageConfig.dart';
 import 'package:space_survival/spaceSurvivalGame.dart';
 
 enum Stage {
-  stage_1, // 2 minute
-  stage_2, // 2 minute
-  stage_final // final
+  stage_1, 
+  stage_2, 
+  stage_3,
+  stage_4,
+  stage_5,
+  stage_6,
+  stage_7,
+  stage_8,
+  stage_9,
+  stage_10,
+  stage_11,
+  stage_12,
+  stage_13,
+  stage_14,
+  stage_15,
+  stage_16,
+  stage_17,
+  stage_18,
+  stage_19,
+  stage_20,
+
 }
 
 /*
@@ -38,12 +56,16 @@ class StageInfo {
     stages = List<StageInfo>();
     int startGame = Time.getCurrentTime();
 
+    bool isFirstLoop = true;
+    
     for (var position = Stage.values.indexOf(StageTime.currentStage);
         position < Stage.values.length;
         position++) {
+
+      //get all available stage
       StageInfo stage = StageConfig.getStageSetup(Stage.values[position]);
 
-      bool isFirstLoop = true;
+
       if (isFirstLoop) {
         isFirstLoop = false;
 
@@ -56,44 +78,17 @@ class StageInfo {
 
       stages.add(stage);
     }
-
-    // //stage_1
-    // int durationStage1 = 15000;
-    // StageInfo stage1 = StageInfo(stage: Stage.stage_1,duration: durationStage1,start: startGame,end: startGame+durationStage1,difficulty: 1,coin: 1);
-    // //stage_2
-    // int durationStage2 = 15000;
-    // StageInfo stage2 = StageInfo(stage:Stage.stage_2,duration:durationStage2,start: stage1.end,end: stage1.end+durationStage2,difficulty: 2,coin:  1.5);
-    // //stage_final
-    // int durationStageFinal = 15000;
-    // StageInfo stageFinal = StageInfo(stage: Stage.stage_final,duration:durationStageFinal,start: stage2.end,end:stage2.end+durationStageFinal,difficulty: 3,coin: 2);
-
-    // stages.add(stage1);
-    // stages.add(stage2);
-    // stages.add(stageFinal);
   }
 
   static List<StageInfo> getStages() {
+    if(stages == null){
+      StageTime.currentStage = Stage.stage_1;
+      begin();
+    }
     return stages;
   }
 
   static StageInfo getStage(Stage selectedStage) {
-    //StageInfo stageInfo;
-    // switch(stage){
-    //   case Stage.stage_1:
-    //   stageInfo =  getStages().firstWhere((item) => item.stage == Stage.stage_1);
-    //   break;
-    //   case Stage.stage_2:
-    //   stageInfo =  getStages().firstWhere((item) => item.stage == Stage.stage_2);
-    //   break;
-    //   case Stage.stage_final:
-    //   stageInfo =  getStages().firstWhere((item) => item.stage == Stage.stage_final);
-    //   break;
-    //   default:
-    //   stageInfo =  getStages().firstWhere((item) => item.stage == Stage.stage_1);
-    //   break;
-
-    // }
-
     StageInfo stageInfo =
         getStages().firstWhere((item) => item.stage == selectedStage);
 

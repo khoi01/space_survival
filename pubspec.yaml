@@ -64,7 +64,43 @@ flutter:
     - assets/images/vehicle/spaceship/withShield/ship1shield2.png
     - assets/images/vehicle/spaceship/withShield/ship1shield3.png
     - assets/images/vehicle/spaceship/withShield/ship1shield4.png
-    - assets/images/vehicle/vertex/vertex_1.png
+    - assets/images/vehicle/spaceship/gotHit/ship1GotHit1.png
+    - assets/images/vehicle/spaceship/gotHit/ship1GotHit2.png
+    - assets/images/vehicle/spaceship/gotHit/ship1GotHit3.png
+    - assets/images/vehicle/spaceship/gotHit/ship1GotHit4.png
+    - assets/images/vehicle/spaceship/gotHit/ship1GotHit5.png
+    - assets/images/vehicle/spaceship/gotHit/ship1GotHit6.png
+    - assets/images/vehicle/vertex/vertex1.png
+    - assets/images/vehicle/vertex/vertex2.png
+    - assets/images/vehicle/vertex/vertex3.png
+    - assets/images/vehicle/vertex/vertex4.png
+    - assets/images/vehicle/vertex/vertex5.png
+    - assets/images/vehicle/vertex/gotHit/vertexGotHit1.png
+    - assets/images/vehicle/vertex/gotHit/vertexGotHit2.png
+    - assets/images/vehicle/vertex/gotHit/vertexGotHit3.png
+    - assets/images/vehicle/vertex/gotHit/vertexGotHit4.png
+    - assets/images/vehicle/vertex/gotHit/vertexGotHit5.png
+    - assets/images/vehicle/vertex/gotHit/vertexGotHit6.png
+    - assets/images/vehicle/vertex/withShield/vertexWithShield1.png
+    - assets/images/vehicle/vertex/withShield/vertexWithShield2.png
+    - assets/images/vehicle/vertex/withShield/vertexWithShield3.png
+    - assets/images/vehicle/vertex/gif/vertextGif.gif
+    - assets/images/vehicle/x-19/x-19_1.png
+    - assets/images/vehicle/x-19/x-19_2.png
+    - assets/images/vehicle/x-19/x-19_3.png
+    - assets/images/vehicle/x-19/x-19_4.png
+    - assets/images/vehicle/x-19/x-19_5.png
+    - assets/images/vehicle/x-19/x-19_6.png
+    - assets/images/vehicle/x-19/x-19_7.png
+    - assets/images/vehicle/x-19/withShield/x-19WithShield1.png
+    - assets/images/vehicle/x-19/withShield/x-19WithShield2.png
+    - assets/images/vehicle/x-19/withShield/x-19WithShield3.png
+    - assets/images/vehicle/x-19/withShield/x-19WithShield4.png
+    - assets/images/vehicle/x-19/gotHit/x-19GotHit1.png
+    - assets/images/vehicle/x-19/gotHit/x-19GotHit2.png
+    - assets/images/vehicle/x-19/gotHit/x-19GotHit3.png
+    - assets/images/vehicle/x-19/gotHit/x-19GotHit4.png
+    - assets/images/vehicle/x-19/gif/x-19Gif.gif
     - assets/images/comet/rock/comet_1.png
     - assets/images/comet/rock/comet_2.png
     - assets/images/comet/rock/comet_3.png

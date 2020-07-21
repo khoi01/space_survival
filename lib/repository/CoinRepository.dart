@@ -20,6 +20,6 @@ class CoinRepository{
    static Future<double> getCoin() async{
     SharedPreferences preferences = await SharedPreferences.getInstance();
     double coin = preferences.getDouble(coinKey) ?? 0;
-    return coin;
+    return double.parse(coin.toStringAsFixed(2));
   }
 }

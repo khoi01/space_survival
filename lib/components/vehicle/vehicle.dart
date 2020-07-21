@@ -18,9 +18,11 @@ class Vehicle{
   List<Weapon> weapons;
   List<Sprite> vehicleInitSprites;
   List<Sprite> vehicleInitShieldSprites;
+  List<Sprite> vehicleInitGotHitSprites;
 
   bool isUsingShield = false;
   bool isDestroy = false;
+  bool isGotHit = false;
   Offset targetLocation;
   
   
@@ -31,6 +33,7 @@ class Vehicle{
    int currentIntervalReload;
    int nextUsedReload;
 
+   int immuneStop; //when isGotHit will return back to false
    int shieldStop; //when shield will stop
   
   Vehicle(this.game,this.vehicleBehaviour,this.vehicleAttribute){
@@ -46,6 +49,12 @@ class Vehicle{
     weapons.forEach((weapon) {
       weapon.render(canvas);
     });
+
+    if(isGotHit){
+      int randomSprite = game.random.nextInt(vehicleInitGotHitSprites.length);
+      vehicleInitGotHitSprites[randomSprite].renderRect(canvas,vehicleRect.inflate(2));
+      return;
+    }
 
     if(!isDestroy && !isUsingShield){
       int randomSprite = game.random.nextInt(vehicleInitSprites.length);
@@ -83,6 +92,12 @@ class Vehicle{
           isUsingShield = false;
         }
     }
+
+    if(isGotHit){
+      if(Time.getCurrentTime() >= immuneStop){
+        isGotHit = false;
+      }
+    }
   }
 
   void setNewCordinates(){
@@ -117,6 +132,20 @@ class Vehicle{
       }
     
   }
+
+  //this method will trigger if vehicle got hit by any comet/component
+  void immuneDamage(){
+    int nowTimeStamp = Time.getCurrentTime();
+    
+    //want to check if hitpoint not equal to 0 or lower then that
+    if(vehicleAttribute.currentHitPoint > 0){
+      immuneStop = nowTimeStamp + vehicleAttribute.durationWhenGotHit;
+      isGotHit = true;
+    }
+    
+    
+  }
+  
   
   void usingShield(){
   

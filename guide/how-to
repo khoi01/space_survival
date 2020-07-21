@@ -1,0 +1,20 @@
+
+1.How to add new stage?
+
+a. add new stage at enum Stage{} //stage.dart
+b. add new stageinfo  // stageConfig.dart
+b. add new StageSpawnBehaviour //rockCometConfig.dart 
+
+
+2.How to add new vehicle?
+
+a.need to provide sprite for every state.
+    1.vehicle normal
+    2.vehicle got hit
+    3.vehicle with shield
+b. add sprites image and assets folder
+c.add sprites add pubspec.yaml
+d.add all sprite at list item at main.dart file
+e.create new component for new vehicle class example: X19.dart
+f.add all vehicles attribute at vehicleinit.dart
+

@@ -58,12 +58,15 @@ class Comet extends GameComponent{
     if(!isDestroy){
       
       if(isCollisionOccurred(t)){
-        if(!game.vehicle.isUsingShield){
+        if(!game.vehicle.isUsingShield && !game.vehicle.isGotHit){
+          //got hit when vehicle not using shield
           game.vehicle.vehicleAttribute.currentHitPoint -=1;
-        }else{
+          game.vehicle.immuneDamage(); //vehicle got hit by comet/component
+        }else if(game.vehicle.isUsingShield || game.vehicle.isGotHit){
           //using shield and collusion between vehicle and comet - get a score
+          //collusion when vehicle already got hit by previous comet/component also got score,but hit point not deduct,because already got deduct by previous coment/component
           game.score+=1; 
-        }
+        }else
           isDestroy = true;
           isOffScreen = true;
         

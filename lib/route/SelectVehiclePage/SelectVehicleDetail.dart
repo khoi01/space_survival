@@ -18,7 +18,6 @@ class SelectVehicleHeaderUI extends StatelessWidget {
   }
 }
 
-
 class SelectVehicleContentUI extends StatelessWidget {
   const SelectVehicleContentUI({Key key, this.vehicles}) : super(key: key);
 
@@ -29,15 +28,18 @@ class SelectVehicleContentUI extends StatelessWidget {
     return Container(
         padding: EdgeInsets.all(8),
         margin: const EdgeInsets.symmetric(vertical: 20.0),
-        child: vehicles != null ? ListView.builder(
-          shrinkWrap: true,
-          itemCount: vehicles.length,
-          itemBuilder: (BuildContext context, int index) => Card(
-            child: VehicleUI(
-              vehicle: vehicles[index],
-            ),
-          ),
-        ) : CircularProgressIndicator() );
+        height: MediaQuery.of(context).size.height * 0.65,
+        child: vehicles != null
+            ? ListView.builder(
+                shrinkWrap: true,
+                itemCount: vehicles.length,
+                itemBuilder: (BuildContext context, int index) => Card(
+                  child: VehicleUI(
+                    vehicle: vehicles[index],
+                  ),
+                ),
+              )
+            : CircularProgressIndicator());
   }
 }
 
@@ -53,24 +55,22 @@ class _VehicleUIState extends State<VehicleUI> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: (){
+      onTap: () {
         //Start game
-        Nav.route(context,Routes.main_game,widget.vehicle.features);
-
+        Nav.route(context, Routes.main_game, widget.vehicle.features);
       },
-        child: Container(
+      child: Container(
         padding: EdgeInsets.all(10),
         child: Column(
           children: [
             Text(widget.vehicle.toString()),
             Image.asset(
               widget.vehicle.gifPath,
-              height:160,
-              width:160,
+              height: 160,
+              width: 160,
             )
           ],
         ),
-        
       ),
     );
   }

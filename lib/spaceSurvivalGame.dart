@@ -108,6 +108,8 @@ class SpaceSurvivalGame extends ParallaxComponent{
   void reInitializeComponent(){
     spawnerRockComet = null;
     spawnerRockComet = SpawnerRockComet(this,RockComet.getSpawnBehaviour(StageTime.currentStage));
+    weapons = null;
+    weapons = List<Weapon>();
   }
 
   @override

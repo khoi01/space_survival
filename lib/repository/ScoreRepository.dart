@@ -19,7 +19,7 @@ class ScoreRepository{
 
   static void setHighestStage(Stage stage) async{
     SharedPreferences preferences = await SharedPreferences.getInstance();
-    int highestStageAbletoGet = preferences.getInt(stageKey) ?? 1;
+    int highestStageAbletoGet = preferences.getInt(stageKey) ?? 0;
     int newStage = Stage.values.indexOf(stage);
     if(newStage > highestStageAbletoGet){
       preferences.setInt(stageKey,newStage);
@@ -34,7 +34,7 @@ class ScoreRepository{
 
   static Future<Stage> getHighestStage() async{
     SharedPreferences preferences = await SharedPreferences.getInstance();
-    int highestStageAbletoGet = preferences.getInt(stageKey) ?? 1;
+    int highestStageAbletoGet = preferences.getInt(stageKey) ?? 0;
     return Stage.values[highestStageAbletoGet];
   }
 
