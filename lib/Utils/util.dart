@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:space_survival/components/vehicle/vehicleInit.dart';
 import 'package:space_survival/main.dart';
@@ -5,35 +7,32 @@ import 'package:space_survival/route/CreditPage/CreditPage.dart';
 import 'package:space_survival/route/Garage/GaragePage.dart';
 import 'package:space_survival/route/LostPage/LostPage.dart';
 import 'package:space_survival/route/MainPage/MainPage.dart';
+import 'package:space_survival/route/RewardAdPage/RewardAdPage.dart';
 import 'package:space_survival/route/Scoreboard/ScoreboardPage.dart';
 import 'package:space_survival/route/SelectStagePage/SelectStagePage.dart';
 import 'package:space_survival/route/SelectVehiclePage/SelectVehiclePage.dart';
 import 'package:space_survival/route/Store/StorePage.dart';
 import 'package:space_survival/route/Tutorial/TutorialPage.dart';
 
-enum Level{
-  one,
-  two,
-  three,
-  test_collision_comet_and_spaceships
-}
+enum Level { one, two, three, test_collision_comet_and_spaceships }
 
-class Time{
-  static int getCurrentTime(){
+class Time {
+  static int getCurrentTime() {
     return DateTime.now().millisecondsSinceEpoch;
   }
 }
 
-class AppConfig{
+class AppConfig {
   static final Color backgroundColor = Colors.grey.shade400;
   static final double textBtnSize = 20;
 }
 
-class ImagePath{
+class ImagePath {
   static String shieldIconPath = 'assets/images/shield/shield_1.png';
   static String heartIconPath = 'assets/images/heart/heart.png';
 }
-enum Routes{
+
+enum Routes {
   splash_screen,
   main_page,
   main_game,
@@ -45,117 +44,158 @@ enum Routes{
   tutorial_page,
   select_vehicle_page,
   select_stage_page,
+  reward_ad_page
 }
 
+class AdMobAppID {
+  static String appId = 'ca-app-pub-1931609048343788~5839299908';
+  static String appIdTesting = 'ca-app-pub-3940256099942544~4354546703';
+}
 
-class Nav{
-  static route(BuildContext context,Routes route,dynamic value,{bool isRemovePreviousBackStack = false}){
+class AdMobID {
+  static String adMobRewarded = 'ca-app-pub-1931609048343788/9586973226';
+  static String admobRewardedTesting = 'ca-app-pub-3940256099942544/8673189370';
+}
 
-    String generateRoute = "/$route"; 
-    switch(route){
+class Nav {
+  static route(BuildContext context, Routes route, dynamic value,
+      {bool isRemovePreviousBackStack = false}) {
+    String generateRoute = "/$route";
+    switch (route) {
       case Routes.main_page:
-
-      if(isRemovePreviousBackStack){
-        Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
-        MainPage()), (Route<dynamic> route) => false); 
-      }else{
-        Navigator.pushNamed(context,generateRoute);      
-
-      }
-    break;
-      case Routes.main_game:
-
-      var results = value as VehicleFeatures;
-
-      if(isRemovePreviousBackStack){
-        Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
-        MainGame(selectedVehicle: results,)), (Route<dynamic> route) => false);         
-      }else{
-        // Navigator.pushNamed(context,generateRoute,arguments: results);      
-         Navigator.push(
-    context,
-    MaterialPageRoute(builder: (context) => MainGame(selectedVehicle: results,)),
-  );
-      }
-      break;
-
-      case Routes.lost_page:
-
-          var results = value as Map;
-
-
-        if(isRemovePreviousBackStack){
-          Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
-          LostPage(score: results['score'],stage: results['stage'],coin: results['coin'],)), (Route<dynamic> route) => false); 
-        }else{
-          Navigator.pushNamed(context,generateRoute);      
+        if (isRemovePreviousBackStack) {
+          Navigator.of(context).pushAndRemoveUntil(
+              MaterialPageRoute(builder: (context) => MainPage()),
+              (Route<dynamic> route) => false);
+        } else {
+          Navigator.pushNamed(context, generateRoute);
         }
         break;
-      
-      case Routes.credits_page:
+      case Routes.main_game:
+        var results = value as VehicleFeatures;
 
-      if(isRemovePreviousBackStack){
-          Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
-          CreditsPage()), (Route<dynamic> route) => false); 
-      }else{
-          Navigator.pushNamed(context,generateRoute);      
-      }
+        if (isRemovePreviousBackStack) {
+          Navigator.of(context).pushAndRemoveUntil(
+              MaterialPageRoute(
+                  builder: (context) => MainGame(
+                        selectedVehicle: results,
+                      )),
+              (Route<dynamic> route) => false);
+        } else {
+          // Navigator.pushNamed(context,generateRoute,arguments: results);
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => MainGame(
+                      selectedVehicle: results,
+                    )),
+          );
+        }
         break;
-        case Routes.store_page:
-        if(isRemovePreviousBackStack){
-          Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
-          StorePage()), (Route<dynamic> route) => false); 
-        }else{
+
+      case Routes.lost_page:
+        var results = value as Map;
+
+        if (isRemovePreviousBackStack) {
+          Navigator.of(context).pushAndRemoveUntil(
+              MaterialPageRoute(
+                  builder: (context) => LostPage(
+                        score: results['score'],
+                        stage: results['stage'],
+                        coin: results['coin'],
+                      )),
+              (Route<dynamic> route) => false);
+        } else {
+          Navigator.pushNamed(context, generateRoute);
+        }
+        break;
+
+      case Routes.credits_page:
+        if (isRemovePreviousBackStack) {
+          Navigator.of(context).pushAndRemoveUntil(
+              MaterialPageRoute(builder: (context) => CreditsPage()),
+              (Route<dynamic> route) => false);
+        } else {
+          Navigator.pushNamed(context, generateRoute);
+        }
+        break;
+      case Routes.store_page:
+        if (isRemovePreviousBackStack) {
+          Navigator.of(context).pushAndRemoveUntil(
+              MaterialPageRoute(builder: (context) => StorePage()),
+              (Route<dynamic> route) => false);
+        } else {
           Navigator.pushNamed(context, generateRoute);
         }
         break;
       case Routes.garage_page:
-        if(isRemovePreviousBackStack){
-          Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
-          GaragePage()), (Route<dynamic> route) => false);           
-        }else{
+        if (isRemovePreviousBackStack) {
+          Navigator.of(context).pushAndRemoveUntil(
+              MaterialPageRoute(builder: (context) => GaragePage()),
+              (Route<dynamic> route) => false);
+        } else {
           Navigator.pushNamed(context, generateRoute);
         }
         break;
       case Routes.scoreboard_page:
-        if(isRemovePreviousBackStack){
-          Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
-          ScoreboardPage()), (Route<dynamic> route) => false); 
-        }else{
-          Navigator.pushNamed(context,generateRoute);
+        if (isRemovePreviousBackStack) {
+          Navigator.of(context).pushAndRemoveUntil(
+              MaterialPageRoute(builder: (context) => ScoreboardPage()),
+              (Route<dynamic> route) => false);
+        } else {
+          Navigator.pushNamed(context, generateRoute);
         }
         break;
       case Routes.tutorial_page:
-        if(isRemovePreviousBackStack){
-                    Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
-          TutorialPage()), (Route<dynamic> route) => false); 
-        }else{
-          Navigator.pushNamed(context,generateRoute);
-
+        if (isRemovePreviousBackStack) {
+          Navigator.of(context).pushAndRemoveUntil(
+              MaterialPageRoute(builder: (context) => TutorialPage()),
+              (Route<dynamic> route) => false);
+        } else {
+          Navigator.pushNamed(context, generateRoute);
         }
         break;
       case Routes.select_vehicle_page:
-        if(isRemovePreviousBackStack){
-          Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
-          SelectVehiclePage()), (Route<dynamic> route) => false); 
-        }else{
-          Navigator.pushNamed(context,generateRoute);      
+        if (isRemovePreviousBackStack) {
+          Navigator.of(context).pushAndRemoveUntil(
+              MaterialPageRoute(builder: (context) => SelectVehiclePage()),
+              (Route<dynamic> route) => false);
+        } else {
+          Navigator.pushNamed(context, generateRoute);
         }
         break;
       case Routes.select_stage_page:
-        if(isRemovePreviousBackStack){
-          Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
-          SelectStagePage()), (Route<dynamic> route) => false); 
-        }else{
-          Navigator.pushNamed(context,generateRoute);
+        if (isRemovePreviousBackStack) {
+          Navigator.of(context).pushAndRemoveUntil(
+              MaterialPageRoute(builder: (context) => SelectStagePage()),
+              (Route<dynamic> route) => false);
+        } else {
+          Navigator.pushNamed(context, generateRoute);
+        }
+        break;
+      case Routes.reward_ad_page:
+        if (isRemovePreviousBackStack) {
+          Navigator.of(context).pushAndRemoveUntil(
+              MaterialPageRoute(builder: (context) => RewardAdPage()),
+              (Route<dynamic> route) => false);
+        } else {
+          Navigator.pushNamed(context, generateRoute);
         }
         break;
       default:
-        Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
-        MainPage()), (Route<dynamic> route) => false);         break;
+        Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(builder: (context) => MainPage()),
+            (Route<dynamic> route) => false);
+        break;
     }
   }
 }
 
+class Num {
+  static int random(min, max) {
+    var rn = new Random();
+    return min + rn.nextInt(max - min);
+  }
+}
 
-
+class AppMusic {}

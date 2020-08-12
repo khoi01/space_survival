@@ -33,6 +33,7 @@ dependencies:
   flame_splash_screen: ^0.0.1
   shared_preferences: ^0.5.7+3
   fluttertoast: ^4.0.1
+  firebase_admob: ^0.9.3+2
 
 
 
@@ -148,6 +149,7 @@ flutter:
     - assets/images/defeat/defeat.gif
     - assets/images/coin/coin.gif
     - assets/audio/sfx/comet_destroy.ogg
+    - assets/audio/bgm/bgm_music.mp3
     
 
   # An image asset can refer to one or more resolution-specific "variants", see

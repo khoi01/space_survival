@@ -12,6 +12,7 @@ import 'package:space_survival/route/CreditPage/CreditPage.dart';
 import 'package:space_survival/route/Garage/GaragePage.dart';
 import 'package:space_survival/route/LostPage/LostPage.dart';
 import 'package:space_survival/route/MainPage/MainPage.dart';
+import 'package:space_survival/route/RewardAdPage/RewardAdPage.dart';
 import 'package:space_survival/route/Scoreboard/ScoreboardPage.dart';
 import 'package:space_survival/route/SelectStagePage/SelectStagePage.dart';
 import 'package:space_survival/route/SelectVehiclePage/SelectVehiclePage.dart';
@@ -41,6 +42,7 @@ class SpaceSurvivalApp extends StatelessWidget {
       '/${Routes.tutorial_page}': (context) => TutorialPage(),
       '/${Routes.select_vehicle_page}': (context) => SelectVehiclePage(),
       '/${Routes.select_stage_page}': (context) => SelectStagePage(),
+      '/${Routes.reward_ad_page}': (context) => RewardAdPage(),
     });
   }
 }
@@ -157,9 +159,7 @@ class _MainGameState extends State<MainGame> {
     ]);
 
     Flame.audio.disableLog();
-    Flame.audio.loadAll(<String>[
-      'sfx/comet_destroy.ogg',
-    ]);
+    Flame.audio.loadAll(<String>['sfx/comet_destroy.ogg', 'bgm/bgm_music.mp3']);
   }
 
   @override

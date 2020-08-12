@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "322760386424",
+    "firebase_url": "https://space-survival-6ac85.firebaseio.com",
+    "project_id": "space-survival-6ac85",
+    "storage_bucket": "space-survival-6ac85.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:322760386424:android:15b06c879b92e4a7804a8d",
+        "android_client_info": {
+          "package_name": "com.khoi.space_survival"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "322760386424-1d0rb20ltnsrgpoo3pj2eb9pose55lo1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDVJzz27riFrEMRpWs4Z64wS8xYvqEoS9s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "322760386424-1d0rb20ltnsrgpoo3pj2eb9pose55lo1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
