@@ -18,3 +18,9 @@ d.add all sprite at list item at main.dart file
 e.create new component for new vehicle class example: X19.dart
 f.add all vehicles attribute at vehicleinit.dart
 
+
+3.How to add new Sound?
+a. add sound info the project
+b .add path sound info assets // pubspec.yaml
+c. add path sound info  Flame.audio.loadAll // main.dart
+

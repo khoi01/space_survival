@@ -53,16 +53,30 @@ class MainGame extends StatefulWidget {
   _MainGameState createState() => _MainGameState();
 }
 
-class _MainGameState extends State<MainGame> {
+class _MainGameState extends State<MainGame> with WidgetsBindingObserver {
   @override
   Widget build(BuildContext context) {
     initialize();
 
     MyGame game = MyGame(context, widget.selectedVehicle);
 
-    return Container(
-      child: game.widget,
+    return WillPopScope(
+      onWillPop: () {
+        MusicConfiq.stopBgm();
+        return Future.value(
+            true); //able to go to previous route,but need to stop the music
+      },
+      child: Container(
+        child: game.widget,
+      ),
     );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+    MusicConfiq.stopBgmRoute();
   }
 
   void initialize() async {
@@ -159,13 +173,28 @@ class _MainGameState extends State<MainGame> {
     Flame.audio.disableLog();
     Flame.audio.loadAll(<String>[
       'sfx/comet_destroy.ogg',
+      'bgm/bgm.mp3',
+      'bgm/bgm_route.mp3',
+      'sfx/spaceship/sound_enable_shield.mp3',
+      'sfx/spaceship/sound_reload.mp3'
     ]);
   }
 
   @override
   void dispose() {
     SpaceSurvivalGame.game = null;
+    WidgetsBinding.instance.removeObserver(this);
     super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    super.didChangeAppLifecycleState(state);
+    if (state == AppLifecycleState.paused) {
+      MusicConfiq.stopBgm();
+    } else if (state == AppLifecycleState.resumed) {
+      MusicConfiq.startBgm();
+    }
   }
 }
 

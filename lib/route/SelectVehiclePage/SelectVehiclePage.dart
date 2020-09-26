@@ -15,69 +15,53 @@ class SelectVehiclePage extends StatefulWidget {
 }
 
 class _SelectVehiclePageState extends State<SelectVehiclePage> {
-
   double coin;
   List<MVehicle> purchased;
   @override
   void initState() {
     super.initState();
     getData();
-
-    
-
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppConfig.backgroundColor,
-      body: ListView(
-        shrinkWrap: true,
-        children:<Widget>[
-          CustomWidget.backButton(context,Routes.main_page,coin,isRemovePreviousBackStack: true),
-          SelectVehicleHeaderUI(),
-          SelectVehicleContentUI(vehicles: purchased,),
-        ]
-      ),
+      body: ListView(shrinkWrap: true, children: <Widget>[
+        CustomWidget.backButton(context, Routes.main_page, coin,
+            isRemovePreviousBackStack: true),
+        SelectVehicleHeaderUI(),
+        SelectVehicleContentUI(
+          vehicles: purchased,
+        ),
+      ]),
     );
   }
 
-  
-
   Future<void> getData() async {
-
     await CoinRepository.getCoin().then((value) {
-        setState(() {
-          coin = value;
-        });
+      setState(() {
+        coin = value;
+      });
     });
 
-       await VehicleRepository.getPurchasedVehicles().then((value){
+    await VehicleRepository.getPurchasedVehicles().then((value) {
+      List<MVehicle> purchaseVehicles = List<MVehicle>();
 
-          List<MVehicle> purchaseVehicles = List<MVehicle>();
+      List<VehicleFeatures> vehicleFeatures = value;
 
-          List<VehicleFeatures> vehicleFeatures = value;
+      vehicleFeatures.forEach((feature) {
+        String gifPath = VehicleSprite.getVehicleGif(feature);
 
-          vehicleFeatures.forEach((feature) {
+        MVehicle purchaseVehicle =
+            MVehicle(features: feature, gifPath: gifPath);
 
-              String gifPath = VehicleSprite.getVehicleGif(feature);
-
-              MVehicle purchaseVehicle = MVehicle(
-                features: feature,
-                gifPath: gifPath
-              );
-
-              purchaseVehicles.add(purchaseVehicle);
-          });
-
-          setState(() {
-            purchased = purchaseVehicles;
-          });
-
-
+        purchaseVehicles.add(purchaseVehicle);
       });
 
+      setState(() {
+        purchased = purchaseVehicles;
+      });
+    });
   }
 }
-
-
-

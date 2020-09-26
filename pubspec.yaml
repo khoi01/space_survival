@@ -148,6 +148,11 @@ flutter:
     - assets/images/defeat/defeat.gif
     - assets/images/coin/coin.gif
     - assets/audio/sfx/comet_destroy.ogg
+    - assets/audio/sfx/spaceship/sound_enable_shield.mp3
+    - assets/audio/sfx/spaceship/sound_reload.mp3
+    - assets/audio/bgm/bgm.mp3
+    - assets/audio/bgm/bgm_route.mp3
+
     
 
   # An image asset can refer to one or more resolution-specific "variants", see

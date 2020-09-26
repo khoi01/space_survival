@@ -1,4 +1,3 @@
-
 import 'dart:math';
 import 'dart:ui';
 import 'package:flame/components/parallax_component.dart';
@@ -24,8 +23,7 @@ import 'package:space_survival/logic/controller/generateShieldDisplay.dart';
 import 'package:space_survival/logic/spawner/SpawnerComet.dart';
 import 'package:uuid/uuid.dart';
 
-class SpaceSurvivalGame extends ParallaxComponent{
-  
+class SpaceSurvivalGame extends ParallaxComponent {
   static SpaceSurvivalGame game;
   final VehicleFeatures vehicleFeatures;
   static BuildContext context;
@@ -56,23 +54,20 @@ class SpaceSurvivalGame extends ParallaxComponent{
   StageDisplay stageDisplay;
   CoinDisplay coinDisplay;
 
-  SpaceSurvivalGame(List<ParallaxImage> images,this.vehicleFeatures,this.stage) : super(images){
+  SpaceSurvivalGame(
+      List<ParallaxImage> images, this.vehicleFeatures, this.stage)
+      : super(images) {
     isOnGameScreen = true;
     score = 0;
     coin = 0;
-    initializeComponent().then((result){
+    initializeComponent().then((result) {
       isInitialize = result;
-      
     });
-    baseSpeed = const Offset(4,0);
-    layerDelta = const Offset(0,-50);
-
+    baseSpeed = const Offset(4, 0);
+    layerDelta = const Offset(0, -50);
   }
 
-  
-
-   Future<bool> initializeComponent() async{
-    
+  Future<bool> initializeComponent() async {
     StageTime.currentStage = this.stage;
     comets = List<Comet>();
     weapons = List<Weapon>();
@@ -85,40 +80,41 @@ class SpaceSurvivalGame extends ParallaxComponent{
 
     // spawnerRockComet = SpawnerRockComet(this,RockComet.getSpawnBehaviour(stage));
 
-    vehicle = VehicleCreate.initVehicleFeatures(this,vehicleFeatures);
+    vehicle = VehicleCreate.initVehicleFeatures(this, vehicleFeatures);
     vehicleHealthBar = VehicleHealthBar(this);
     shieldIcons = List<Shield>();
 
-    reloadWeapon = ReloadWeapon(this,
-                                vehicle,
-                                this.screenSize.width  - this.tileSize * 1.8,
-                                this.screenSize.height * 0.1 - this.tileSize * 1.8,
-                                this.tileSize * 1.8,
-                                this.tileSize * 1.8
-                              );
+    reloadWeapon = ReloadWeapon(
+        this,
+        vehicle,
+        this.screenSize.width - this.tileSize * 1.8,
+        this.screenSize.height * 0.1 - this.tileSize * 1.8,
+        this.tileSize * 1.8,
+        this.tileSize * 1.8);
     scoreDisplay = ScoreDisplay(this);
     stageTime = StageTime(this);
     stageDisplay = StageDisplay(this);
     coinDisplay = CoinDisplay(this);
-    spawnerRockComet = SpawnerRockComet(this,RockComet.getSpawnBehaviour(StageTime.currentStage));
+    spawnerRockComet = SpawnerRockComet(
+        this, RockComet.getSpawnBehaviour(StageTime.currentStage));
 
+    MusicConfiq.startBgm();
     return true;
   }
 
-  void reInitializeComponent(){
+  void reInitializeComponent() {
     spawnerRockComet = null;
-    spawnerRockComet = SpawnerRockComet(this,RockComet.getSpawnBehaviour(StageTime.currentStage));
+    spawnerRockComet = SpawnerRockComet(
+        this, RockComet.getSpawnBehaviour(StageTime.currentStage));
     weapons = null;
     weapons = List<Weapon>();
   }
 
   @override
   void render(Canvas canvas) {
-
     super.render(canvas);
 
-    if(isInitialize && isOnGameScreen){
-
+    if (isInitialize && isOnGameScreen) {
       reloadWeapon.render(canvas);
 
       vehicle.render(canvas);
@@ -131,51 +127,49 @@ class SpaceSurvivalGame extends ParallaxComponent{
       stageDisplay.render(canvas);
       coinDisplay.render(canvas);
     }
-
-
-  
   }
 
   @override
   void update(double t) {
+    super.update(t);
 
-      super.update(t);
+    if (isInitialize && isOnGameScreen) {
+      vehicle.update(t);
+      comets.forEach((comet) => comet.update(t));
+      comets.removeWhere((comet) => comet.isOffScreen);
 
-      if(isInitialize && isOnGameScreen){
-        vehicle.update(t);
-        comets.forEach((comet) => comet.update(t));
-        comets.removeWhere((comet) => comet.isOffScreen);
-        
-        spawnerRockComet.update(t);
-        
-        weapons.forEach((weapon) => weapon.update(t));
-        weapons.removeWhere((weapon) => weapon.isOffScreen);
-        
-        collusionWeaponAndComet.update(t);
+      spawnerRockComet.update(t);
 
-        reloadWeapon.update(t);
+      weapons.forEach((weapon) => weapon.update(t));
+      weapons.removeWhere((weapon) => weapon.isOffScreen);
 
-        vehicleHealthBar.update(t);
+      collusionWeaponAndComet.update(t);
 
-        shieldIcons.forEach((shield) => shield.update(t));
-        shieldIcons.removeWhere((shield) => shield.isOffScreen);
+      reloadWeapon.update(t);
 
-        generateShieldDisplay.update(t);
+      vehicleHealthBar.update(t);
 
-        scoreDisplay.update(t);
+      shieldIcons.forEach((shield) => shield.update(t));
+      shieldIcons.removeWhere((shield) => shield.isOffScreen);
 
-        stageTime.update(t);
-        stageDisplay.update(t);
-        coinDisplay.update(t);
-        if(isEndGame()){
-          gotoLostPage();
-        }
+      generateShieldDisplay.update(t);
+
+      scoreDisplay.update(t);
+
+      stageTime.update(t);
+      stageDisplay.update(t);
+      coinDisplay.update(t);
+      if (isEndGame()) {
+        MusicConfiq.stopBgm();
+        gotoLostPage();
       }
+    } else {
+      MusicConfiq.stopBgm();
+      SpaceSurvivalGame.game = null;
+    }
   }
 
-
-  static void gotoLostPage(){
-
+  static void gotoLostPage() {
     var results = Map();
 
     results['score'] = SpaceSurvivalGame.game.score;
@@ -185,90 +179,77 @@ class SpaceSurvivalGame extends ParallaxComponent{
     SpaceSurvivalGame.isOnGameScreen = false;
     SpaceSurvivalGame.game = null;
     StageTime.currentStage = null;
-    
-    Nav.route(context,Routes.lost_page,results,isRemovePreviousBackStack: true);
 
+    Nav.route(context, Routes.lost_page, results,
+        isRemovePreviousBackStack: true);
   }
 
-  void spawnComet(){
-
-    //generate unique id 
+  void spawnComet() {
+    //generate unique id
     var uuid = Uuid();
 
     level = Level.one;
 
-    RockComet rockComet = RockComet(this,
-                                    uuid.v1(),
-                                    level, 
-                                    CometLevel.setLevel(this,
-                                                        level, 
-                                                        this.tileSize * 1.5,
-                                                        this.tileSize * 1.5
-                                                        ),
-                                      this.tileSize * 1.5,
-                                      this.tileSize * 1.5
-                                  );
+    RockComet rockComet = RockComet(
+        this,
+        uuid.v1(),
+        level,
+        CometLevel.setLevel(
+            this, level, this.tileSize * 1.5, this.tileSize * 1.5),
+        this.tileSize * 1.5,
+        this.tileSize * 1.5);
 
     comets.add(rockComet);
   }
 
   @override
-  void resize(Size size){
+  void resize(Size size) {
     screenSize = size;
-    tileSize = screenSize.width/9;
+    tileSize = screenSize.width / 9;
     super.resize(size);
   }
 
-
   //begin launch weapon and destroy the targeted comet
-  void launchWeapon(String targetCormet){
-      
-      // ElectricBullet bullet = new ElectricBullet(this,
-      //                                           targetCormet,
-      //                                           this.vehicle.vehicleRect.left,
-      //                                           this.vehicle.vehicleRect.top,
-      //                                           this.tileSize * 1.2,
-      //                                           this.tileSize * 1.2
-      //                                           );
-
-
-    
+  void launchWeapon(String targetCormet) {
+    // ElectricBullet bullet = new ElectricBullet(this,
+    //                                           targetCormet,
+    //                                           this.vehicle.vehicleRect.left,
+    //                                           this.vehicle.vehicleRect.top,
+    //                                           this.tileSize * 1.2,
+    //                                           this.tileSize * 1.2
+    //                                           );
 
     weapons.add(vehicle.triggerWeapon(targetCormet));
   }
 
-  void onTapDown(TapDownDetails tap){
+  void onTapDown(TapDownDetails tap) {
     bool isHandled = false;
 
     //with comet need to destroy
-    if(!isHandled){
+    if (!isHandled) {
       comets.forEach((comet) {
-        if(comet.cometRect.contains(tap.globalPosition) && vehicle.isAbleToLaunchWeapon()){
+        if (comet.cometRect.contains(tap.globalPosition) &&
+            vehicle.isAbleToLaunchWeapon()) {
           comet.onTapDown();
           isHandled = true;
         }
-       });
+      });
     }
 
     //vehicle using shield
-    if(!isHandled && vehicle.vehicleRect.contains(tap.globalPosition)){
-        vehicle.onTapDown();
-        isHandled = true;
+    if (!isHandled && vehicle.vehicleRect.contains(tap.globalPosition)) {
+      vehicle.onTapDown();
+      isHandled = true;
     }
   }
 
-  bool isEndGame(){
+  bool isEndGame() {
     bool endGame = false;
 
-    if(vehicle.vehicleAttribute.currentHitPoint <= 0){
+    if (vehicle.vehicleAttribute.currentHitPoint <= 0) {
       endGame = true;
     }
 
     return endGame;
   }
-
-
-  
-
-
 }
