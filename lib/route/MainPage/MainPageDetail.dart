@@ -58,12 +58,13 @@ class _MainTopUIState extends State<MainTopUI> {
               ),
               FlatButton.icon(
                   onPressed: () {
-                    // if (AdManager.isRewardedAdReady) {
-                    // Nav.route(context, Routes.reward_ad_page, null,
-                    //     isRemovePreviousBackStack: true);
-                    // } else {
-                    //   AdManager.loadRewardedAd();
-                    // }
+                    if (AdManager.isRewardedAdReady) {
+                      Nav.route(context, Routes.reward_ad_page, null,
+                          isRemovePreviousBackStack: true);
+                    } else {
+                      AdManager.loadRewardedAd();
+                      AdManager.isRewardedAdReady = true;
+                    }
                   },
                   icon: Icon(Icons.card_giftcard),
                   label: Text("Reward"))

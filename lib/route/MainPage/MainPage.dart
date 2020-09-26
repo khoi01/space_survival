@@ -15,10 +15,10 @@ class _MainPageState extends State<MainPage> {
   @override
   void initState() {
     super.initState();
-    // _initAdMob().then((value) {
-    //   AdManager.loadRewardedAd();
-    //   AdManager.isRewardedAdReady = true;
-    // });
+    _initAdMob().then((value) {
+      AdManager.loadRewardedAd();
+      AdManager.isRewardedAdReady = true;
+    });
   }
 
   @override
@@ -35,7 +35,7 @@ class _MainPageState extends State<MainPage> {
         ));
   }
 
-  // Future<void> _initAdMob() {
-  //   return FirebaseAdMob.instance.initialize(appId: AdManager.appId);
-  // }
+  Future<void> _initAdMob() {
+    return FirebaseAdMob.instance.initialize(appId: AdManager.appId);
+  }
 }

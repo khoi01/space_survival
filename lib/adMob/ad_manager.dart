@@ -50,3 +50,13 @@ class AdManager {
     );
   }
 }
+
+class AdMobAppID {
+  static String appId = 'ca-app-pub-1931609048343788~5839299908';
+  static String appIdTesting = 'ca-app-pub-3940256099942544~4354546703';
+}
+
+class AdMobID {
+  static String adMobRewarded = 'ca-app-pub-1931609048343788/9586973226';
+  static String admobRewardedTesting = 'ca-app-pub-3940256099942544/8673189370';
+}
