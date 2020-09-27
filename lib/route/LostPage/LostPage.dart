@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:space_survival/Utils/util.dart';
+import 'package:space_survival/adMob/ad_manager.dart';
 import 'package:space_survival/logic/controller/Stage/Stage.dart';
 import 'package:space_survival/repository/CoinRepository.dart';
 import 'package:space_survival/repository/ScoreRepository.dart';
@@ -27,14 +28,36 @@ class LostPage extends StatelessWidget {
               height: 200.0,
               width: 250.0,
             ),
-            Text("Score: ${score.toString()}",style: TextStyle(color: Colors.black,fontSize: 20,),),
-            Text("stage: ${stage.toString()}",style: TextStyle(color: Colors.black,fontSize: 20,),),
-            Row(children: <Widget>[
-              Image.asset('assets/images/coin/coin.gif',
-              height: 60,
-              width: 60,),
-              Text("${coin.toString()}",style: TextStyle(color: Colors.black,fontSize: 20,),)
-            ],),
+            Text(
+              "Score: ${score.toString()}",
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 20,
+              ),
+            ),
+            Text(
+              "stage: ${stage.toString()}",
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 20,
+              ),
+            ),
+            Row(
+              children: <Widget>[
+                Image.asset(
+                  'assets/images/coin/coin.gif',
+                  height: 60,
+                  width: 60,
+                ),
+                Text(
+                  "${coin.toString()}",
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 20,
+                  ),
+                )
+              ],
+            ),
             RaisedButton(
                 child: Text("Retry"),
                 onPressed: () {
@@ -44,8 +67,13 @@ class LostPage extends StatelessWidget {
             RaisedButton(
                 child: Text("Home"),
                 onPressed: () {
-                  Nav.route(context, Routes.main_page, null,
+                  // if (AdManager.isShowRewardAds()) {
+                  Nav.route(context, Routes.reward_ad_page, null,
                       isRemovePreviousBackStack: true);
+                  // } else {
+                  //   Nav.route(context, Routes.main_page, null,
+                  //       isRemovePreviousBackStack: true);
+                  // }
                 })
           ],
         ));

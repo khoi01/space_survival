@@ -28,6 +28,7 @@ class SpaceSurvivalGame extends ParallaxComponent {
   final VehicleFeatures vehicleFeatures;
   static BuildContext context;
   static bool isOnGameScreen = true;
+
   final Stage stage;
   bool isInitialize = false;
   // final Stage stage;

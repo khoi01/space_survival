@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flame/flame.dart';
 import 'package:flutter/material.dart';
 import 'package:space_survival/components/vehicle/vehicleInit.dart';
@@ -6,6 +8,7 @@ import 'package:space_survival/route/CreditPage/CreditPage.dart';
 import 'package:space_survival/route/Garage/GaragePage.dart';
 import 'package:space_survival/route/LostPage/LostPage.dart';
 import 'package:space_survival/route/MainPage/MainPage.dart';
+import 'package:space_survival/route/RewardAdPage/RewardAdPage.dart';
 import 'package:space_survival/route/Scoreboard/ScoreboardPage.dart';
 import 'package:space_survival/route/SelectStagePage/SelectStagePage.dart';
 import 'package:space_survival/route/SelectVehiclePage/SelectVehiclePage.dart';
@@ -43,6 +46,7 @@ enum Routes {
   tutorial_page,
   select_vehicle_page,
   select_stage_page,
+  reward_ad_page
 }
 
 class MusicConfiq {
@@ -195,6 +199,15 @@ class Nav {
           Navigator.pushNamed(context, generateRoute);
         }
         break;
+      case Routes.reward_ad_page:
+        if (isRemovePreviousBackStack) {
+          Navigator.of(context).pushAndRemoveUntil(
+              MaterialPageRoute(builder: (context) => RewardAdPage()),
+              (Route<dynamic> route) => false);
+        } else {
+          Navigator.pushNamed(context, generateRoute);
+        }
+        break;
       default:
         Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(builder: (context) => MainPage()),
@@ -203,3 +216,12 @@ class Nav {
     }
   }
 }
+
+class Num {
+  static int random(min, max) {
+    var rn = new Random();
+    return min + rn.nextInt(max - min);
+  }
+}
+
+class AppMusic {}
