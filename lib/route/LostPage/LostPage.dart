@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:space_survival/Utils/util.dart';
-import 'package:space_survival/adMob/ad_manager.dart';
 import 'package:space_survival/logic/controller/Stage/Stage.dart';
 import 'package:space_survival/repository/CoinRepository.dart';
 import 'package:space_survival/repository/ScoreRepository.dart';

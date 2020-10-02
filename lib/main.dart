@@ -78,7 +78,7 @@ class _MainGameState extends State<MainGame> with WidgetsBindingObserver {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
-    MusicConfiq.stopBgmRoute();
+    // MusicConfiq.stopBgmRoute();
   }
 
   void initialize() async {

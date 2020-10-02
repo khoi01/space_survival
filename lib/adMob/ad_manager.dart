@@ -43,11 +43,14 @@ class AdManager {
     }
   }
 
-  static void loadRewardedAd() {
-    RewardedVideoAd.instance.load(
+  static Future<bool> loadRewardedAd() async {
+    isRewardedAdReady = false;
+    isRewardedAdReady = await RewardedVideoAd.instance.load(
       targetingInfo: MobileAdTargetingInfo(),
       adUnitId: AdManager.rewardedAdUnitId,
     );
+
+    return isRewardedAdReady;
   }
 }
 

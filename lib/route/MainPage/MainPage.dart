@@ -16,10 +16,11 @@ class _MainPageState extends State<MainPage> with WidgetsBindingObserver {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
-    MusicConfiq.startBgmRoute();
-    _initAdMob().then((value) {
-      AdManager.loadRewardedAd();
-      AdManager.isRewardedAdReady = true;
+    // MusicConfiq.startBgmRoute();
+    setState(() {
+      _initAdMob().then((value) {
+        AdManager.loadRewardedAd();
+      });
     });
   }
 
@@ -33,11 +34,17 @@ class _MainPageState extends State<MainPage> with WidgetsBindingObserver {
   void didChangeAppLifecycleState(AppLifecycleState state) {
     super.didChangeAppLifecycleState(state);
     if (state == AppLifecycleState.paused) {
-      MusicConfiq.stopBgmRoute();
+      // MusicConfiq.stopBgmRoute();
+
     } else if (state == AppLifecycleState.resumed) {
-      MusicConfiq.startBgmRoute();
+      // MusicConfiq.startBgmRoute();
+      setState(() {
+        _initAdMob().then((value) {
+          AdManager.loadRewardedAd();
+        });
+      });
     } else {
-      MusicConfiq.stopBgmRoute();
+      // MusicConfiq.stopBgmRoute();
     }
   }
 
@@ -55,7 +62,7 @@ class _MainPageState extends State<MainPage> with WidgetsBindingObserver {
         ));
   }
 
-  Future<void> _initAdMob() {
-    return FirebaseAdMob.instance.initialize(appId: AdManager.appId);
+  Future<void> _initAdMob() async {
+    return await FirebaseAdMob.instance.initialize(appId: AdManager.appId);
   }
 }

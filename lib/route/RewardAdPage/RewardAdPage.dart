@@ -1,6 +1,5 @@
 import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:space_survival/Utils/customWidget.dart';
 import 'package:space_survival/Utils/util.dart';
 import 'package:space_survival/adMob/ad_manager.dart';
@@ -19,14 +18,20 @@ class _RewardAdPageState extends State<RewardAdPage> {
     RewardedVideoAd.instance.listener = _onRewardedAdEvent;
     if (AdManager.isRewardedAdReady) {
       showAds();
+    } else {
+      Nav.route(context, Routes.main_page, null,
+          isRemovePreviousBackStack: true);
     }
   }
 
   Future<void> showAds() async {
     try {
-      await RewardedVideoAd.instance.show();
-    } on PlatformException catch (e) {
+      await RewardedVideoAd.instance
+          .show()
+          .catchError((e) => print("-->" + e.toString()));
+    } catch (e) {
       CustomWidget.showToasted("reward not ready.please try again", false);
+    } finally {
       Nav.route(context, Routes.main_page, null,
           isRemovePreviousBackStack: true);
     }
@@ -63,7 +68,9 @@ class _RewardAdPageState extends State<RewardAdPage> {
         break;
       case RewardedVideoAdEvent.rewarded:
         AdManager.giveReward();
-
+        setState(() {
+          AdManager.isRewardedAdReady = false;
+        });
         Nav.route(context, Routes.main_page, null,
             isRemovePreviousBackStack: true);
 

@@ -66,21 +66,21 @@ class MusicConfiq {
     }
   }
 
-  static startBgmRoute() async {
-    if (playingBGMRoute == null) {
-      playingBGMRoute = null;
-      playingBGMRoute =
-          await Flame.audio.loopLongAudio('bgm/bgm_route.mp3', volume: .25);
-      playingBGMRoute.resume();
-    }
-  }
+  // static startBgmRoute() async {
+  //   if (playingBGMRoute == null) {
+  //     playingBGMRoute = null;
+  //     playingBGMRoute =
+  //         await Flame.audio.loopLongAudio('bgm/bgm_route.mp3', volume: .25);
+  //     playingBGMRoute.resume();
+  //   }
+  // }
 
-  static stopBgmRoute() async {
-    if (playingBGMRoute != null) {
-      playingBGMRoute.pause();
-      playingBGMRoute = null;
-    }
-  }
+  // static stopBgmRoute() async {
+  //   if (playingBGMRoute != null) {
+  //     playingBGMRoute.pause();
+  //     playingBGMRoute = null;
+  //   }
+  // }
 }
 
 class Nav {

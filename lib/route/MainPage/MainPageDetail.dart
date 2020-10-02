@@ -1,4 +1,3 @@
-import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/material.dart';
 import 'package:space_survival/Utils/util.dart';
 import 'package:space_survival/adMob/ad_manager.dart';
@@ -58,12 +57,16 @@ class _MainTopUIState extends State<MainTopUI> {
               ),
               FlatButton.icon(
                   onPressed: () {
+                    // MusicConfiq.stopBgmRoute();
+
                     if (AdManager.isRewardedAdReady) {
                       Nav.route(context, Routes.reward_ad_page, null,
                           isRemovePreviousBackStack: true);
                     } else {
-                      AdManager.loadRewardedAd();
-                      AdManager.isRewardedAdReady = true;
+                      setState(() {
+                        AdManager.isRewardedAdReady =
+                            AdManager.loadRewardedAd() as bool;
+                      });
                     }
                   },
                   icon: Icon(Icons.card_giftcard),
