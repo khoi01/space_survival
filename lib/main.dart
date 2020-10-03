@@ -64,7 +64,9 @@ class _MainGameState extends State<MainGame> with WidgetsBindingObserver {
 
     return WillPopScope(
       onWillPop: () {
-        MusicConfiq.stopBgm();
+        MusicConfig.stopBgm();
+        MusicConfig.startBgmRoute();
+
         return Future.value(
             true); //able to go to previous route,but need to stop the music
       },
@@ -78,7 +80,7 @@ class _MainGameState extends State<MainGame> with WidgetsBindingObserver {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
-    // MusicConfiq.stopBgmRoute();
+    MusicConfig.stopBgmRoute();
   }
 
   void initialize() async {
@@ -193,9 +195,9 @@ class _MainGameState extends State<MainGame> with WidgetsBindingObserver {
   void didChangeAppLifecycleState(AppLifecycleState state) {
     super.didChangeAppLifecycleState(state);
     if (state == AppLifecycleState.paused) {
-      MusicConfiq.stopBgm();
+      MusicConfig.stopBgm();
     } else if (state == AppLifecycleState.resumed) {
-      MusicConfiq.startBgm();
+      MusicConfig.startBgm();
     }
   }
 }

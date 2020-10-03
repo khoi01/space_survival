@@ -57,15 +57,14 @@ class _MainTopUIState extends State<MainTopUI> {
               ),
               FlatButton.icon(
                   onPressed: () {
-                    // MusicConfiq.stopBgmRoute();
+                    MusicConfig.stopBgmRoute();
 
                     if (AdManager.isRewardedAdReady) {
                       Nav.route(context, Routes.reward_ad_page, null,
                           isRemovePreviousBackStack: true);
                     } else {
                       setState(() {
-                        AdManager.isRewardedAdReady =
-                            AdManager.loadRewardedAd() as bool;
+                        AdManager.loadRewardedAd();
                       });
                     }
                   },

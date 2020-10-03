@@ -16,7 +16,7 @@ class _MainPageState extends State<MainPage> with WidgetsBindingObserver {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
-    // MusicConfiq.startBgmRoute();
+    MusicConfig.startBgmRoute();
     setState(() {
       _initAdMob().then((value) {
         AdManager.loadRewardedAd();
@@ -34,17 +34,16 @@ class _MainPageState extends State<MainPage> with WidgetsBindingObserver {
   void didChangeAppLifecycleState(AppLifecycleState state) {
     super.didChangeAppLifecycleState(state);
     if (state == AppLifecycleState.paused) {
-      // MusicConfiq.stopBgmRoute();
-
+      MusicConfig.stopBgmRoute();
     } else if (state == AppLifecycleState.resumed) {
-      // MusicConfiq.startBgmRoute();
+      MusicConfig.startBgmRoute();
       setState(() {
         _initAdMob().then((value) {
           AdManager.loadRewardedAd();
         });
       });
     } else {
-      // MusicConfiq.stopBgmRoute();
+      MusicConfig.stopBgmRoute();
     }
   }
 

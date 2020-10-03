@@ -1,6 +1,5 @@
 import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/material.dart';
-import 'package:space_survival/Utils/customWidget.dart';
 import 'package:space_survival/Utils/util.dart';
 import 'package:space_survival/adMob/ad_manager.dart';
 
@@ -18,9 +17,6 @@ class _RewardAdPageState extends State<RewardAdPage> {
     RewardedVideoAd.instance.listener = _onRewardedAdEvent;
     if (AdManager.isRewardedAdReady) {
       showAds();
-    } else {
-      Nav.route(context, Routes.main_page, null,
-          isRemovePreviousBackStack: true);
     }
   }
 
@@ -29,19 +25,29 @@ class _RewardAdPageState extends State<RewardAdPage> {
       await RewardedVideoAd.instance
           .show()
           .catchError((e) => print("-->" + e.toString()));
-    } catch (e) {
-      CustomWidget.showToasted("reward not ready.please try again", false);
-    } finally {
-      Nav.route(context, Routes.main_page, null,
-          isRemovePreviousBackStack: true);
-    }
+    } catch (e) {}
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppConfig.backgroundColor,
-      body: Container(),
+      body: Center(
+        child: Container(
+            child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            RaisedButton.icon(
+                onPressed: () {
+                  Nav.route(context, Routes.main_page, null,
+                      isRemovePreviousBackStack: true);
+                },
+                icon: Icon(Icons.home),
+                label: Text("Main Page"))
+          ],
+        )),
+      ),
     );
   }
 
@@ -57,8 +63,8 @@ class _RewardAdPageState extends State<RewardAdPage> {
         setState(() {
           AdManager.isRewardedAdReady = false;
         });
-        Nav.route(context, Routes.main_page, null,
-            isRemovePreviousBackStack: true);
+        // Nav.route(context, Routes.main_page, null,
+        //     isRemovePreviousBackStack: true);
         break;
       case RewardedVideoAdEvent.failedToLoad:
         setState(() {
@@ -68,16 +74,16 @@ class _RewardAdPageState extends State<RewardAdPage> {
         break;
       case RewardedVideoAdEvent.rewarded:
         AdManager.giveReward();
-        setState(() {
-          AdManager.isRewardedAdReady = false;
-        });
+        // setState(() {
+        //   AdManager.isRewardedAdReady = false;
+        // });
         Nav.route(context, Routes.main_page, null,
             isRemovePreviousBackStack: true);
 
         break;
       default:
-        Nav.route(context, Routes.main_page, null,
-            isRemovePreviousBackStack: true);
+      // Nav.route(context, Routes.main_page, null,
+      //     isRemovePreviousBackStack: true);
     }
   }
 

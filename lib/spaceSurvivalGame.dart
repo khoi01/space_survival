@@ -99,7 +99,7 @@ class SpaceSurvivalGame extends ParallaxComponent {
     spawnerRockComet = SpawnerRockComet(
         this, RockComet.getSpawnBehaviour(StageTime.currentStage));
 
-    MusicConfiq.startBgm();
+    MusicConfig.startBgm();
     return true;
   }
 
@@ -161,11 +161,11 @@ class SpaceSurvivalGame extends ParallaxComponent {
       stageDisplay.update(t);
       coinDisplay.update(t);
       if (isEndGame()) {
-        MusicConfiq.stopBgm();
+        MusicConfig.stopBgm();
         gotoLostPage();
       }
     } else {
-      MusicConfiq.stopBgm();
+      MusicConfig.stopBgm();
       SpaceSurvivalGame.game = null;
     }
   }
