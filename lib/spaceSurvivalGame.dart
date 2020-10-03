@@ -28,6 +28,7 @@ class SpaceSurvivalGame extends ParallaxComponent {
   final VehicleFeatures vehicleFeatures;
   static BuildContext context;
   static bool isOnGameScreen = true;
+
   final Stage stage;
   bool isInitialize = false;
   // final Stage stage;
@@ -98,7 +99,7 @@ class SpaceSurvivalGame extends ParallaxComponent {
     spawnerRockComet = SpawnerRockComet(
         this, RockComet.getSpawnBehaviour(StageTime.currentStage));
 
-    MusicConfiq.startBgm();
+    MusicConfig.startBgm();
     return true;
   }
 
@@ -160,11 +161,11 @@ class SpaceSurvivalGame extends ParallaxComponent {
       stageDisplay.update(t);
       coinDisplay.update(t);
       if (isEndGame()) {
-        MusicConfiq.stopBgm();
+        MusicConfig.stopBgm();
         gotoLostPage();
       }
     } else {
-      MusicConfiq.stopBgm();
+      MusicConfig.stopBgm();
       SpaceSurvivalGame.game = null;
     }
   }

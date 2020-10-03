@@ -1,5 +1,7 @@
+import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/material.dart';
 import 'package:space_survival/Utils/util.dart';
+import 'package:space_survival/adMob/ad_manager.dart';
 import 'package:space_survival/route/MainPage/MainPageDetail.dart';
 
 class MainPage extends StatefulWidget {
@@ -14,7 +16,12 @@ class _MainPageState extends State<MainPage> with WidgetsBindingObserver {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
-    MusicConfiq.startBgmRoute();
+    MusicConfig.startBgmRoute();
+    setState(() {
+      _initAdMob().then((value) {
+        AdManager.loadRewardedAd();
+      });
+    });
   }
 
   @override
@@ -27,11 +34,16 @@ class _MainPageState extends State<MainPage> with WidgetsBindingObserver {
   void didChangeAppLifecycleState(AppLifecycleState state) {
     super.didChangeAppLifecycleState(state);
     if (state == AppLifecycleState.paused) {
-      MusicConfiq.stopBgmRoute();
+      MusicConfig.stopBgmRoute();
     } else if (state == AppLifecycleState.resumed) {
-      MusicConfiq.startBgmRoute();
+      MusicConfig.startBgmRoute();
+      setState(() {
+        _initAdMob().then((value) {
+          AdManager.loadRewardedAd();
+        });
+      });
     } else {
-      MusicConfiq.stopBgmRoute();
+      MusicConfig.stopBgmRoute();
     }
   }
 
@@ -47,5 +59,9 @@ class _MainPageState extends State<MainPage> with WidgetsBindingObserver {
             MainMenuUI(),
           ],
         ));
+  }
+
+  Future<void> _initAdMob() async {
+    return await FirebaseAdMob.instance.initialize(appId: AdManager.appId);
   }
 }

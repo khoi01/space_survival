@@ -12,6 +12,7 @@ import 'package:space_survival/route/CreditPage/CreditPage.dart';
 import 'package:space_survival/route/Garage/GaragePage.dart';
 import 'package:space_survival/route/LostPage/LostPage.dart';
 import 'package:space_survival/route/MainPage/MainPage.dart';
+import 'package:space_survival/route/RewardAdPage/RewardAdPage.dart';
 import 'package:space_survival/route/Scoreboard/ScoreboardPage.dart';
 import 'package:space_survival/route/SelectStagePage/SelectStagePage.dart';
 import 'package:space_survival/route/SelectVehiclePage/SelectVehiclePage.dart';
@@ -41,6 +42,7 @@ class SpaceSurvivalApp extends StatelessWidget {
       '/${Routes.tutorial_page}': (context) => TutorialPage(),
       '/${Routes.select_vehicle_page}': (context) => SelectVehiclePage(),
       '/${Routes.select_stage_page}': (context) => SelectStagePage(),
+      '/${Routes.reward_ad_page}': (context) => RewardAdPage(),
     });
   }
 }
@@ -62,7 +64,9 @@ class _MainGameState extends State<MainGame> with WidgetsBindingObserver {
 
     return WillPopScope(
       onWillPop: () {
-        MusicConfiq.stopBgm();
+        MusicConfig.stopBgm();
+        MusicConfig.startBgmRoute();
+
         return Future.value(
             true); //able to go to previous route,but need to stop the music
       },
@@ -76,7 +80,7 @@ class _MainGameState extends State<MainGame> with WidgetsBindingObserver {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
-    MusicConfiq.stopBgmRoute();
+    MusicConfig.stopBgmRoute();
   }
 
   void initialize() async {
@@ -191,9 +195,9 @@ class _MainGameState extends State<MainGame> with WidgetsBindingObserver {
   void didChangeAppLifecycleState(AppLifecycleState state) {
     super.didChangeAppLifecycleState(state);
     if (state == AppLifecycleState.paused) {
-      MusicConfiq.stopBgm();
+      MusicConfig.stopBgm();
     } else if (state == AppLifecycleState.resumed) {
-      MusicConfiq.startBgm();
+      MusicConfig.startBgm();
     }
   }
 }
