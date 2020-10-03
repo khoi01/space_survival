@@ -206,7 +206,7 @@ class VehicleAttribute {
         break;
       case VehicleFeatures.vertex:
         vehicleAttribute = VehicleAttribute(
-            price: 5,
+            price: 55,
             widthComponent: isNull ? 0 : game.tileSize * 3.10,
             heightComponent: isNull ? 0 : game.tileSize * 2.10,
             speed: isNull ? 0 : game.tileSize * 0.7,
@@ -223,7 +223,7 @@ class VehicleAttribute {
         break;
       case VehicleFeatures.x19:
         vehicleAttribute = VehicleAttribute(
-            price: 5,
+            price: 80,
             widthComponent: isNull ? 0 : game.tileSize * 1.5,
             heightComponent: isNull ? 0 : game.tileSize * 1.5,
             speed: isNull ? 0 : game.tileSize * 0.6,

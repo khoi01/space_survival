@@ -3,8 +3,8 @@ import 'package:space_survival/logic/controller/Stage/stageConfig.dart';
 import 'package:space_survival/spaceSurvivalGame.dart';
 
 enum Stage {
-  stage_1, 
-  stage_2, 
+  stage_1,
+  stage_2,
   stage_3,
   stage_4,
   stage_5,
@@ -23,7 +23,6 @@ enum Stage {
   stage_18,
   stage_19,
   stage_20,
-
 }
 
 /*
@@ -57,14 +56,12 @@ class StageInfo {
     int startGame = Time.getCurrentTime();
 
     bool isFirstLoop = true;
-    
+
     for (var position = Stage.values.indexOf(StageTime.currentStage);
         position < Stage.values.length;
         position++) {
-
       //get all available stage
       StageInfo stage = StageConfig.getStageSetup(Stage.values[position]);
-
 
       if (isFirstLoop) {
         isFirstLoop = false;
@@ -81,7 +78,7 @@ class StageInfo {
   }
 
   static List<StageInfo> getStages() {
-    if(stages == null){
+    if (stages == null) {
       StageTime.currentStage = Stage.stage_1;
       begin();
     }
@@ -132,7 +129,7 @@ class StageTime {
 
     //get info about the current stage
     var stageInfo = StageInfo.getStage(StageTime.currentStage);
-    
+
     //check stage change condition
     if (stageInfo.start < now && now >= stageInfo.end) {
       //get new stage index
