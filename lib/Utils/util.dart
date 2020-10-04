@@ -59,9 +59,9 @@ class MusicConfig {
     playingBGM.resume();
   }
 
-  static stopBgm() {
+  static stopBgm() async {
     if (playingBGM != null) {
-      playingBGM.pause();
+      await playingBGM.pause();
       playingBGM = null;
     }
   }
@@ -77,7 +77,7 @@ class MusicConfig {
 
   static stopBgmRoute() async {
     if (playingBGMRoute != null) {
-      playingBGMRoute.pause();
+      await playingBGMRoute.pause();
       playingBGMRoute = null;
     }
   }
