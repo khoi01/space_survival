@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:package_info/package_info.dart';
 import 'package:space_survival/Utils/util.dart';
 import 'package:space_survival/adMob/ad_manager.dart';
 import 'package:space_survival/logic/controller/Stage/Stage.dart';
@@ -91,6 +92,48 @@ class MainHeaderUI extends StatelessWidget {
             height: 200.0,
             width: 250.0,
           )),
+    );
+  }
+}
+
+class MainBottomUI extends StatefulWidget {
+  const MainBottomUI({Key key}) : super(key: key);
+
+  @override
+  _MainBottomUIState createState() => _MainBottomUIState();
+}
+
+class _MainBottomUIState extends State<MainBottomUI> {
+  PackageInfo _packageInfo = PackageInfo(
+    appName: 'Unknown',
+    packageName: 'Unknown',
+    version: 'Unknown',
+    buildNumber: 'Unknown',
+  );
+
+  @override
+  void initState() {
+    super.initState();
+    initPackageInfo();
+  }
+
+  Future<void> initPackageInfo() async {
+    final PackageInfo info = await PackageInfo.fromPlatform();
+    setState(() {
+      _packageInfo = info;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Container(
+          child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                "Space Survival 2020 (v${_packageInfo.version})",
+                style: TextStyle(letterSpacing: 2, fontWeight: FontWeight.bold),
+              ))),
     );
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:space_survival/Utils/util.dart';
+import 'package:space_survival/adMob/ad_manager.dart';
 import 'package:space_survival/logic/controller/Stage/Stage.dart';
 import 'package:space_survival/repository/CoinRepository.dart';
 import 'package:space_survival/repository/ScoreRepository.dart';
@@ -66,13 +67,13 @@ class LostPage extends StatelessWidget {
             RaisedButton(
                 child: Text("Home"),
                 onPressed: () {
-                  // if (AdManager.isShowRewardAds()) {
-                  Nav.route(context, Routes.reward_ad_page, null,
-                      isRemovePreviousBackStack: true);
-                  // } else {
-                  //   Nav.route(context, Routes.main_page, null,
-                  //       isRemovePreviousBackStack: true);
-                  // }
+                  if (AdManager.isShowRewardAds()) {
+                    Nav.route(context, Routes.reward_ad_page, null,
+                        isRemovePreviousBackStack: true);
+                  } else {
+                    Nav.route(context, Routes.main_page, null,
+                        isRemovePreviousBackStack: true);
+                  }
                 })
           ],
         ));

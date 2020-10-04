@@ -57,6 +57,7 @@ class _MainPageState extends State<MainPage> with WidgetsBindingObserver {
             MainTopUI(),
             MainHeaderUI(),
             MainMenuUI(),
+            MainBottomUI(),
           ],
         ));
   }
