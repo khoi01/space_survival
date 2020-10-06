@@ -140,6 +140,7 @@ flutter:
     - assets/images/weapon/reload/reload_weapon_3.png
     - assets/images/weapon/reload/reload_weapon_4.png
     - assets/images/weapon/reload/reload_weapon_5.png
+    - assets/images/weapon/reload/reload_weapon.gif
     - assets/images/shield/shield_1.png
     - assets/images/heart/heart.png
     - assets/images/background/bg1.png
@@ -147,6 +148,7 @@ flutter:
     - assets/images/background/bg_big_star.png
     - assets/images/background/bg_planet.png
     - assets/images/title/game_header.gif
+    - assets/images/tutorial/tutorial1.gif
     - assets/images/defeat/defeat.gif
     - assets/images/coin/coin.gif
     - assets/audio/sfx/comet_destroy.ogg

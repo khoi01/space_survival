@@ -20,7 +20,7 @@ class AdManager {
 
   static String get rewardedAdUnitId {
     if (Platform.isAndroid) {
-      return AdMobID.admobRewardedTesting;
+      return AdMobID.adMobRewarded;
     } else if (Platform.isIOS) {
       return "<YOUR_IOS_REWARDED_AD_UNIT_ID>";
     } else {

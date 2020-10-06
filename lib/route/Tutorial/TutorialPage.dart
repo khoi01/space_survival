@@ -12,16 +12,15 @@ class TutorialPage extends StatefulWidget {
 }
 
 class _TutorialPageState extends State<TutorialPage> {
-
   double coin;
 
   @override
   void initState() {
     super.initState();
-      CoinRepository.getCoin().then((value){
-        setState(() {
-          coin = value;
-        });
+    CoinRepository.getCoin().then((value) {
+      setState(() {
+        coin = value;
+      });
     });
   }
 
@@ -29,13 +28,15 @@ class _TutorialPageState extends State<TutorialPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppConfig.backgroundColor,
-       body: ListView(
-         shrinkWrap: true,
-         children: <Widget>[
-           CustomWidget.backButton(context,Routes.main_page,coin,isRemovePreviousBackStack: true),
+      body: ListView(
+        shrinkWrap: true,
+        children: <Widget>[
+          CustomWidget.backButton(context, Routes.main_page, coin,
+              isRemovePreviousBackStack: true),
           TutorialHeaderUI(),
-         ],
-       ),
+          TutorialContentUI()
+        ],
+      ),
     );
   }
 }

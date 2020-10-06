@@ -1,32 +1,31 @@
 import 'package:space_survival/components/comet/rockComet.dart';
 import 'package:space_survival/logic/controller/Stage/Stage.dart';
 
-class RockCometConfig{
-  static StageSpawnBehaviour getSpawnBehaviour(Stage stage){
-    
-        StageSpawnBehaviour stageSpawnBehaviour;
+class RockCometConfig {
+  static StageSpawnBehaviour getSpawnBehaviour(Stage stage) {
+    StageSpawnBehaviour stageSpawnBehaviour;
 
-    switch(stage){
+    switch (stage) {
       case Stage.stage_1:
-      stageSpawnBehaviour = new StageSpawnBehaviour(
-        stageInfo: StageInfo.getStage(Stage.stage_1),
-        typeClass:  RockComet,
-        maxSpawnInternal: 2000,
-        minSpawnInterval: 1000,
-        intervalChange: 3,
-        maxComponentOnScreen: 4,
+        stageSpawnBehaviour = new StageSpawnBehaviour(
+          stageInfo: StageInfo.getStage(Stage.stage_1),
+          typeClass: RockComet,
+          maxSpawnInternal: 2000,
+          minSpawnInterval: 1000,
+          intervalChange: 3,
+          maxComponentOnScreen: 5,
         );
-      break;
+        break;
       case Stage.stage_2:
-      stageSpawnBehaviour = new StageSpawnBehaviour(
-        stageInfo: StageInfo.getStage(Stage.stage_2),
-        typeClass: RockComet,
-        maxSpawnInternal: 1800,
-        minSpawnInterval: 1000,
-        intervalChange: 3,
-        maxComponentOnScreen: 4,
+        stageSpawnBehaviour = new StageSpawnBehaviour(
+          stageInfo: StageInfo.getStage(Stage.stage_2),
+          typeClass: RockComet,
+          maxSpawnInternal: 1800,
+          minSpawnInterval: 1000,
+          intervalChange: 3,
+          maxComponentOnScreen: 5,
         );
-      break;
+        break;
       case Stage.stage_3:
         stageSpawnBehaviour = new StageSpawnBehaviour(
           stageInfo: StageInfo.getStage(Stage.stage_3),
@@ -34,7 +33,7 @@ class RockCometConfig{
           maxSpawnInternal: 1400,
           minSpawnInterval: 1000,
           intervalChange: 3,
-          maxComponentOnScreen: 4,
+          maxComponentOnScreen: 5,
         );
         break;
       case Stage.stage_4:
@@ -44,7 +43,7 @@ class RockCometConfig{
           maxSpawnInternal: 1400,
           minSpawnInterval: 1000,
           intervalChange: 3,
-          maxComponentOnScreen: 5,
+          maxComponentOnScreen: 6,
         );
         break;
       case Stage.stage_5:
@@ -54,7 +53,7 @@ class RockCometConfig{
           maxSpawnInternal: 1200,
           minSpawnInterval: 1000,
           intervalChange: 3,
-          maxComponentOnScreen: 5,
+          maxComponentOnScreen: 6,
         );
         break;
       case Stage.stage_6:
@@ -64,7 +63,7 @@ class RockCometConfig{
           maxSpawnInternal: 1000,
           minSpawnInterval: 1000,
           intervalChange: 3,
-          maxComponentOnScreen: 5,
+          maxComponentOnScreen: 6,
         );
         break;
       case Stage.stage_7:
@@ -74,7 +73,7 @@ class RockCometConfig{
           maxSpawnInternal: 1800,
           minSpawnInterval: 1000,
           intervalChange: 3,
-          maxComponentOnScreen: 6,
+          maxComponentOnScreen: 7,
         );
         break;
       case Stage.stage_8:
@@ -84,7 +83,7 @@ class RockCometConfig{
           maxSpawnInternal: 1500,
           minSpawnInterval: 1000,
           intervalChange: 3,
-          maxComponentOnScreen: 6,
+          maxComponentOnScreen: 7,
         );
         break;
       case Stage.stage_9:
@@ -94,7 +93,7 @@ class RockCometConfig{
           maxSpawnInternal: 1200,
           minSpawnInterval: 1000,
           intervalChange: 3,
-          maxComponentOnScreen: 6,
+          maxComponentOnScreen: 7,
         );
         break;
       case Stage.stage_10:
@@ -104,7 +103,7 @@ class RockCometConfig{
           maxSpawnInternal: 1000,
           minSpawnInterval: 1000,
           intervalChange: 3,
-          maxComponentOnScreen: 6,
+          maxComponentOnScreen: 7,
         );
         break;
       case Stage.stage_11:
@@ -114,7 +113,7 @@ class RockCometConfig{
           maxSpawnInternal: 1800,
           minSpawnInterval: 1000,
           intervalChange: 3,
-          maxComponentOnScreen: 7,
+          maxComponentOnScreen: 8,
         );
         break;
       case Stage.stage_12:
@@ -124,7 +123,7 @@ class RockCometConfig{
           maxSpawnInternal: 1600,
           minSpawnInterval: 1000,
           intervalChange: 3,
-          maxComponentOnScreen: 7,
+          maxComponentOnScreen: 8,
         );
         break;
       case Stage.stage_13:
@@ -134,7 +133,7 @@ class RockCometConfig{
           maxSpawnInternal: 1400,
           minSpawnInterval: 1000,
           intervalChange: 3,
-          maxComponentOnScreen: 7,
+          maxComponentOnScreen: 8,
         );
         break;
       case Stage.stage_14:
@@ -144,7 +143,7 @@ class RockCometConfig{
           maxSpawnInternal: 1200,
           minSpawnInterval: 1000,
           intervalChange: 3,
-          maxComponentOnScreen: 7,
+          maxComponentOnScreen: 8,
         );
         break;
       case Stage.stage_15:
@@ -154,7 +153,7 @@ class RockCometConfig{
           maxSpawnInternal: 1000,
           minSpawnInterval: 1000,
           intervalChange: 3,
-          maxComponentOnScreen: 7,
+          maxComponentOnScreen: 8,
         );
         break;
       case Stage.stage_16:
@@ -164,7 +163,7 @@ class RockCometConfig{
           maxSpawnInternal: 1800,
           minSpawnInterval: 1000,
           intervalChange: 3,
-          maxComponentOnScreen: 8,
+          maxComponentOnScreen: 9,
         );
         break;
       case Stage.stage_17:
@@ -174,7 +173,7 @@ class RockCometConfig{
           maxSpawnInternal: 1600,
           minSpawnInterval: 1000,
           intervalChange: 3,
-          maxComponentOnScreen: 8,
+          maxComponentOnScreen: 9,
         );
         break;
       case Stage.stage_18:
@@ -184,7 +183,7 @@ class RockCometConfig{
           maxSpawnInternal: 1400,
           minSpawnInterval: 1000,
           intervalChange: 3,
-          maxComponentOnScreen: 8,
+          maxComponentOnScreen: 9,
         );
         break;
       case Stage.stage_19:
@@ -194,7 +193,7 @@ class RockCometConfig{
           maxSpawnInternal: 1400,
           minSpawnInterval: 1000,
           intervalChange: 3,
-          maxComponentOnScreen: 8,
+          maxComponentOnScreen: 9,
         );
         break;
       case Stage.stage_20:
@@ -204,23 +203,22 @@ class RockCometConfig{
           maxSpawnInternal: 1400,
           minSpawnInterval: 1000,
           intervalChange: 3,
-          maxComponentOnScreen: 8,
+          maxComponentOnScreen: 9,
         );
         break;
       default:
-      //stage_1
-      stageSpawnBehaviour = new StageSpawnBehaviour(
-        stageInfo: StageInfo.getStage(Stage.stage_1),
-        typeClass:  RockComet,
-        maxSpawnInternal: 2000,
-        minSpawnInterval: 1000,
-        intervalChange: 4,
-        maxComponentOnScreen: 4,
+        //stage_1
+        stageSpawnBehaviour = new StageSpawnBehaviour(
+          stageInfo: StageInfo.getStage(Stage.stage_1),
+          typeClass: RockComet,
+          maxSpawnInternal: 2000,
+          minSpawnInterval: 1000,
+          intervalChange: 4,
+          maxComponentOnScreen: 4,
         );
-      break;
+        break;
     }
 
     return stageSpawnBehaviour;
-    
   }
 }
