@@ -9,7 +9,7 @@ class AdManager {
 
   static String get appId {
     if (Platform.isAndroid) {
-      return AdMobAppID.appIdTesting;
+      return AdMobAppID.appId;
     }
     if (Platform.isIOS) {
       return "<YOUR_IOS_ADMOB_APP_ID>";
