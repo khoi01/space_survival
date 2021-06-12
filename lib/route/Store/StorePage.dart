@@ -15,15 +15,13 @@ class StorePage extends StatefulWidget {
 }
 
 class _StorePageState extends State<StorePage> {
-  
   List<MVehicle> vehicles;
   List<VehicleFeatures> vehicleAlreadyPurchaseds;
   double coin;
   @override
-  void initState() { 
+  void initState() {
     getData();
     super.initState();
-   
   }
 
   @override
@@ -33,57 +31,54 @@ class _StorePageState extends State<StorePage> {
       body: ListView(
         shrinkWrap: true,
         children: <Widget>[
-          CustomWidget.backButton(context, Routes.main_page,coin,
+          CustomWidget.backButton(context, Routes.main_page, coin,
               isRemovePreviousBackStack: true),
           StoreHeaderUI(),
-          vehicles != null  && vehicleAlreadyPurchaseds != null ?  StoreVehicleUI(vehicles: vehicles,vehicleAlreadyPurchases: vehicleAlreadyPurchaseds,) : CircularProgressIndicator(),
+          vehicles != null && vehicleAlreadyPurchaseds != null
+              ? StoreVehicleUI(
+                  vehicles: vehicles,
+                  vehicleAlreadyPurchases: vehicleAlreadyPurchaseds,
+                )
+              : CircularProgressIndicator(),
         ],
       ),
     );
   }
 
+  List<MVehicle> getVehicles() {
+    // List<MVehicle> vehicles = new List<MVehicle>();(Deprecated)
+    List<MVehicle> vehicles = [];
 
-  
+    VehicleFeatures.values.forEach((vehicle) {
+      VehicleAttribute attribute =
+          VehicleAttribute.getAttribute(vehicle, null, isNull: true);
+      VehicleSprite sprite = VehicleSprite.getVehicleSprite(vehicle);
+      String gifPath = VehicleSprite.getVehicleGif(vehicle);
 
-  List<MVehicle> getVehicles(){
+      MVehicle mVehicle = new MVehicle(
+          features: vehicle,
+          attribute: attribute,
+          sprite: sprite,
+          gifPath: gifPath);
 
-      List<MVehicle> vehicles = new List<MVehicle>();
+      vehicles.add(mVehicle);
+    });
 
-      VehicleFeatures.values.forEach((vehicle) {
-
-        VehicleAttribute attribute = VehicleAttribute.getAttribute(vehicle,null,isNull: true);
-        VehicleSprite sprite = VehicleSprite.getVehicleSprite(vehicle);
-        String gifPath = VehicleSprite.getVehicleGif(vehicle);
-
-          MVehicle mVehicle = new MVehicle(features: vehicle,
-                                          attribute: attribute,
-                                          sprite:sprite,
-                                          gifPath: gifPath );
-
-         vehicles.add(mVehicle);
-      });
-
-
-      return vehicles;
+    return vehicles;
   }
 
-
-  void getData() async{
-      
-      vehicles = getVehicles();
-      CoinRepository.getCoin().then((value){
-        setState(() {
-          coin = value;  
-        });
-        
-
+  void getData() async {
+    vehicles = getVehicles();
+    CoinRepository.getCoin().then((value) {
+      setState(() {
+        coin = value;
       });
+    });
 
-      VehicleRepository.getPurchasedVehicles().then((value){
-          setState(() {
-            vehicleAlreadyPurchaseds = value;
-          });
+    VehicleRepository.getPurchasedVehicles().then((value) {
+      setState(() {
+        vehicleAlreadyPurchaseds = value;
       });
-
+    });
   }
 }

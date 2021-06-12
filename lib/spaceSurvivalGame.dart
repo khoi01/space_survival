@@ -70,8 +70,11 @@ class SpaceSurvivalGame extends ParallaxComponent {
 
   Future<bool> initializeComponent() async {
     StageTime.currentStage = this.stage;
-    comets = List<Comet>();
-    weapons = List<Weapon>();
+    //     comets = List<Comet>(); (Deprecated)
+    // weapons = List<Weapon>(); (Deprecated)
+
+    comets = [];
+    weapons = [];
     collusionWeaponAndComet = CollusionWeaponAndComet(this);
     generateShieldDisplay = GenerateShieldDisplay(this);
 
@@ -83,7 +86,8 @@ class SpaceSurvivalGame extends ParallaxComponent {
 
     vehicle = VehicleCreate.initVehicleFeatures(this, vehicleFeatures);
     vehicleHealthBar = VehicleHealthBar(this);
-    shieldIcons = List<Shield>();
+    //shieldIcons = List<Shield>(); (Deprecated)
+    shieldIcons = [];
 
     reloadWeapon = ReloadWeapon(
         this,
@@ -108,7 +112,8 @@ class SpaceSurvivalGame extends ParallaxComponent {
     spawnerRockComet = SpawnerRockComet(
         this, RockComet.getSpawnBehaviour(StageTime.currentStage));
     weapons = null;
-    weapons = List<Weapon>();
+    // weapons = List<Weapon>(); (Deprecated)
+    weapons = [];
   }
 
   @override

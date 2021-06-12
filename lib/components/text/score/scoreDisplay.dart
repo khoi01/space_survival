@@ -34,16 +34,16 @@ class ScoreDisplay {
   }
 
   void update(double t) {
-    if ((painter.text?.text ?? '') != game.score.toString()) {
+    if ((painter.text ?? '') != game.score.toString()) {
       painter.text = TextSpan(
-        text: "score: "+game.score.toString(),
+        text: "score: " + game.score.toString(),
         style: textStyle,
       );
 
       painter.layout();
 
       position = Offset(
-        (game.screenSize.width *  0.17) - (painter.width / 2),
+        (game.screenSize.width * 0.17) - (painter.width / 2),
         (game.screenSize.height * 0.07) - (painter.height / 2),
       );
     }

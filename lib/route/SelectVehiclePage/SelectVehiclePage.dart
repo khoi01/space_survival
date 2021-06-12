@@ -46,7 +46,8 @@ class _SelectVehiclePageState extends State<SelectVehiclePage> {
     });
 
     await VehicleRepository.getPurchasedVehicles().then((value) {
-      List<MVehicle> purchaseVehicles = List<MVehicle>();
+      // List<MVehicle> purchaseVehicles = List<MVehicle>(); (Deprecated)
+      List<MVehicle> purchaseVehicles = [];
 
       List<VehicleFeatures> vehicleFeatures = value;
 

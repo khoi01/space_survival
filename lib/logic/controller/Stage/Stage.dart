@@ -52,7 +52,9 @@ class StageInfo {
   }
 
   static void generateStages() {
-    stages = List<StageInfo>();
+    //stages = List<StageInfo>(); (Deprecated)
+    stages = [];
+
     int startGame = Time.getCurrentTime();
 
     bool isFirstLoop = true;

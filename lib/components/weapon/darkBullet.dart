@@ -4,12 +4,14 @@ import 'package:flame/sprite.dart';
 import 'package:space_survival/components/weapon/weapon.dart';
 import 'package:space_survival/spaceSurvivalGame.dart';
 
-class DarkBullet extends Weapon{
-  
-  DarkBullet(SpaceSurvivalGame game,String  targetComet,double x,double y, double widthComponent, double heightComponent) : super(game,targetComet, widthComponent, heightComponent){
-    weaponRect = Rect.fromLTWH(x, y, widthComponent,heightComponent);
+class DarkBullet extends Weapon {
+  DarkBullet(SpaceSurvivalGame game, String targetComet, double x, double y,
+      double widthComponent, double heightComponent)
+      : super(game, targetComet, widthComponent, heightComponent) {
+    weaponRect = Rect.fromLTWH(x, y, widthComponent, heightComponent);
 
-    weaponSprite = List<Sprite>();
+    //weaponSprite = List<Sprite>(); (Deprecated)
+    weaponSprite = [];
 
     weaponSprite.add(Sprite("weapon/dark/dark_1.png"));
     weaponSprite.add(Sprite("weapon/dark/dark_2.png"));
@@ -18,10 +20,5 @@ class DarkBullet extends Weapon{
     weaponSprite.add(Sprite("weapon/dark/dark_5.png"));
     weaponSprite.add(Sprite("weapon/dark/dark_6.png"));
     weaponSprite.add(Sprite("weapon/dark/dark_7.png"));
-
-
-    
-    
   }
-
 }

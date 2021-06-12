@@ -1,6 +1,5 @@
 import 'dart:ui';
 
-import 'package:flame/sprite.dart';
 import 'package:space_survival/components/vehicle/vehicle.dart';
 import 'package:space_survival/components/vehicle/vehicleInit.dart';
 import 'package:space_survival/components/weapon/darkBullet.dart';
@@ -18,13 +17,16 @@ class X19 extends Vehicle {
         vehicleAttribute.widthComponent,
         vehicleAttribute.heightComponent);
 
-    vehicleInitSprites = List<Sprite>();
+    //vehicleInitSprites = List<Sprite>(); (Deprecated)
+    vehicleInitSprites = [];
     vehicleInitSprites = vehicleSprite.vehicleSprites;
 
-    vehicleInitShieldSprites = List<Sprite>();
+    //vehicleInitShieldSprites = List<Sprite>(); (Deprecated)
+    vehicleInitShieldSprites = [];
     vehicleInitShieldSprites = vehicleSprite.vehicleShieldSprite;
 
-    vehicleInitGotHitSprites = List<Sprite>();
+    //vehicleInitGotHitSprites = List<Sprite>(); (Deprecated)
+    vehicleInitGotHitSprites = [];
     vehicleInitGotHitSprites = vehicleSprite.vehicleGotHitSprite;
   }
 

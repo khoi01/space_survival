@@ -36,7 +36,9 @@ class Vehicle {
   int shieldStop; //when shield will stop
 
   Vehicle(this.game, this.vehicleBehaviour, this.vehicleAttribute) {
-    weapons = List<Weapon>();
+    //weapons = List<Weapon>(); (Deprecated)
+    weapons = [];
+
     setNewCordinates();
     currentIntervalReload = vehicleAttribute.maxUsedInterval;
     nextUsedReload =

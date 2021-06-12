@@ -274,7 +274,8 @@ class VehicleSprite {
       case VehicleFeatures.spaceship:
         vehicleSprite = VehicleSprite();
 
-        vehicleSprite.vehicleSprites = new List<Sprite>();
+        //vehicleSprite.vehicleSprites = new List<Sprite>(); (Deprecated)
+        vehicleSprite.vehicleSprites = [];
         vehicleSprite.vehicleSprites
             .add(Sprite('vehicle/spaceship/ship_1.png'));
         vehicleSprite.vehicleSprites
@@ -284,7 +285,8 @@ class VehicleSprite {
         vehicleSprite.vehicleSprites
             .add(Sprite('vehicle/spaceship/ship_4.png'));
 
-        vehicleSprite.vehicleShieldSprite = new List<Sprite>();
+        // vehicleSprite.vehicleShieldSprite = new List<Sprite>(); (Deprecated)
+        vehicleSprite.vehicleShieldSprite = [];
         vehicleSprite.vehicleShieldSprite
             .add(Sprite('vehicle/spaceship/withShield/ship1shield1.png'));
         vehicleSprite.vehicleShieldSprite
@@ -294,7 +296,9 @@ class VehicleSprite {
         vehicleSprite.vehicleShieldSprite
             .add(Sprite('vehicle/spaceship/withShield/ship1shield4.png'));
 
-        vehicleSprite.vehicleGotHitSprite = new List<Sprite>();
+        //vehicleSprite.vehicleGotHitSprite = new List<Sprite>(); (deprecated)
+        vehicleSprite.vehicleGotHitSprite = [];
+
         vehicleSprite.vehicleGotHitSprite
             .add(Sprite('vehicle/spaceship/gotHit/ship1GotHit1.png'));
         vehicleSprite.vehicleGotHitSprite
@@ -312,14 +316,16 @@ class VehicleSprite {
       case VehicleFeatures.vertex:
         vehicleSprite = VehicleSprite();
 
-        vehicleSprite.vehicleSprites = List<Sprite>();
+        //vehicleSprite.vehicleSprites = List<Sprite>(); (Deprecated)
+        vehicleSprite.vehicleSprites = [];
         vehicleSprite.vehicleSprites.add(Sprite('vehicle/vertex/vertex1.png'));
         vehicleSprite.vehicleSprites.add(Sprite('vehicle/vertex/vertex2.png'));
         vehicleSprite.vehicleSprites.add(Sprite('vehicle/vertex/vertex3.png'));
         vehicleSprite.vehicleSprites.add(Sprite('vehicle/vertex/vertex4.png'));
         vehicleSprite.vehicleSprites.add(Sprite('vehicle/vertex/vertex5.png'));
 
-        vehicleSprite.vehicleShieldSprite = List<Sprite>();
+        //vehicleSprite.vehicleShieldSprite = List<Sprite>(); (Deprecated)
+        vehicleSprite.vehicleShieldSprite = [];
         vehicleSprite.vehicleShieldSprite
             .add(Sprite('vehicle/vertex/withShield/vertexWithShield1.png'));
         vehicleSprite.vehicleShieldSprite
@@ -327,7 +333,9 @@ class VehicleSprite {
         vehicleSprite.vehicleShieldSprite
             .add(Sprite('vehicle/vertex/withShield/vertexWithShield3.png'));
 
-        vehicleSprite.vehicleGotHitSprite = new List<Sprite>();
+        // vehicleSprite.vehicleGotHitSprite = new List<Sprite>(); (Deprecated)
+        vehicleSprite.vehicleGotHitSprite = [];
+
         vehicleSprite.vehicleGotHitSprite
             .add(Sprite('vehicle/vertex/gotHit/vertexGotHit1.png'));
         vehicleSprite.vehicleGotHitSprite
@@ -346,7 +354,8 @@ class VehicleSprite {
       case VehicleFeatures.x19:
         vehicleSprite = VehicleSprite();
 
-        vehicleSprite.vehicleSprites = List<Sprite>();
+        // vehicleSprite.vehicleSprites = List<Sprite>(); (Deprecated)
+        vehicleSprite.vehicleSprites = [];
         vehicleSprite.vehicleSprites.add(Sprite('vehicle/x-19/x-19_1.png'));
         vehicleSprite.vehicleSprites.add(Sprite('vehicle/x-19/x-19_2.png'));
         vehicleSprite.vehicleSprites.add(Sprite('vehicle/x-19/x-19_3.png'));
@@ -355,7 +364,8 @@ class VehicleSprite {
         vehicleSprite.vehicleSprites.add(Sprite('vehicle/x-19/x-19_6.png'));
         vehicleSprite.vehicleSprites.add(Sprite('vehicle/x-19/x-19_7.png'));
 
-        vehicleSprite.vehicleShieldSprite = List<Sprite>();
+        //vehicleSprite.vehicleShieldSprite = List<Sprite>(); (Deprecated)
+        vehicleSprite.vehicleShieldSprite = [];
         vehicleSprite.vehicleShieldSprite
             .add(Sprite('vehicle/x-19/withShield/x-19WithShield1.png'));
         vehicleSprite.vehicleShieldSprite
@@ -365,7 +375,8 @@ class VehicleSprite {
         vehicleSprite.vehicleShieldSprite
             .add(Sprite('vehicle/x-19/withShield/x-19WithShield4.png'));
 
-        vehicleSprite.vehicleGotHitSprite = new List<Sprite>();
+        // vehicleSprite.vehicleGotHitSprite = new List<Sprite>(); (Deprecated)
+        vehicleSprite.vehicleGotHitSprite = [];
         vehicleSprite.vehicleGotHitSprite
             .add(Sprite('vehicle/x-19/gotHit/x-19GotHit1.png'));
         vehicleSprite.vehicleGotHitSprite
@@ -380,7 +391,9 @@ class VehicleSprite {
       default:
         vehicleSprite = VehicleSprite();
 
-        vehicleSprite.vehicleSprites = new List<Sprite>();
+//        vehicleSprite.vehicleSprites = new List<Sprite>(); (Deprecated)
+        vehicleSprite.vehicleSprites = [];
+
         vehicleSprite.vehicleSprites
             .add(Sprite('vehicle/spaceship/ship_1.png'));
         vehicleSprite.vehicleSprites
@@ -390,7 +403,9 @@ class VehicleSprite {
         vehicleSprite.vehicleSprites
             .add(Sprite('vehicle/spaceship/ship_4.png'));
 
-        vehicleSprite.vehicleShieldSprite = new List<Sprite>();
+        //vehicleSprite.vehicleShieldSprite = new List<Sprite>(); (Deprecated)
+        vehicleSprite.vehicleShieldSprite = [];
+
         vehicleSprite.vehicleShieldSprite
             .add(Sprite('vehicle/spaceship/withShield/ship1shield1.png'));
         vehicleSprite.vehicleShieldSprite
@@ -400,7 +415,8 @@ class VehicleSprite {
         vehicleSprite.vehicleShieldSprite
             .add(Sprite('vehicle/spaceship/withShield/ship1shield4.png'));
 
-        vehicleSprite.vehicleGotHitSprite = new List<Sprite>();
+        //vehicleSprite.vehicleGotHitSprite = new List<Sprite>(); (Deprecated)
+        vehicleSprite.vehicleGotHitSprite = [];
         vehicleSprite.vehicleGotHitSprite
             .add(Sprite('vehicle/spaceship/gotHit/ship1GotHit1.png'));
         vehicleSprite.vehicleGotHitSprite
