@@ -26,7 +26,8 @@ class StoreVehicleUI extends StatelessWidget {
   final List<MVehicle> vehicles;
   final List<VehicleFeatures> vehicleAlreadyPurchases;
 
-  const StoreVehicleUI({Key key, this.vehicles,this.vehicleAlreadyPurchases}) : super(key: key);
+  const StoreVehicleUI({Key key, this.vehicles, this.vehicleAlreadyPurchases})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -51,166 +52,240 @@ class StoreVehicleUI extends StatelessWidget {
 class VehicleUI extends StatefulWidget {
   final MVehicle vehicle;
   final List<VehicleFeatures> vehicleAlreadyPurchases;
-  VehicleUI({Key key, this.vehicle, this.vehicleAlreadyPurchases}) : super(key: key);
+  VehicleUI({Key key, this.vehicle, this.vehicleAlreadyPurchases})
+      : super(key: key);
 
   @override
   _VehicleUIState createState() => _VehicleUIState();
 }
 
 class _VehicleUIState extends State<VehicleUI> {
-
-
-
   @override
   Widget build(BuildContext context) {
-
-
     return Container(
       width: MediaQuery.of(context).size.width * 0.5,
       padding: EdgeInsets.all(8),
       child: Column(
         children: [
-           Image.asset(
+          Image.asset(
             widget.vehicle.gifPath,
             height: 150.0,
             width: 150.0,
           ),
-          Column(
-            children:<Widget>[
-              Row(
-                children: [
-                    Text("Name:",style: TextStyle(fontSize: 16,fontStyle: FontStyle.normal),),
-                Text(widget.vehicle.toString())
-                ],
-              ),
-              Row(
-                children: [
-                    Text("Price:",style: TextStyle(fontSize: 16,fontStyle: FontStyle.normal),),
-                Text(widget.vehicle.attribute.price.toString())
-                ],
-              ),
-              Row(
-                children: [
-                    Text("Hit Point:",style: TextStyle(fontSize: 16,fontStyle: FontStyle.normal),),    
-                    Row(mainAxisAlignment: MainAxisAlignment.start, children: getTotalOfHitPont(widget.vehicle.attribute.currentHitPoint))
-                ],
-              ),
-              Row(
-                
-                children: [
-                    Text("Shield:",style: TextStyle(fontSize: 16,fontStyle: FontStyle.normal),),
-                    Row( mainAxisAlignment: MainAxisAlignment.start, children: getTotalOfShield(widget.vehicle.attribute.currentShield),)   
-                ],
+          Column(children: <Widget>[
+            Row(
+              children: [
+                Text(
+                  "Name:",
+                  style: TextStyle(fontSize: 16, fontStyle: FontStyle.normal),
                 ),
-              Row(
-                
-                children: [
-                    Text("Reload duration:",style: TextStyle(fontSize: 16,fontStyle: FontStyle.normal),),
-                    Text((widget.vehicle.attribute.minUsedInterval * 0.001).toStringAsFixed(1).toString()+" second"),
-                ],)
-,
-              Row(
-                
-                children: [
-                    Text("Shield duration:",style: TextStyle(fontSize: 16,fontStyle: FontStyle.normal),),
-                    Text((widget.vehicle.attribute.shieldDuration * 0.001).toStringAsFixed(1).toString()+" second"),
-                ],)
-            ]
-          ),
+                Text(widget.vehicle.toString())
+              ],
+            ),
+            Row(
+              children: [
+                Text(
+                  "Price:",
+                  style: TextStyle(fontSize: 16, fontStyle: FontStyle.normal),
+                ),
+                Text(widget.vehicle.attribute.price.toString())
+              ],
+            ),
+            Row(
+              children: [
+                Text(
+                  "Hit Point:",
+                  style: TextStyle(fontSize: 16, fontStyle: FontStyle.normal),
+                ),
+                Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: getTotalOfHitPont(
+                        widget.vehicle.attribute.currentHitPoint))
+              ],
+            ),
+            Row(
+              children: [
+                Text(
+                  "Shield:",
+                  style: TextStyle(fontSize: 16, fontStyle: FontStyle.normal),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children:
+                      getTotalOfShield(widget.vehicle.attribute.currentShield),
+                )
+              ],
+            ),
+            Row(
+              children: [
+                Text(
+                  "Reload duration:",
+                  style: TextStyle(fontSize: 16, fontStyle: FontStyle.normal),
+                ),
+                Text((widget.vehicle.attribute.minUsedInterval * 0.001)
+                        .toStringAsFixed(1)
+                        .toString() +
+                    " second"),
+              ],
+            ),
+            Row(
+              children: [
+                Text(
+                  "Shield duration:",
+                  style: TextStyle(fontSize: 16, fontStyle: FontStyle.normal),
+                ),
+                Text((widget.vehicle.attribute.shieldDuration * 0.001)
+                        .toStringAsFixed(1)
+                        .toString() +
+                    " second"),
+              ],
+            )
+          ]),
           Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: buttonStatus(widget.vehicle),
-                      ),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: buttonStatus(widget.vehicle),
+            ),
           )
         ],
       ),
     );
   }
 
-  List<Widget> getTotalOfHitPont(int totalHitPoint){
-    List<Widget> hitpoints = new List<Widget>();
+  List<Widget> getTotalOfHitPont(int totalHitPoint) {
+    // List<Widget> hitpoints = new List<Widget>(); (Deprecated)
+    List<Widget> hitpoints = [];
 
-    for(var count = 0;count < totalHitPoint;count++){
-      hitpoints.add( Image.asset(ImagePath.heartIconPath,width: 25,height: 25,));
+    for (var count = 0; count < totalHitPoint; count++) {
+      hitpoints.add(Image.asset(
+        ImagePath.heartIconPath,
+        width: 25,
+        height: 25,
+      ));
     }
     return hitpoints;
-
   }
 
-  List<Widget> getTotalOfShield(int totalShield){
-    List<Widget> shields = new List<Widget>();
-    for(var count = 0;count < totalShield;count++){
-      shields.add( Image.asset(ImagePath.shieldIconPath,width: 25,height: 25,));
+  List<Widget> getTotalOfShield(int totalShield) {
+    // List<Widget> shields = new List<Widget>(); (Deprecated)
+    List<Widget> shields = [];
 
+    for (var count = 0; count < totalShield; count++) {
+      shields.add(Image.asset(
+        ImagePath.shieldIconPath,
+        width: 25,
+        height: 25,
+      ));
     }
     return shields;
   }
 
-
-  Widget buttonStatus(MVehicle sellingVehicle){
+  Widget buttonStatus(MVehicle sellingVehicle) {
     Widget widgetdisplay;
 
-        //  if(widget.vehicleAlreadyPurchases == null){
-        //    return Text("hello world",style: TextStyle(fontSize: 15,color: Colors.grey.shade600,fontWeight: FontWeight.bold ),);
-        //  }
-         
-        if(widget.vehicleAlreadyPurchases.any((element) => element == sellingVehicle.features)){
-          widgetdisplay = Text("Already Purchased",style: TextStyle(fontSize: 15,color: Colors.grey.shade600,fontWeight: FontWeight.bold ),);
-        }else{
-              widgetdisplay = FlatButton.icon( icon: Icon(Icons.shopping_cart), label: Text("Buy",style: TextStyle(fontSize: 15),), onPressed: (){
-              showDialogConfirmBuy(context,sellingVehicle);
-              });
-        }
-        
+    //  if(widget.vehicleAlreadyPurchases == null){
+    //    return Text("hello world",style: TextStyle(fontSize: 15,color: Colors.grey.shade600,fontWeight: FontWeight.bold ),);
+    //  }
+
+    if (widget.vehicleAlreadyPurchases
+        .any((element) => element == sellingVehicle.features)) {
+      widgetdisplay = Text(
+        "Already Purchased",
+        style: TextStyle(
+            fontSize: 15,
+            color: Colors.grey.shade600,
+            fontWeight: FontWeight.bold),
+      );
+    } else {
+      // widgetdisplay = FlatButton.icon(
+      //     icon: Icon(Icons.shopping_cart),
+      //     label: Text(
+      //       "Buy",
+      //       style: TextStyle(fontSize: 15),
+      //     ),
+      //     onPressed: () {
+      //       showDialogConfirmBuy(context, sellingVehicle);
+      //     }); (Deprecated)
+
+      widgetdisplay = ElevatedButton.icon(
+          style: CustomWidget.flatButtonStyle,
+          onPressed: () {
+            showDialogConfirmBuy(context, sellingVehicle);
+          },
+          icon: Icon(Icons.shopping_cart),
+          label: Text(
+            "Buy",
+            style: TextStyle(fontSize: 15),
+          ));
+    }
+
     return widgetdisplay;
   }
 
-  void showDialogConfirmBuy(BuildContext context,MVehicle vehicle){
-      // set up the buttons
-      Widget cancelButton = FlatButton(
-        child: Text("Cancel"),
-        onPressed:  () {
+  void showDialogConfirmBuy(BuildContext context, MVehicle vehicle) {
+    // set up the buttons
+    Widget cancelButton = ElevatedButton(
+        style: CustomWidget.flatButtonStyle,
+        onPressed: () {
           Navigator.pop(context);
         },
-      );
-      Widget continueButton = FlatButton(
-        child: Text("Continue"),
-        onPressed:  () {
-            
-            CoinRepository.getCoin().then((coin){
-                
-                if(coin >= vehicle.attribute.price){
-                  CoinRepository.deductCoin(vehicle.attribute.price);
-                  VehicleRepository.buyVehicle(vehicle.features);
-                  CustomWidget.showToasted('Purchased Succes..',true);
-                  Nav.route(context,Routes.main_page,null);
+        child: Text("Cancel"));
+    // Widget cancelButton = FlatButton(
+    //   child: Text("Cancel"),
+    //   onPressed: () {
+    //     Navigator.pop(context);
+    //   },
+    // ); (Deprecated)
 
-                }else{
-                  CustomWidget.showToasted('not enought coin!',false);
-                  Navigator.pop(context);
-                  
-                }
-            });
+    Widget continueButton = ElevatedButton(
+        style: CustomWidget.flatButtonStyle,
+        onPressed: () {
+          CoinRepository.getCoin().then((coin) {
+            if (coin >= vehicle.attribute.price) {
+              CoinRepository.deductCoin(vehicle.attribute.price);
+              VehicleRepository.buyVehicle(vehicle.features);
+              CustomWidget.showToasted('Purchased Succes..', true);
+              Nav.route(context, Routes.main_page, null);
+            } else {
+              CustomWidget.showToasted('not enought coin!', false);
+              Navigator.pop(context);
+            }
+          });
         },
-      ); 
+        child: Text("Continue"));
+    // Widget continueButton = FlatButton(
+    //   child: Text("Continue"),
+    //   onPressed: () {
+    //     CoinRepository.getCoin().then((coin) {
+    //       if (coin >= vehicle.attribute.price) {
+    //         CoinRepository.deductCoin(vehicle.attribute.price);
+    //         VehicleRepository.buyVehicle(vehicle.features);
+    //         CustomWidget.showToasted('Purchased Succes..', true);
+    //         Nav.route(context, Routes.main_page, null);
+    //       } else {
+    //         CustomWidget.showToasted('not enought coin!', false);
+    //         Navigator.pop(context);
+    //       }
+    //     });
+    //   },
+    // ); (Deprecated)
 
     // set up the AlertDialog
-      AlertDialog alert = AlertDialog(
-        title: Text("Confirmation.."),
-        content: Text("Are you sure you want to buy this vehicle?"),
-        actions: [
-          cancelButton,
-          continueButton,
-        ],
-      );  
+    AlertDialog alert = AlertDialog(
+      title: Text("Confirmation.."),
+      content: Text("Are you sure you want to buy this vehicle?"),
+      actions: [
+        cancelButton,
+        continueButton,
+      ],
+    );
 
-        // show the dialog
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return alert;
-        },
-      );
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
   }
 }

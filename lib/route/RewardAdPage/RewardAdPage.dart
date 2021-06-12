@@ -38,13 +38,20 @@ class _RewardAdPageState extends State<RewardAdPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            RaisedButton.icon(
+            ElevatedButton.icon(
                 onPressed: () {
                   Nav.route(context, Routes.main_page, null,
                       isRemovePreviousBackStack: true);
                 },
                 icon: Icon(Icons.home),
                 label: Text("Main Page"))
+            // RaisedButton.icon(
+            //     onPressed: () {
+            //       Nav.route(context, Routes.main_page, null,
+            //           isRemovePreviousBackStack: true);
+            //     },
+            //     icon: Icon(Icons.home),
+            //     label: Text("Main Page"))(Deprecated)
           ],
         )),
       ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:package_info/package_info.dart';
+import 'package:space_survival/Utils/customWidget.dart';
 import 'package:space_survival/Utils/util.dart';
 import 'package:space_survival/adMob/ad_manager.dart';
 import 'package:space_survival/logic/controller/Stage/Stage.dart';
@@ -56,7 +57,13 @@ class _MainTopUIState extends State<MainTopUI> {
                 coin.toString(),
                 style: TextStyle(color: Colors.black, fontSize: 20),
               ),
-              FlatButton.icon(
+              ElevatedButton.icon(
+                  style: TextButton.styleFrom(
+                    primary: Colors.black,
+                    backgroundColor: AppConfig.backgroundColor,
+                    shape: const RoundedRectangleBorder(),
+                    shadowColor: null,
+                  ),
                   onPressed: () {
                     MusicConfig.stopBgmRoute();
 
@@ -71,6 +78,21 @@ class _MainTopUIState extends State<MainTopUI> {
                   },
                   icon: Icon(Icons.card_giftcard),
                   label: Text("Reward"))
+              // FlatButton.icon(
+              //     onPressed: () {
+              //       MusicConfig.stopBgmRoute();
+
+              //       if (AdManager.isRewardedAdReady) {
+              //         Nav.route(context, Routes.reward_ad_page, null,
+              //             isRemovePreviousBackStack: true);
+              //       } else {
+              //         setState(() {
+              //           AdManager.loadRewardedAd();
+              //         });
+              //       }
+              //     },
+              //     icon: Icon(Icons.card_giftcard),
+              //     label: Text("Reward")) (Deprecated)
             ],
           ),
         )
@@ -163,11 +185,8 @@ class _MainMenuUIState extends State<MainMenuUI> {
       child: ListView(
         shrinkWrap: true,
         children: <Widget>[
-          RaisedButton(
-            child: Text(
-              "Start Game",
-              style: TextStyle(fontSize: AppConfig.textBtnSize),
-            ),
+          ElevatedButton(
+            style: CustomWidget.flatButtonStyle,
             onPressed: () {
               // if(isDataAvailable()){
               // StageInfo.begin();
@@ -179,41 +198,90 @@ class _MainMenuUIState extends State<MainMenuUI> {
               //   }
               // }
             },
+            child: Text(
+              "Start Game",
+              style: TextStyle(fontSize: AppConfig.textBtnSize),
+            ),
           ),
-          RaisedButton(
-            child: Text("Tutorial",
-                style: TextStyle(fontSize: AppConfig.textBtnSize)),
-            onPressed: () {
-              Nav.route(context, Routes.tutorial_page, null);
-            },
-          ),
-          RaisedButton(
-            child: Text("Scoreboard",
-                style: TextStyle(fontSize: AppConfig.textBtnSize)),
-            onPressed: () {
-              Nav.route(context, Routes.scoreboard_page, null);
-            },
-          )
+          // RaisedButton(
+          //   child: Text(
+          //     "Start Game",
+          //     style: TextStyle(fontSize: AppConfig.textBtnSize),
+          //   ),
+          //   onPressed: () {
+          //     // if(isDataAvailable()){
+          //     // StageInfo.begin();
+          //     // StageInfo stageInfo = StageInfo.getStage(highestStage);
+          //     // if(stageInfo.difficulty >= 10){
+          //     //   Nav.route(context, Routes.select_stage_page,null);
+          //     // }else{
+          //     Nav.route(context, Routes.select_vehicle_page, null);
+          //     //   }
+          //     // }
+          //   },
+          // ), (Deprecated)
+          ElevatedButton(
+              style: CustomWidget.flatButtonStyle,
+              onPressed: () {
+                Nav.route(context, Routes.tutorial_page, null);
+              },
+              child: Text("Tutorial",
+                  style: TextStyle(fontSize: AppConfig.textBtnSize))),
+          // RaisedButton(
+          //   child: Text("Tutorial",
+          //       style: TextStyle(fontSize: AppConfig.textBtnSize)),
+          //   onPressed: () {
+          //     Nav.route(context, Routes.tutorial_page, null);
+          //   },
+          // ),(Deprecated)
+          ElevatedButton(
+              style: CustomWidget.flatButtonStyle,
+              onPressed: () {
+                Nav.route(context, Routes.scoreboard_page, null);
+              },
+              child: Text("Scoreboard",
+                  style: TextStyle(fontSize: AppConfig.textBtnSize)))
+          // RaisedButton(
+          //   child: Text("Scoreboard",
+          //       style: TextStyle(fontSize: AppConfig.textBtnSize)),
+          //   onPressed: () {
+          //     Nav.route(context, Routes.scoreboard_page, null);
+          //   },
+          // )(Deprecated)
           // ,
           // RaisedButton(child: Text("Garage",style: TextStyle(fontSize: AppConfig.textBtnSize)),
           // onPressed: () {
           //   Nav.route(context,Routes.garage_page,null);
           // },)
           ,
-          RaisedButton(
-            child: Text("Store",
-                style: TextStyle(fontSize: AppConfig.textBtnSize)),
-            onPressed: () {
-              Nav.route(context, Routes.store_page, null);
-            },
-          ),
-          RaisedButton(
-            child: Text("Credit",
-                style: TextStyle(fontSize: AppConfig.textBtnSize)),
-            onPressed: () {
-              Nav.route(context, Routes.credits_page, null);
-            },
-          )
+          ElevatedButton(
+              style: CustomWidget.flatButtonStyle,
+              onPressed: () {
+                Nav.route(context, Routes.store_page, null);
+              },
+              child: Text("Store",
+                  style: TextStyle(fontSize: AppConfig.textBtnSize))),
+          // RaisedButton(
+          //   child: Text("Store",
+          //       style: TextStyle(fontSize: AppConfig.textBtnSize)),
+          //   onPressed: () {
+          //     Nav.route(context, Routes.store_page, null);
+          //   },
+          // ),(Deprecated)
+          ElevatedButton(
+              style: CustomWidget.flatButtonStyle,
+              onPressed: () {
+                Nav.route(context, Routes.credits_page, null);
+              },
+              child: Text("Credit",
+                  style: TextStyle(fontSize: AppConfig.textBtnSize)))
+          // RaisedButton(
+          //   child: Text("Credit",
+          //       style: TextStyle(fontSize: AppConfig.textBtnSize)),
+          //   onPressed: () {
+          //     Nav.route(context, Routes.credits_page, null);
+          //   },
+          // ) (Deprecated)
         ],
       ),
     );

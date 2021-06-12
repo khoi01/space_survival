@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:space_survival/Utils/customWidget.dart';
 import 'package:space_survival/Utils/util.dart';
 import 'package:space_survival/adMob/ad_manager.dart';
 import 'package:space_survival/logic/controller/Stage/Stage.dart';
@@ -58,14 +59,21 @@ class LostPage extends StatelessWidget {
                 )
               ],
             ),
-            RaisedButton(
-                child: Text("Retry"),
+            ElevatedButton(
+                style: CustomWidget.flatButtonStyle,
                 onPressed: () {
                   Nav.route(context, Routes.select_vehicle_page, null,
                       isRemovePreviousBackStack: true);
-                }),
-            RaisedButton(
-                child: Text("Home"),
+                },
+                child: Text("Retry")),
+            // RaisedButton(
+            //     child: Text("Retry"),
+            //     onPressed: () {
+            //       Nav.route(context, Routes.select_vehicle_page, null,
+            //           isRemovePreviousBackStack: true);
+            //     }), (Deprecated)
+            ElevatedButton(
+                style: CustomWidget.flatButtonStyle,
                 onPressed: () {
                   if (AdManager.isShowRewardAds()) {
                     Nav.route(context, Routes.reward_ad_page, null,
@@ -74,7 +82,19 @@ class LostPage extends StatelessWidget {
                     Nav.route(context, Routes.main_page, null,
                         isRemovePreviousBackStack: true);
                   }
-                })
+                },
+                child: Text("Home"))
+            // RaisedButton(
+            //     child: Text("Home"),
+            //     onPressed: () {
+            //       if (AdManager.isShowRewardAds()) {
+            //         Nav.route(context, Routes.reward_ad_page, null,
+            //             isRemovePreviousBackStack: true);
+            //       } else {
+            //         Nav.route(context, Routes.main_page, null,
+            //             isRemovePreviousBackStack: true);
+            //       }
+            //     })
           ],
         ));
   }

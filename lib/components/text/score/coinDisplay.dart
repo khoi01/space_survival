@@ -1,13 +1,13 @@
 import 'package:flutter/painting.dart';
 import 'package:space_survival/spaceSurvivalGame.dart';
 
-class CoinDisplay{
+class CoinDisplay {
   final SpaceSurvivalGame game;
   TextPainter painter;
   TextStyle textStyle;
   Offset position;
 
-  CoinDisplay(this.game){
+  CoinDisplay(this.game) {
     painter = TextPainter(
       textAlign: TextAlign.left,
       textDirection: TextDirection.ltr,
@@ -28,21 +28,21 @@ class CoinDisplay{
     position = Offset.zero;
   }
 
-  void render(Canvas canvas){
+  void render(Canvas canvas) {
     painter.paint(canvas, position);
   }
 
-  void update(double t){
-    if ((painter.text?.text ?? '') != game.score.toString()) {
+  void update(double t) {
+    if ((painter.text ?? '') != game.score.toString()) {
       painter.text = TextSpan(
-        text: "Coin: "+game.coin.toString(),
+        text: "Coin: " + game.coin.toString(),
         style: textStyle,
       );
 
       painter.layout();
 
       position = Offset(
-        (game.screenSize.width *  0.17) - (painter.width / 2),
+        (game.screenSize.width * 0.17) - (painter.width / 2),
         (game.screenSize.height * 0.13) - (painter.height / 2),
       );
     }
